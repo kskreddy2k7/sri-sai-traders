@@ -1,16 +1,18 @@
 /* =========================================================
    Sri Sai Traders – style.css
-   Premium Modern Business Website
+   Ultra Premium Dark Business Website
    ========================================================= */
 
 /* ---------- CSS Custom Properties ---------- */
 :root {
-  --green-primary: #16a34a;
-  --green-dark:    #15803d;
-  --green-light:   #22c55e;
-  --green-pale:    #f0fdf4;
-  --white:         #ffffff;
-  --gray-900:      #111827;
+  --dark-bg:       #0f172a;
+  --dark-card:     rgba(255, 255, 255, 0.04);
+  --dark-border:   rgba(255, 255, 255, 0.08);
+  --green-primary: #22c55e;
+  --green-dark:    #16a34a;
+  --blue-accent:   #38bdf8;
+  --text-primary:  #f1f5f9;
+  --text-muted:    rgba(255, 255, 255, 0.5);
   --radius-xl:     1rem;
   --radius-2xl:    1.5rem;
   --transition:    all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -31,17 +33,17 @@ html {
 }
 
 body {
-  font-family: 'Inter', sans-serif;
-  background: #fff;
-  color: #1f2937;
+  font-family: 'Poppins', 'Inter', sans-serif;
+  background: #0f172a;
+  color: #e2e8f0;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
 
 /* ---------- Selection Color ---------- */
 ::selection {
-  background: #bbf7d0;
-  color: #14532d;
+  background: rgba(34, 197, 94, 0.3);
+  color: #22c55e;
 }
 
 /* =========================================================
@@ -85,18 +87,13 @@ body {
   transition: background 0.4s ease, padding 0.3s ease, box-shadow 0.3s ease;
 }
 #navbar.scrolled {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(15, 23, 42, 0.92);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255,255,255,0.06);
 }
-#navbar.scrolled .nav-link { color: #374151; }
-#navbar.scrolled .nav-link:hover { color: var(--green-primary); }
-#navbar.scrolled .nav-text  { color: #111827; }
-#navbar.scrolled .nav-text-sub { color: #6b7280; }
-#navbar.scrolled .ham-line  { background: #374151; }
 
 .nav-link {
   position: relative;
@@ -109,7 +106,7 @@ body {
   left: 0;
   width: 0;
   height: 2px;
-  background: var(--green-light);
+  background: var(--green-primary);
   border-radius: 2px;
   transition: width 0.3s ease;
 }
@@ -134,9 +131,9 @@ body {
 .hero-section { position: relative; }
 
 .hero-bg {
-  background: linear-gradient(135deg, #14532d 0%, #166534 20%, #15803d 40%, #059669 65%, #10b981 85%, #16a34a 100%);
+  background: linear-gradient(135deg, #020c18 0%, #0a1628 25%, #0d1f0a 50%, #071428 75%, #020c18 100%);
   background-size: 400% 400%;
-  animation: gradientShift 10s ease infinite;
+  animation: gradientShift 12s ease infinite;
 }
 @keyframes gradientShift {
   0%   { background-position: 0%   50%; }
@@ -148,71 +145,59 @@ body {
 .blob {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.35;
-  animation: blobFloat 10s ease-in-out infinite alternate;
+  filter: blur(90px);
+  opacity: 0.25;
+  animation: blobFloat 12s ease-in-out infinite alternate;
   pointer-events: none;
 }
 .blob-1 {
   width: 500px; height: 500px;
-  background: radial-gradient(circle, #4ade80, #16a34a);
+  background: radial-gradient(circle, #22c55e, #16a34a);
   top: -150px; left: -150px;
   animation-delay: 0s;
 }
 .blob-2 {
   width: 400px; height: 400px;
-  background: radial-gradient(circle, #34d399, #059669);
+  background: radial-gradient(circle, #38bdf8, #0284c7);
   bottom: 50px; right: -100px;
   animation-delay: 3s;
 }
 .blob-3 {
   width: 300px; height: 300px;
-  background: radial-gradient(circle, #6ee7b7, #10b981);
+  background: radial-gradient(circle, #818cf8, #4f46e5);
   top: 40%; left: 50%;
   transform: translate(-50%, -50%);
   animation-delay: 6s;
 }
 @keyframes blobFloat {
   0%   { transform: scale(1) translate(0, 0); }
-  100% { transform: scale(1.15) translate(30px, -30px); }
+  100% { transform: scale(1.2) translate(40px, -40px); }
 }
 
 /* Hero grid overlay */
 .hero-grid-overlay {
   background-image:
-    linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px);
+    linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
   background-size: 60px 60px;
 }
 
-/* Hero canvas particle network */
+/* tsParticles container */
+#tsparticles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Hero canvas particle network (fallback) */
 #hero-canvas {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   pointer-events: none;
-}
-
-/* Legacy div particles (kept for non-canvas fallback) */
-#particles {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-.particle {
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  background: rgba(255,255,255,0.35);
-  border-radius: 50%;
-  box-shadow: 0 0 8px 3px rgba(134, 239, 172, 0.45);
-  animation: particleDrift var(--dur, 8s) ease-in-out infinite alternate;
-}
-@keyframes particleDrift {
-  0%   { transform: translate(0, 0) scale(1); opacity: 0.25; }
-  50%  { opacity: 0.9; }
-  100% { transform: translate(var(--tx, 40px), var(--ty, -40px)) scale(1.5); opacity: 0.25; }
+  z-index: 1;
 }
 
 /* Products section canvas particle network */
@@ -243,26 +228,24 @@ body {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.12);
   transform: translateX(-100%) skewX(-15deg);
   transition: transform 0.4s ease;
 }
 .cta-btn:hover {
   transform: translateY(-3px) scale(1.04);
   box-shadow:
-    0 12px 30px rgba(0, 0, 0, 0.15),
-    0 0 25px rgba(34, 197, 94, 0.50),
-    0 0 55px rgba(34, 197, 94, 0.20);
+    0 12px 30px rgba(0, 0, 0, 0.3),
+    0 0 25px rgba(34, 197, 94, 0.4),
+    0 0 55px rgba(34, 197, 94, 0.15);
 }
 .cta-btn:hover::before { transform: translateX(200%) skewX(-15deg); }
 
-/* Glow animation for the primary green CTA */
 @keyframes btnGlowPulse {
-  0%   { box-shadow: 0 0 12px rgba(34, 197, 94, 0.4); }
-  50%  { box-shadow: 0 0 28px rgba(34, 197, 94, 0.7), 0 0 50px rgba(34, 197, 94, 0.25); }
-  100% { box-shadow: 0 0 12px rgba(34, 197, 94, 0.4); }
+  0%   { box-shadow: 0 0 12px rgba(34, 197, 94, 0.35); }
+  50%  { box-shadow: 0 0 28px rgba(34, 197, 94, 0.65), 0 0 50px rgba(34, 197, 94, 0.2); }
+  100% { box-shadow: 0 0 12px rgba(34, 197, 94, 0.35); }
 }
-/* Applied to the WhatsApp hero CTA */
 .cta-btn-glow-loop {
   animation: btnGlowPulse 2.5s ease-in-out infinite;
 }
@@ -279,8 +262,9 @@ body {
 .stat-card:hover {
   transform: translateY(-6px);
   box-shadow:
-    0 16px 40px rgba(22, 163, 74, 0.18),
-    0 0 20px rgba(22, 163, 74, 0.10);
+    0 16px 40px rgba(34, 197, 94, 0.12),
+    0 0 20px rgba(34, 197, 94, 0.06);
+  border-color: rgba(34, 197, 94, 0.25) !important;
 }
 
 /* =========================================================
@@ -291,7 +275,7 @@ body {
 }
 .about-img-card:hover {
   transform: scale(1.02);
-  box-shadow: 0 30px 60px rgba(0,0,0,0.25);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.5);
 }
 
 /* Shimmer overlay on image card */
@@ -299,7 +283,7 @@ body {
   background: linear-gradient(
     105deg,
     transparent 40%,
-    rgba(255,255,255,0.15) 50%,
+    rgba(255,255,255,0.06) 50%,
     transparent 60%
   );
   background-size: 200% 100%;
@@ -325,24 +309,21 @@ body {
   transition: var(--transition);
 }
 .feature-pill:hover {
-  background: #dcfce7;
   transform: translateY(-2px);
+  filter: brightness(1.2);
 }
 
 /* =========================================================
-   PRODUCTS SECTION
+   PRODUCTS SECTION – Dark Glassmorphism
    ========================================================= */
-
-/* Glassmorphism card – enhanced */
 .glass-card {
-  background: rgba(255, 255, 255, 0.55);
-  backdrop-filter: blur(24px) saturate(200%);
-  -webkit-backdrop-filter: blur(24px) saturate(200%);
-  border: 1px solid rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow:
-    0 4px 24px rgba(0, 0, 0, 0.07),
-    inset 0 1px 0 rgba(255, 255, 255, 0.85),
-    inset 0 -1px 0 rgba(22, 163, 74, 0.05);
+    0 4px 24px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
   transition: var(--transition);
   position: relative;
   overflow: hidden;
@@ -352,14 +333,13 @@ body {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--green-primary), var(--green-light), #34d399);
+  height: 2px;
+  background: linear-gradient(90deg, var(--green-primary), var(--blue-accent));
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.4s ease;
   border-radius: 4px 4px 0 0;
 }
-/* Subtle inner gloss spot */
 .glass-card::after {
   content: '';
   position: absolute;
@@ -369,7 +349,7 @@ body {
   background: linear-gradient(
     105deg,
     transparent 40%,
-    rgba(255, 255, 255, 0.18) 50%,
+    rgba(255, 255, 255, 0.04) 50%,
     transparent 60%
   );
   transform: skewX(-15deg);
@@ -379,16 +359,15 @@ body {
 .glass-card:hover {
   transform: translateY(-10px) scale(1.03);
   box-shadow:
-    0 25px 60px rgba(22, 163, 74, 0.22),
-    0 0 35px rgba(22, 163, 74, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9);
-  border-color: rgba(34, 197, 94, 0.45);
-  background: rgba(255, 255, 255, 0.88);
+    0 25px 60px rgba(34, 197, 94, 0.15),
+    0 0 35px rgba(34, 197, 94, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  border-color: rgba(34, 197, 94, 0.35);
+  background: rgba(255, 255, 255, 0.07);
 }
 .glass-card:hover::before { transform: scaleX(1); }
 .glass-card:hover::after  { left: 120%; }
 
-/* 3D tilt – perspective wrapper */
 .glass-card.tilt {
   transform-style: preserve-3d;
   perspective: 700px;
@@ -401,7 +380,7 @@ body {
 }
 .glass-card:hover .card-icon {
   transform: scale(1.25) rotate(-8deg) translateZ(20px);
-  filter: drop-shadow(0 4px 12px rgba(22, 163, 74, 0.5));
+  filter: drop-shadow(0 4px 12px rgba(34, 197, 94, 0.5));
 }
 
 /* =========================================================
@@ -410,6 +389,7 @@ body {
 .gallery-item {
   position: relative;
   overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 .gallery-thumb {
   position: relative;
@@ -421,7 +401,6 @@ body {
 .gallery-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.35);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -432,12 +411,28 @@ body {
 .gallery-item:hover .gallery-overlay { opacity: 1; }
 
 /* =========================================================
+   WHY CHOOSE US
+   ========================================================= */
+.why-card {
+  transition: var(--transition);
+}
+.why-card:hover {
+  border-color: rgba(34, 197, 94, 0.2) !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+/* =========================================================
    CONTACT SECTION
    ========================================================= */
 .contact-card {
   transition: var(--transition);
 }
-.contact-card:hover { transform: translateX(4px); }
+.contact-card:hover {
+  border-color: rgba(34, 197, 94, 0.2) !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  transform: translateX(4px);
+}
 
 /* =========================================================
    FLOATING BUTTONS
@@ -449,8 +444,8 @@ body {
 }
 .float-btn:hover {
   box-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.22),
-    0 0 22px rgba(34, 197, 94, 0.55) !important;
+    0 10px 30px rgba(0, 0, 0, 0.4),
+    0 0 22px rgba(34, 197, 94, 0.45) !important;
 }
 .float-tooltip {
   bottom: 50%;
@@ -469,7 +464,7 @@ body {
   animation: pulseRing 2s ease-out infinite;
 }
 @keyframes pulseRing {
-  0%   { transform: scale(1); opacity: 0.8; }
+  0%   { transform: scale(1); opacity: 0.7; }
   100% { transform: scale(1.5); opacity: 0; }
 }
 
@@ -482,7 +477,7 @@ body {
    SECTION HEADINGS (gradient text)
    ========================================================= */
 .gradient-text {
-  background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-light) 100%);
+  background: linear-gradient(135deg, var(--green-primary) 0%, var(--blue-accent) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -519,6 +514,15 @@ body {
 }
 
 /* =========================================================
+   FOOTER
+   ========================================================= */
+.footer-link {
+  color: rgba(255, 255, 255, 0.4);
+  transition: color 0.2s ease;
+}
+.footer-link:hover { color: var(--green-primary); }
+
+/* =========================================================
    UTILITIES
    ========================================================= */
 @keyframes fadeInUp {
@@ -527,10 +531,10 @@ body {
 }
 
 /* Custom scrollbar */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #f1f5f9; }
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #0f172a; }
 ::-webkit-scrollbar-thumb {
-  background: #86efac;
+  background: rgba(34,197,94,0.4);
   border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover { background: var(--green-primary); }
@@ -539,7 +543,7 @@ body {
    RESPONSIVE TWEAKS
    ========================================================= */
 @media (max-width: 640px) {
-  .hero-section .hero-title { font-size: 3rem; }
+  .hero-section .hero-title { font-size: 2.8rem !important; }
   .float-tooltip { display: none; }
   .blob-1 { width: 300px; height: 300px; }
   .blob-2 { width: 250px; height: 250px; }
