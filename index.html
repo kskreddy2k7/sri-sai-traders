@@ -113,8 +113,8 @@
     <div class="blob blob-2"></div>
     <div class="blob blob-3"></div>
 
-    <!-- Particle dots -->
-    <div class="particles" id="particles"></div>
+    <!-- Hero canvas particle network -->
+    <canvas id="hero-canvas" aria-hidden="true"></canvas>
 
     <!-- Grid overlay -->
     <div class="absolute inset-0 hero-grid-overlay opacity-10"></div>
@@ -148,7 +148,7 @@
         </a>
         <a href="https://wa.me/918639602820?text=Hello%20Sri%20Sai%20Traders%2C%20I%20would%20like%20to%20place%20an%20order."
            target="_blank" rel="noopener"
-           class="cta-btn bg-gradient-to-r from-green-400 to-emerald-500 text-white font-bold px-8 py-4 rounded-2xl shadow-xl hover:shadow-2xl flex items-center gap-3 text-base border border-white/20">
+           class="cta-btn cta-btn-glow-loop bg-gradient-to-r from-green-400 to-emerald-500 text-white font-bold px-8 py-4 rounded-2xl shadow-xl hover:shadow-2xl flex items-center gap-3 text-base border border-white/20">
           <i class="fa-brands fa-whatsapp text-xl"></i>
           WhatsApp Order
         </a>
@@ -279,8 +279,10 @@
   </section>
 
   <!-- ─────────────────────────── PRODUCTS ──────────────────────────────── -->
-  <section id="products" class="py-20 bg-gradient-to-b from-green-50 to-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section id="products" class="py-20 bg-gradient-to-b from-green-50 to-white relative overflow-hidden">
+    <!-- Canvas particle network background -->
+    <canvas id="products-canvas" aria-hidden="true"></canvas>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
       <div class="text-center mb-14" data-aos="fade-up">
         <div class="inline-flex items-center gap-2 bg-green-100 text-green-700 text-sm font-semibold px-4 py-2 rounded-full mb-4 border border-green-200">

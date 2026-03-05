@@ -134,11 +134,14 @@ body {
 .hero-section { position: relative; }
 
 .hero-bg {
-  animation: gradientShift 8s ease infinite alternate;
+  background: linear-gradient(135deg, #14532d 0%, #166534 20%, #15803d 40%, #059669 65%, #10b981 85%, #16a34a 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 10s ease infinite;
 }
 @keyframes gradientShift {
-  0%   { filter: hue-rotate(0deg) brightness(1); }
-  100% { filter: hue-rotate(10deg) brightness(1.05); }
+  0%   { background-position: 0%   50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0%   50%; }
 }
 
 /* Animated blobs */
@@ -182,7 +185,16 @@ body {
   background-size: 60px 60px;
 }
 
-/* Particles */
+/* Hero canvas particle network */
+#hero-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Legacy div particles (kept for non-canvas fallback) */
 #particles {
   position: absolute;
   inset: 0;
@@ -192,14 +204,25 @@ body {
   position: absolute;
   width: 6px;
   height: 6px;
-  background: rgba(255,255,255,0.25);
+  background: rgba(255,255,255,0.35);
   border-radius: 50%;
+  box-shadow: 0 0 8px 3px rgba(134, 239, 172, 0.45);
   animation: particleDrift var(--dur, 8s) ease-in-out infinite alternate;
 }
 @keyframes particleDrift {
-  0%   { transform: translate(0, 0) scale(1); opacity: 0.2; }
-  50%  { opacity: 0.8; }
-  100% { transform: translate(var(--tx, 40px), var(--ty, -40px)) scale(1.4); opacity: 0.2; }
+  0%   { transform: translate(0, 0) scale(1); opacity: 0.25; }
+  50%  { opacity: 0.9; }
+  100% { transform: translate(var(--tx, 40px), var(--ty, -40px)) scale(1.5); opacity: 0.25; }
+}
+
+/* Products section canvas particle network */
+#products-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* Hero text animations (driven by GSAP, but fallbacks here) */
@@ -209,7 +232,7 @@ body {
 .hero-owner,
 .hero-buttons { opacity: 0; }
 
-/* CTA buttons */
+/* CTA buttons – glow on hover */
 .cta-btn {
   position: relative;
   overflow: hidden;
@@ -224,8 +247,25 @@ body {
   transform: translateX(-100%) skewX(-15deg);
   transition: transform 0.4s ease;
 }
-.cta-btn:hover { transform: translateY(-3px) scale(1.03); }
+.cta-btn:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.15),
+    0 0 25px rgba(34, 197, 94, 0.50),
+    0 0 55px rgba(34, 197, 94, 0.20);
+}
 .cta-btn:hover::before { transform: translateX(200%) skewX(-15deg); }
+
+/* Glow animation for the primary green CTA */
+@keyframes btnGlowPulse {
+  0%   { box-shadow: 0 0 12px rgba(34, 197, 94, 0.4); }
+  50%  { box-shadow: 0 0 28px rgba(34, 197, 94, 0.7), 0 0 50px rgba(34, 197, 94, 0.25); }
+  100% { box-shadow: 0 0 12px rgba(34, 197, 94, 0.4); }
+}
+/* Applied to the WhatsApp hero CTA */
+.cta-btn-glow-loop {
+  animation: btnGlowPulse 2.5s ease-in-out infinite;
+}
 
 /* Scroll indicator */
 .scroll-indicator { opacity: 0; animation: fadeInUp 1s 2.5s forwards; }
@@ -237,8 +277,10 @@ body {
   transition: var(--transition);
 }
 .stat-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(22, 163, 74, 0.15);
+  transform: translateY(-6px);
+  box-shadow:
+    0 16px 40px rgba(22, 163, 74, 0.18),
+    0 0 20px rgba(22, 163, 74, 0.10);
 }
 
 /* =========================================================
@@ -291,48 +333,75 @@ body {
    PRODUCTS SECTION
    ========================================================= */
 
-/* Glassmorphism card */
+/* Glassmorphism card – enhanced */
 .glass-card {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(22, 163, 74, 0.15);
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(24px) saturate(200%);
+  -webkit-backdrop-filter: blur(24px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.07),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85),
+    inset 0 -1px 0 rgba(22, 163, 74, 0.05);
   transition: var(--transition);
   position: relative;
   overflow: hidden;
+  z-index: 1;
 }
 .glass-card::before {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 3px;
-  background: linear-gradient(90deg, var(--green-primary), var(--green-light));
+  background: linear-gradient(90deg, var(--green-primary), var(--green-light), #34d399);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.4s ease;
   border-radius: 4px 4px 0 0;
 }
+/* Subtle inner gloss spot */
+.glass-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -60%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.18) 50%,
+    transparent 60%
+  );
+  transform: skewX(-15deg);
+  transition: left 0.6s ease;
+  pointer-events: none;
+}
 .glass-card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 20px 50px rgba(22, 163, 74, 0.2);
-  border-color: rgba(22, 163, 74, 0.3);
-  background: rgba(255, 255, 255, 0.95);
+  transform: translateY(-10px) scale(1.03);
+  box-shadow:
+    0 25px 60px rgba(22, 163, 74, 0.22),
+    0 0 35px rgba(22, 163, 74, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  border-color: rgba(34, 197, 94, 0.45);
+  background: rgba(255, 255, 255, 0.88);
 }
 .glass-card:hover::before { transform: scaleX(1); }
+.glass-card:hover::after  { left: 120%; }
 
-/* 3D tilt effect (applied via JS) */
+/* 3D tilt – perspective wrapper */
 .glass-card.tilt {
   transform-style: preserve-3d;
-  perspective: 1000px;
+  perspective: 700px;
 }
 
 .card-icon {
   display: inline-block;
-  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+              filter 0.4s ease;
 }
 .glass-card:hover .card-icon {
-  transform: scale(1.2) rotate(-5deg);
+  transform: scale(1.25) rotate(-8deg) translateZ(20px);
+  filter: drop-shadow(0 4px 12px rgba(22, 163, 74, 0.5));
 }
 
 /* =========================================================
@@ -376,6 +445,12 @@ body {
 .float-btn {
   position: relative;
   cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.4,0,0.2,1), box-shadow 0.3s ease !important;
+}
+.float-btn:hover {
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.22),
+    0 0 22px rgba(34, 197, 94, 0.55) !important;
 }
 .float-tooltip {
   bottom: 50%;

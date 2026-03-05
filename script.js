@@ -39,6 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavbar();
   initMobileMenu();
   initParticles();
+  initProductCanvasParticles();
   initCounters();
   initProductCardTilt();
   initScrollTopBtn();
@@ -172,41 +173,86 @@ function initMobileMenu() {
 }
 
 /* ──────────────────────────────────────────────────────────
-   6. HERO PARTICLES
+   6. HERO CANVAS PARTICLE NETWORK
    ────────────────────────────────────────────────────────── */
 function initParticles() {
-  const container = document.getElementById('particles');
-  if (!container) return;
+  const canvas = document.getElementById('hero-canvas');
+  if (!canvas || !canvas.getContext) return;
 
-  const COUNT = window.innerWidth < 600 ? 15 : 30;
-  const fragment = document.createDocumentFragment();
+  const ctx = canvas.getContext('2d');
+  const section = document.querySelector('.hero-section');
 
-  for (let i = 0; i < COUNT; i++) {
-    const p = document.createElement('div');
-    p.className = 'particle';
+  const COUNT = window.innerWidth < 600 ? 40 : 70;
+  const CONNECT_DIST = 130;
+  let particles = [];
 
-    const size   = Math.random() * 6 + 3;
-    const left   = Math.random() * 100;
-    const top    = Math.random() * 100;
-    const dur    = (Math.random() * 8 + 6).toFixed(1);
-    const tx     = (Math.random() * 80 - 40).toFixed(0);
-    const ty     = (Math.random() * 80 - 40).toFixed(0);
-    const delay  = (Math.random() * 5).toFixed(1);
+  function resize() {
+    canvas.width  = section ? section.offsetWidth  : window.innerWidth;
+    canvas.height = section ? section.offsetHeight : window.innerHeight;
+  }
 
-    Object.assign(p.style, {
-      width:  `${size}px`,
-      height: `${size}px`,
-      left:   `${left}%`,
-      top:    `${top}%`,
-      '--dur': `${dur}s`,
-      '--tx':  `${tx}px`,
-      '--ty':  `${ty}px`,
-      animationDelay: `${delay}s`,
+  function createParticle() {
+    return {
+      x:  Math.random() * canvas.width,
+      y:  Math.random() * canvas.height,
+      vx: (Math.random() - 0.5) * 0.55,
+      vy: (Math.random() - 0.5) * 0.55,
+      r:  Math.random() * 2.5 + 1.2,
+      op: Math.random() * 0.45 + 0.15,
+    };
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Update + draw particles
+    particles.forEach(p => {
+      p.x += p.vx;
+      p.y += p.vy;
+      if (p.x < 0 || p.x > canvas.width)  p.vx = -p.vx;
+      if (p.y < 0 || p.y > canvas.height) p.vy = -p.vy;
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255,255,255,${p.op})`;
+      ctx.shadowBlur  = 8;
+      ctx.shadowColor = 'rgba(134,239,172,0.6)';
+      ctx.fill();
+      ctx.shadowBlur = 0;
     });
 
-    fragment.appendChild(p);
+    // Draw connecting lines
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx   = particles[i].x - particles[j].x;
+        const dy   = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < CONNECT_DIST) {
+          ctx.beginPath();
+          ctx.lineWidth   = 0.6;
+          ctx.strokeStyle = `rgba(255,255,255,${0.18 * (1 - dist / CONNECT_DIST)})`;
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    animId = requestAnimationFrame(draw);
   }
-  container.appendChild(fragment);
+
+  resize();
+  particles = Array.from({ length: COUNT }, createParticle);
+  draw();
+
+  let heroResizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(heroResizeTimer);
+    heroResizeTimer = setTimeout(() => {
+      resize();
+      particles = Array.from({ length: COUNT }, createParticle);
+    }, 150);
+  }, { passive: true });
 }
 
 /* ──────────────────────────────────────────────────────────
@@ -279,23 +325,107 @@ function initProductCardTilt() {
 
 function onTiltMove(e, card) {
   if (!card) card = e.currentTarget;
-  const rect   = card.getBoundingClientRect();
-  const cx     = rect.left + rect.width  / 2;
-  const cy     = rect.top  + rect.height / 2;
-  const dx     = (e.clientX - cx) / (rect.width  / 2);
-  const dy     = (e.clientY - cy) / (rect.height / 2);
-  const rotateX = -dy * 8;
-  const rotateY =  dx * 8;
+  const rect     = card.getBoundingClientRect();
+  const cx       = rect.left + rect.width  / 2;
+  const cy       = rect.top  + rect.height / 2;
+  const dx       = (e.clientX - cx) / (rect.width  / 2);
+  const dy       = (e.clientY - cy) / (rect.height / 2);
+  const rotateX  = -dy * 12;
+  const rotateY  =  dx * 12;
+  // Dynamic shadow offset follows mouse direction
+  const shadowX  =  dx * 16;
+  const shadowY  =  dy * 16;
 
   card.style.transition = 'none';
   card.style.transform  =
-    `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px) scale(1.02)`;
+    `perspective(700px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px) scale(1.04)`;
+  card.style.boxShadow  =
+    `${shadowX}px ${shadowY + 20}px 50px rgba(22,163,74,0.28), 0 0 30px rgba(22,163,74,0.12)`;
 }
 
 function onTiltLeave(card) {
   if (!card) card = this;
-  card.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+  card.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.5s ease';
   card.style.transform  = '';
+  card.style.boxShadow  = '';
+}
+
+/* ──────────────────────────────────────────────────────────
+   8b. PRODUCTS SECTION CANVAS PARTICLE NETWORK
+   ────────────────────────────────────────────────────────── */
+function initProductCanvasParticles() {
+  const canvas = document.getElementById('products-canvas');
+  if (!canvas || !canvas.getContext) return;
+
+  const ctx     = canvas.getContext('2d');
+  const section = document.getElementById('products');
+  const COUNT   = window.innerWidth < 600 ? 35 : 60;
+  const CONNECT = 120;
+  let particles = [];
+  let animId;
+
+  function resize() {
+    canvas.width  = section.offsetWidth;
+    canvas.height = section.offsetHeight;
+  }
+
+  function createParticle() {
+    return {
+      x:  Math.random() * canvas.width,
+      y:  Math.random() * canvas.height,
+      vx: (Math.random() - 0.5) * 0.35,
+      vy: (Math.random() - 0.5) * 0.35,
+      r:  Math.random() * 2 + 0.8,
+      op: Math.random() * 0.30 + 0.08,
+    };
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    particles.forEach(p => {
+      p.x += p.vx;
+      p.y += p.vy;
+      if (p.x < 0 || p.x > canvas.width)  p.vx = -p.vx;
+      if (p.y < 0 || p.y > canvas.height) p.vy = -p.vy;
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(22,163,74,${p.op + 0.05})`;
+      ctx.fill();
+    });
+
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx   = particles[i].x - particles[j].x;
+        const dy   = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < CONNECT) {
+          ctx.beginPath();
+          ctx.lineWidth   = 0.5;
+          ctx.strokeStyle = `rgba(22,163,74,${0.12 * (1 - dist / CONNECT)})`;
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    animId = requestAnimationFrame(draw);
+  }
+
+  resize();
+  particles = Array.from({ length: COUNT }, createParticle);
+  draw();
+
+  let prodResizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(prodResizeTimer);
+    prodResizeTimer = setTimeout(() => {
+      resize();
+      particles = Array.from({ length: COUNT }, createParticle);
+    }, 150);
+  }, { passive: true });
 }
 
 /* ──────────────────────────────────────────────────────────
