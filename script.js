@@ -16,11 +16,24 @@ function closeMenu() {
   hamburger.setAttribute('aria-expanded', 'false');
 }
 
+// Toggle on hamburger click
+hamburger.addEventListener('click', toggleMenu);
+
+// Close menu on nav link clicks
+navLinks.querySelectorAll('a').forEach(function (link) {
+  link.addEventListener('click', closeMenu);
+});
+
 // Close menu when clicking outside
 document.addEventListener('click', function (e) {
   if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
     closeMenu();
   }
+});
+
+// Close menu with Escape key
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape') { closeMenu(); }
 });
 
 // ── Navbar shadow on scroll ───────────────────────────────────
@@ -32,6 +45,11 @@ window.addEventListener('scroll', function () {
   navbar.classList.toggle('scrolled', scrolled);
   scrollBtn.classList.toggle('visible', window.scrollY > 300);
 }, { passive: true });
+
+// ── Scroll-to-top button ──────────────────────────────────────
+scrollBtn.addEventListener('click', function () {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
 
 // ── AOS Init ─────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', function () {
