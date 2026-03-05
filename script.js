@@ -60,7 +60,7 @@ function runEntryAnimations() {
   if (typeof gsap === 'undefined') {
     // Fallback: just show elements
     document
-      .querySelectorAll('.hero-badge,.hero-title,.hero-subtitle,.hero-owner,.hero-buttons,.scroll-indicator')
+      .querySelectorAll('.hero-badge,.hero-title,.hero-subtitle,.hero-owner,.hero-buttons,.scroll-indicator,.hero-photo-card')
       .forEach(el => { el.style.opacity = '1'; el.style.transform = 'none'; });
     return;
   }
@@ -69,11 +69,15 @@ function runEntryAnimations() {
 
   tl.from('.hero-badge', { y: 30, opacity: 0, duration: 0.7 })
     .from('.hero-title span:nth-child(1)', { y: 60, opacity: 0, duration: 0.8 }, '-=0.3')
-    .from('.hero-title span:nth-child(2)', { y: 60, opacity: 0, duration: 0.8 }, '-=0.5')
+    .from('.hero-title span:nth-child(2)', { y: 50, opacity: 0, duration: 0.7 }, '-=0.5')
+    .from('.hero-title span:nth-child(3)', { y: 60, opacity: 0, duration: 0.8 }, '-=0.5')
     .from('.hero-subtitle',  { y: 40, opacity: 0, duration: 0.7 }, '-=0.4')
     .from('.hero-owner',     { y: 30, opacity: 0, duration: 0.6 }, '-=0.3')
     .from('.hero-buttons .cta-btn', { y: 30, opacity: 0, stagger: 0.15, duration: 0.6 }, '-=0.3')
-    .from('.scroll-indicator', { opacity: 0, duration: 0.6 }, '-=0.2');
+    .from('.scroll-indicator', { opacity: 0, duration: 0.6 }, '-=0.2')
+    .from('.hero-product-collage .hero-photo-card', {
+      y: 30, opacity: 0, scale: 0.95, stagger: 0.12, duration: 0.65,
+    }, '-=1.2');
 
   // Parallax hero blobs on scroll
   if (typeof ScrollTrigger !== 'undefined') {
