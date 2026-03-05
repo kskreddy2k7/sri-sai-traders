@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin – Sri Sai Traders | Image Manager</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="libs/fontawesome.min.css" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#22c55e',
+            dark: '#0f172a',
+          },
+          fontFamily: { sans: ['Poppins', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body { background: #0f172a; color: #e2e8f0; font-family: 'Poppins', sans-serif; }
+
+    .drop-zone {
+      border: 2px dashed rgba(34,197,94,0.4);
+      background: rgba(34,197,94,0.04);
+      transition: all 0.3s ease;
+    }
+    .drop-zone.drag-over {
+      border-color: #22c55e;
+      background: rgba(34,197,94,0.12);
+      transform: scale(1.01);
+    }
+    .img-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: all 0.3s ease;
+    }
+    .img-card:hover { border-color: rgba(34,197,94,0.4); transform: translateY(-2px); }
+    .preview-img { object-fit: cover; width: 100%; height: 160px; }
+    .badge-new { background: rgba(34,197,94,0.15); color: #22c55e; border: 1px solid rgba(34,197,94,0.3); }
+    .badge-placeholder { background: rgba(255,165,0,0.12); color: #fb923c; border: 1px solid rgba(251,146,60,0.3); }
+    .btn-upload { background: linear-gradient(135deg,#22c55e,#16a34a); }
+    .btn-delete { background: rgba(239,68,68,0.15); color: #ef4444; border: 1px solid rgba(239,68,68,0.3); }
+    .btn-delete:hover { background: rgba(239,68,68,0.25); }
+    .toast { transform: translateY(20px); opacity: 0; transition: all 0.4s ease; }
+    .toast.show { transform: translateY(0); opacity: 1; }
+    #login-overlay { background: rgba(15,23,42,0.97); }
+    .progress-bar { background: linear-gradient(90deg,#22c55e,#38bdf8); animation: progressAnim 1.5s ease-in-out; }
+    @keyframes progressAnim { from { width: 0; } }
+  </style>
+</head>
+<body class="min-h-screen overflow-x-hidden">
+
+  <!-- ─── LOGIN OVERLAY ─── -->
+  <div id="login-overlay" class="fixed inset-0 z-[9999] flex items-center justify-center p-4">
+    <div class="w-full max-w-sm rounded-3xl p-8" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);">
+      <div class="text-center mb-6">
+        <div class="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 text-3xl" style="background:linear-gradient(135deg,#22c55e,#16a34a);">🔐</div>
+        <h1 class="text-2xl font-bold text-white">Admin Login</h1>
+        <p class="text-sm mt-1" style="color:rgba(255,255,255,0.4);">Sri Sai Traders – Image Manager</p>
+      </div>
+      <div class="space-y-4">
+        <input id="admin-password" type="password" placeholder="Enter admin password"
+               class="w-full px-4 py-3 rounded-xl text-white text-sm outline-none focus:ring-2 focus:ring-green-500"
+               style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);" />
+        <p id="login-error" class="text-xs text-red-400 hidden">Incorrect password. Try again.</p>
+        <button onclick="adminLogin()" class="btn-upload w-full py-3 rounded-xl font-semibold text-sm text-white hover:opacity-90 transition">
+          Login
+        </button>
+      </div>
+      <p class="text-xs text-center mt-4" style="color:rgba(255,255,255,0.2);">Default password: <code style="color:#22c55e;">admin123</code></p>
+    </div>
+  </div>
+
+  <!-- ─── MAIN ADMIN UI ─── -->
+  <div id="admin-app" class="hidden">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 py-4 px-6" style="background:rgba(15,23,42,0.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.07);">
+      <div class="max-w-7xl mx-auto flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl flex items-center justify-center font-bold text-white" style="background:linear-gradient(135deg,#22c55e,#16a34a);">S</div>
+          <div>
+            <div class="font-bold text-white text-base leading-none">Sri Sai Traders</div>
+            <div class="text-xs" style="color:#22c55e;">Image Manager</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-3">
+          <a href="index.html" class="flex items-center gap-2 text-sm px-4 py-2 rounded-xl transition" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.7);">
+            <i class="fa-solid fa-eye text-xs"></i> View Website
+          </a>
+          <button onclick="adminLogout()" class="flex items-center gap-2 text-sm px-4 py-2 rounded-xl" style="background:rgba(239,68,68,0.12);color:#ef4444;border:1px solid rgba(239,68,68,0.2);">
+            <i class="fa-solid fa-right-from-bracket text-xs"></i> Logout
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 py-8">
+
+      <!-- Page Title -->
+      <div class="mb-8">
+        <h2 class="text-2xl font-bold text-white mb-1">📷 Shop Image Manager</h2>
+        <p style="color:rgba(255,255,255,0.4);">Upload, replace and manage product & gallery images for your website.</p>
+      </div>
+
+      <!-- Instructions Banner -->
+      <div class="mb-8 rounded-2xl p-5 flex items-start gap-4" style="background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.2);">
+        <div class="text-2xl mt-0.5">ℹ️</div>
+        <div>
+          <h4 class="font-semibold text-white mb-1">How to use this page</h4>
+          <ul class="text-sm space-y-1" style="color:rgba(255,255,255,0.6);">
+            <li>• Drag &amp; drop an image onto any card below, or click <strong class="text-white">Choose File</strong> to pick an image</li>
+            <li>• Supported formats: <strong class="text-white">JPG, PNG, WEBP</strong> — images are saved locally in your browser</li>
+            <li>• To permanently save images on a server, upload the downloaded file to the <code style="color:#38bdf8;">/images/</code> folder</li>
+            <li>• Images update <strong class="text-white">instantly</strong> on the website after uploading</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Product Images Section -->
+      <section class="mb-10">
+        <div class="flex items-center justify-between mb-5">
+          <h3 class="text-lg font-bold text-white flex items-center gap-2">
+            <span style="color:#22c55e;">📦</span> Product Category Images
+          </h3>
+          <span class="text-xs px-3 py-1 rounded-full" style="background:rgba(34,197,94,0.1);color:#22c55e;border:1px solid rgba(34,197,94,0.2);">7 Categories</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5" id="product-grid">
+          <!-- Cards injected by JS -->
+        </div>
+      </section>
+
+      <!-- Gallery Images Section -->
+      <section class="mb-10">
+        <div class="flex items-center justify-between mb-5">
+          <h3 class="text-lg font-bold text-white flex items-center gap-2">
+            <span style="color:#38bdf8;">🖼️</span> Shop Gallery Images
+          </h3>
+          <span class="text-xs px-3 py-1 rounded-full" style="background:rgba(56,189,248,0.1);color:#38bdf8;border:1px solid rgba(56,189,248,0.2);">Store Photos</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5" id="gallery-grid">
+          <!-- Cards injected by JS -->
+        </div>
+      </section>
+
+      <!-- Bulk Upload Section -->
+      <section class="mb-10">
+        <h3 class="text-lg font-bold text-white mb-5 flex items-center gap-2">
+          <span style="color:#fb923c;">⬆️</span> Bulk Upload
+        </h3>
+        <div id="bulk-drop" class="drop-zone rounded-2xl p-12 text-center cursor-pointer"
+             ondragover="handleDragOver(event,'bulk-drop')"
+             ondragleave="handleDragLeave('bulk-drop')"
+             ondrop="handleBulkDrop(event)"
+             onclick="document.getElementById('bulk-input').click()">
+          <div class="text-5xl mb-4">📤</div>
+          <p class="text-lg font-semibold text-white mb-2">Drag &amp; Drop Multiple Images Here</p>
+          <p class="text-sm" style="color:rgba(255,255,255,0.4);">Or click to browse — Select JPG, PNG or WEBP files</p>
+          <input type="file" id="bulk-input" multiple accept="image/jpeg,image/png,image/webp" class="hidden" onchange="handleBulkInput(this)" />
+        </div>
+
+        <div id="bulk-preview" class="hidden mt-6">
+          <h4 class="font-semibold text-white mb-3">Preview Selected Images</h4>
+          <div id="bulk-previews" class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-5"></div>
+          <button onclick="saveBulkImages()" class="btn-upload px-6 py-3 rounded-xl font-semibold text-sm text-white hover:opacity-90 transition">
+            <i class="fa-solid fa-cloud-arrow-up mr-2"></i> Save All Images
+          </button>
+        </div>
+      </section>
+
+      <!-- Image Guidelines -->
+      <section class="rounded-2xl p-6 mb-10" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);">
+        <h3 class="text-base font-bold text-white mb-4">📐 Image Guidelines</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
+          <div class="p-4 rounded-xl" style="background:rgba(34,197,94,0.07);">
+            <div class="font-semibold mb-1" style="color:#22c55e;">Recommended Size</div>
+            <div style="color:rgba(255,255,255,0.6);">800×560 px (product images)<br/>1200×800 px (gallery photos)</div>
+          </div>
+          <div class="p-4 rounded-xl" style="background:rgba(56,189,248,0.07);">
+            <div class="font-semibold mb-1" style="color:#38bdf8;">Supported Formats</div>
+            <div style="color:rgba(255,255,255,0.6);">JPG / JPEG, PNG, WEBP<br/>Max file size: 5 MB per image</div>
+          </div>
+          <div class="p-4 rounded-xl" style="background:rgba(251,146,60,0.07);">
+            <div class="font-semibold mb-1" style="color:#fb923c;">Best Practices</div>
+            <div style="color:rgba(255,255,255,0.6);">Use bright, clear product shots<br/>Avoid dark or blurry images</div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast fixed bottom-6 right-6 z-[9999] px-5 py-3 rounded-2xl text-sm font-semibold flex items-center gap-2 shadow-xl"
+       style="background:rgba(15,23,42,0.98);border:1px solid rgba(34,197,94,0.4);color:#22c55e;">
+    <i class="fa-solid fa-check-circle"></i>
+    <span id="toast-msg">Image saved!</span>
+  </div>
+
+  <script>
+    // ────────────────────────────────────
+    //  CONFIG – Image slot definitions
+    // ────────────────────────────────────
+    const PRODUCT_IMAGES = [
+      { key: 'milk',         label: 'Milk & Dairy',       icon: '🥛', file: 'milk.jpg',         fallback: 'https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&w=400&h=260&q=80' },
+      { key: 'paper-cups',   label: 'Disposable Cups',    icon: '☕', file: 'paper-cups.jpg',   fallback: 'https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?auto=format&fit=crop&w=400&h=260&q=80' },
+      { key: 'paper-plates', label: 'Paper Plates',       icon: '🍽️', file: 'paper-plates.jpg', fallback: 'https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&w=400&h=260&q=80' },
+      { key: 'carry-bags',   label: 'Carry Bags',         icon: '🛍️', file: 'carry-bags.jpg',   fallback: 'https://images.unsplash.com/photo-1601924994987-69e26d50dc26?auto=format&fit=crop&w=400&h=260&q=80' },
+      { key: 'containers',   label: 'Plastic Containers', icon: '📦', file: 'containers.jpg',   fallback: 'https://images.unsplash.com/photo-1586953208448-b95a79798f07?auto=format&fit=crop&w=400&h=260&q=80' },
+      { key: 'cleaning',     label: 'Cleaning Products',  icon: '🧴', file: 'cleaning.jpg',     fallback: 'https://images.unsplash.com/photo-1583515304373-6e4b9e76f1e8?auto=format&fit=crop&w=400&h=260&q=80' },
+      { key: 'grocery',      label: 'Grocery Items',      icon: '🛒', file: 'grocery.jpg',      fallback: 'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=400&h=260&q=80' },
+    ];
+
+    const GALLERY_IMAGES = [
+      { key: 'shop-front',   label: 'Shop Front',         icon: '🏪', file: 'shop-front.jpg',   fallback: 'https://images.unsplash.com/photo-1606167668584-78701c57f13d?auto=format&fit=crop&w=400&h=260&q=80' },
+      { key: 'shop-inside',  label: 'Shop Interior',      icon: '🏬', file: 'shop-inside.jpg',  fallback: 'https://images.unsplash.com/photo-1577401239170-897942555fb3?auto=format&fit=crop&w=400&h=260&q=80' },
+      { key: 'shop-display', label: 'Product Display',    icon: '🗂️', file: 'shop-display.jpg', fallback: 'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=400&h=260&q=80' },
+    ];
+
+    const MAX_FILE_SIZE_MB = 5;
+
+    // ────────────────────────────────────
+    //  Authentication
+    // ────────────────────────────────────
+    // NOTE: This is a client-side only admin page for a static website.
+    // The password provides basic protection but is not cryptographically secure.
+    // For production use, replace with server-side authentication.
+    const ADMIN_PASS = 'admin123';
+
+    function adminLogin() {
+      const pw = document.getElementById('admin-password').value;
+      if (pw === ADMIN_PASS) {
+        document.getElementById('login-overlay').classList.add('hidden');
+        document.getElementById('admin-app').classList.remove('hidden');
+        initAdmin();
+      } else {
+        document.getElementById('login-error').classList.remove('hidden');
+      }
+    }
+
+    function adminLogout() {
+      location.reload();
+    }
+
+    document.getElementById('admin-password').addEventListener('keydown', e => {
+      if (e.key === 'Enter') adminLogin();
+    });
+
+    // ────────────────────────────────────
+    //  Build UI
+    // ────────────────────────────────────
+    function initAdmin() {
+      renderGrid('product-grid', PRODUCT_IMAGES);
+      renderGrid('gallery-grid', GALLERY_IMAGES);
+    }
+
+    function renderGrid(containerId, items) {
+      const container = document.getElementById(containerId);
+      container.innerHTML = '';
+      items.forEach(item => {
+        const savedSrc = localStorage.getItem('img_' + item.key);
+        const imgSrc = savedSrc || item.fallback;
+        const isPlaceholder = !savedSrc;
+
+        const card = document.createElement('div');
+        card.className = 'img-card rounded-2xl overflow-hidden';
+        card.id = 'card_' + item.key;
+        card.innerHTML = `
+          <div class="relative drop-zone rounded-t-2xl"
+               ondragover="handleDragOver(event,'card_${item.key}')"
+               ondragleave="handleDragLeave('card_${item.key}')"
+               ondrop="handleFileDrop(event,'${item.key}')">
+            <img id="img_${item.key}" src="${imgSrc}" alt="${item.label}"
+                 class="preview-img" onerror="this.src='${item.fallback}'" />
+            <div class="absolute top-2 left-2">
+              <span class="text-xs font-semibold px-2.5 py-1 rounded-full ${isPlaceholder ? 'badge-placeholder' : 'badge-new'}">
+                ${isPlaceholder ? 'Placeholder' : 'Custom'}
+              </span>
+            </div>
+            <div class="absolute top-2 right-2 text-xl">${item.icon}</div>
+          </div>
+          <div class="p-4">
+            <h4 class="font-semibold text-white text-sm mb-1">${item.label}</h4>
+            <p class="text-xs mb-3" style="color:rgba(255,255,255,0.35);">File: /images/${item.file}</p>
+            <div class="flex gap-2">
+              <label class="btn-upload flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-semibold text-white cursor-pointer hover:opacity-90 transition">
+                <i class="fa-solid fa-upload text-xs"></i> Choose File
+                <input type="file" accept="image/jpeg,image/png,image/webp" class="hidden" onchange="handleFileInput(this,'${item.key}','${item.file}')" />
+              </label>
+              ${savedSrc ? `<button onclick="deleteImage('${item.key}')" class="btn-delete px-3 py-2 rounded-lg text-xs font-semibold transition">
+                <i class="fa-solid fa-trash text-xs"></i>
+              </button>` : ''}
+            </div>
+            ${savedSrc ? `<div class="mt-2">
+              <a href="#" onclick="downloadImage('${item.key}','${item.file}')" class="text-xs flex items-center gap-1" style="color:#38bdf8;">
+                <i class="fa-solid fa-download text-xs"></i> Download to /images/${item.file}
+              </a>
+            </div>` : ''}
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // ────────────────────────────────────
+    //  Drag & Drop handlers
+    // ────────────────────────────────────
+    function handleDragOver(e, id) {
+      e.preventDefault();
+      document.getElementById(id).classList.add('drag-over');
+    }
+    function handleDragLeave(id) {
+      document.getElementById(id).classList.remove('drag-over');
+    }
+
+    function handleFileDrop(e, key) {
+      e.preventDefault();
+      const cardEl = document.getElementById('card_' + key);
+      if (cardEl) cardEl.classList.remove('drag-over');
+
+      const file = e.dataTransfer.files[0];
+      if (file && file.type.startsWith('image/')) {
+        const item = [...PRODUCT_IMAGES, ...GALLERY_IMAGES].find(i => i.key === key);
+        processImageFile(file, key, item ? item.file : key + '.jpg');
+      }
+    }
+
+    // ────────────────────────────────────
+    //  File Input handler
+    // ────────────────────────────────────
+    function handleFileInput(inputEl, key, filename) {
+      const file = inputEl.files[0];
+      if (file) processImageFile(file, key, filename);
+    }
+
+    function processImageFile(file, key, filename) {
+      if (file.size > MAX_FILE_SIZE_MB * 1024 * 1024) {
+        showToast(`⚠️ File too large! Max size is ${MAX_FILE_SIZE_MB} MB.`, '#ef4444');
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const dataUrl = e.target.result;
+        // Save to localStorage with quota error handling
+        try {
+          localStorage.setItem('img_' + key, dataUrl);
+        } catch (err) {
+          if (err.name === 'QuotaExceededError') {
+            showToast('⚠️ Browser storage full! Delete some existing images first.', '#ef4444');
+            return;
+          }
+          throw err;
+        }
+        // Update preview image
+        const imgEl = document.getElementById('img_' + key);
+        if (imgEl) imgEl.src = dataUrl;
+        // Re-render card to show download button
+        const isProduct = PRODUCT_IMAGES.some(i => i.key === key);
+        renderGrid(isProduct ? 'product-grid' : 'gallery-grid', isProduct ? PRODUCT_IMAGES : GALLERY_IMAGES);
+        showToast(`✅ ${filename} updated! Click Download to save to /images/.`);
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function deleteImage(key) {
+      if (!confirm('Remove this custom image and restore placeholder?')) return;
+      localStorage.removeItem('img_' + key);
+      const isProduct = PRODUCT_IMAGES.some(i => i.key === key);
+      renderGrid(isProduct ? 'product-grid' : 'gallery-grid', isProduct ? PRODUCT_IMAGES : GALLERY_IMAGES);
+      showToast('🗑️ Image removed – placeholder restored.', '#fb923c');
+    }
+
+    function downloadImage(key, filename) {
+      const dataUrl = localStorage.getItem('img_' + key);
+      if (!dataUrl) return;
+      const a = document.createElement('a');
+      a.href = dataUrl;
+      a.download = filename;
+      a.click();
+      showToast(`📥 Downloading ${filename} – save it to your /images/ folder.`);
+    }
+
+    // ────────────────────────────────────
+    //  Bulk Upload
+    // ────────────────────────────────────
+    let bulkFiles = [];
+
+    function handleBulkDrop(e) {
+      e.preventDefault();
+      document.getElementById('bulk-drop').classList.remove('drag-over');
+      bulkFiles = Array.from(e.dataTransfer.files).filter(f => f.type.startsWith('image/'));
+      showBulkPreview();
+    }
+
+    function handleBulkInput(inputEl) {
+      bulkFiles = Array.from(inputEl.files);
+      showBulkPreview();
+    }
+
+    function showBulkPreview() {
+      const container = document.getElementById('bulk-previews');
+      container.innerHTML = '';
+      bulkFiles.forEach((file, i) => {
+        const reader = new FileReader();
+        reader.onload = e => {
+          const div = document.createElement('div');
+          div.className = 'rounded-xl overflow-hidden relative';
+          div.innerHTML = `
+            <img src="${e.target.result}" class="w-full h-28 object-cover rounded-xl" />
+            <div class="absolute bottom-0 left-0 right-0 px-2 py-1 text-xs text-white truncate" style="background:rgba(0,0,0,0.6);">${file.name}</div>
+          `;
+          container.appendChild(div);
+        };
+        reader.readAsDataURL(file);
+      });
+      if (bulkFiles.length > 0) {
+        document.getElementById('bulk-preview').classList.remove('hidden');
+      }
+    }
+
+    function saveBulkImages() {
+      const totalCount = bulkFiles.length;
+      bulkFiles.forEach(file => {
+        const reader = new FileReader();
+        reader.onload = e => {
+          // Try to match filename to a known slot
+          const name = file.name.toLowerCase().replace(/\.(jpg|jpeg|png|webp)$/, '');
+          const allItems = [...PRODUCT_IMAGES, ...GALLERY_IMAGES];
+          const match = allItems.find(item => item.file.replace('.jpg','') === name || item.key === name);
+          if (match) {
+            try {
+              localStorage.setItem('img_' + match.key, e.target.result);
+            } catch (err) {
+              if (err.name === 'QuotaExceededError') {
+                showToast('⚠️ Storage full! Try removing older images first.', '#ef4444');
+              }
+            }
+          }
+        };
+        reader.readAsDataURL(file);
+      });
+      // Re-render all grids
+      setTimeout(() => {
+        renderGrid('product-grid', PRODUCT_IMAGES);
+        renderGrid('gallery-grid', GALLERY_IMAGES);
+      }, 200);
+      document.getElementById('bulk-preview').classList.add('hidden');
+      bulkFiles = [];
+      showToast(`✅ ${totalCount} image(s) saved! Click Download on each card.`);
+    }
+
+    // ────────────────────────────────────
+    //  Toast
+    // ────────────────────────────────────
+    let toastTimer;
+    function showToast(msg, color) {
+      const toast = document.getElementById('toast');
+      const msgEl = document.getElementById('toast-msg');
+      msgEl.textContent = msg;
+      toast.style.borderColor = color || 'rgba(34,197,94,0.4)';
+      toast.style.color = color || '#22c55e';
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 3500);
+    }
+  </script>
+</body>
+</html>
