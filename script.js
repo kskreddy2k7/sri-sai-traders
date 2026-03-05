@@ -1,6 +1,6 @@
 /* =========================================================
    Sri Sai Traders – script.js
-   Premium Animations & Interactions
+   Ultra Premium Animations & Interactions
    ========================================================= */
 
 'use strict';
@@ -38,19 +38,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initNavbar();
   initMobileMenu();
+  initTsParticles();
   initParticles();
   initProductCanvasParticles();
   initCounters();
+  initVanillaTilt();
   initProductCardTilt();
   initScrollTopBtn();
   initSmoothScroll();
   initPageTransition();
+  initMouseSpotlight();
 });
 
 /* ──────────────────────────────────────────────────────────
    3. HERO ENTRY ANIMATIONS (GSAP)
    ────────────────────────────────────────────────────────── */
 function runEntryAnimations() {
+  // Trigger the curtain wipe-away first
+  animatePageCurtain();
+
   if (typeof gsap === 'undefined') {
     // Fallback: just show elements
     document
@@ -81,7 +87,7 @@ function runEntryAnimations() {
       y: -80,
       scrollTrigger: { trigger: '.hero-section', scrub: 2 },
     });
-    gsap.to('.hero-section .relative.z-10', {
+    gsap.to('.parallax-hero-content', {
       y: 100,
       opacity: 0.6,
       scrollTrigger: {
@@ -173,9 +179,67 @@ function initMobileMenu() {
 }
 
 /* ──────────────────────────────────────────────────────────
-   6. HERO CANVAS PARTICLE NETWORK
+   6. tsParticles HERO BACKGROUND
+   ────────────────────────────────────────────────────────── */
+function initTsParticles() {
+  if (typeof tsParticles === 'undefined') return;
+
+  tsParticles.load('tsparticles', {
+    fullScreen: { enable: false },
+    background: { color: { value: 'transparent' } },
+    fpsLimit: 60,
+    particles: {
+      number: {
+        value: window.innerWidth < 600 ? 35 : 65,
+        density: { enable: true, area: 900 },
+      },
+      color: { value: ['#22c55e', '#38bdf8', '#a78bfa'] },
+      shape: { type: 'circle' },
+      opacity: {
+        value: 0.35,
+        animation: { enable: true, speed: 1, minimumValue: 0.1, sync: false },
+      },
+      size: {
+        value: { min: 1, max: 3 },
+        animation: { enable: true, speed: 2, minimumValue: 0.5, sync: false },
+      },
+      links: {
+        enable: true,
+        distance: 130,
+        color: '#38bdf8',
+        opacity: 0.12,
+        width: 0.8,
+      },
+      move: {
+        enable: true,
+        speed: 0.6,
+        direction: 'none',
+        random: true,
+        straight: false,
+        outModes: { default: 'bounce' },
+      },
+    },
+    interactivity: {
+      events: {
+        onHover: { enable: true, mode: 'grab' },
+        onClick: { enable: false },
+        resize: true,
+      },
+      modes: {
+        grab: { distance: 140, links: { opacity: 0.35 } },
+      },
+    },
+    detectRetina: true,
+  });
+}
+
+/* ──────────────────────────────────────────────────────────
+   7. HERO CANVAS PARTICLE NETWORK (fallback when tsParticles unavailable)
    ────────────────────────────────────────────────────────── */
 function initParticles() {
+  // If tsParticles loaded successfully, skip canvas fallback
+  if (typeof tsParticles !== 'undefined') return;
+
   const canvas = document.getElementById('hero-canvas');
   if (!canvas || !canvas.getContext) return;
 
@@ -185,6 +249,7 @@ function initParticles() {
   const COUNT = window.innerWidth < 600 ? 40 : 70;
   const CONNECT_DIST = 130;
   let particles = [];
+  let animId;
 
   function resize() {
     canvas.width  = section ? section.offsetWidth  : window.innerWidth;
@@ -198,14 +263,13 @@ function initParticles() {
       vx: (Math.random() - 0.5) * 0.55,
       vy: (Math.random() - 0.5) * 0.55,
       r:  Math.random() * 2.5 + 1.2,
-      op: Math.random() * 0.45 + 0.15,
+      op: Math.random() * 0.35 + 0.1,
     };
   }
 
   function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Update + draw particles
     particles.forEach(p => {
       p.x += p.vx;
       p.y += p.vy;
@@ -214,14 +278,13 @@ function initParticles() {
 
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(255,255,255,${p.op})`;
+      ctx.fillStyle = `rgba(34,197,94,${p.op})`;
       ctx.shadowBlur  = 8;
-      ctx.shadowColor = 'rgba(134,239,172,0.6)';
+      ctx.shadowColor = 'rgba(34,197,94,0.5)';
       ctx.fill();
       ctx.shadowBlur = 0;
     });
 
-    // Draw connecting lines
     for (let i = 0; i < particles.length; i++) {
       for (let j = i + 1; j < particles.length; j++) {
         const dx   = particles[i].x - particles[j].x;
@@ -229,8 +292,8 @@ function initParticles() {
         const dist = Math.sqrt(dx * dx + dy * dy);
         if (dist < CONNECT_DIST) {
           ctx.beginPath();
-          ctx.lineWidth   = 0.6;
-          ctx.strokeStyle = `rgba(255,255,255,${0.18 * (1 - dist / CONNECT_DIST)})`;
+          ctx.lineWidth   = 0.5;
+          ctx.strokeStyle = `rgba(56,189,248,${0.15 * (1 - dist / CONNECT_DIST)})`;
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
           ctx.stroke();
@@ -249,19 +312,20 @@ function initParticles() {
   window.addEventListener('resize', () => {
     clearTimeout(heroResizeTimer);
     heroResizeTimer = setTimeout(() => {
+      cancelAnimationFrame(animId);
       resize();
       particles = Array.from({ length: COUNT }, createParticle);
+      draw();
     }, 150);
   }, { passive: true });
 }
 
 /* ──────────────────────────────────────────────────────────
-   7. ANIMATED COUNTERS
+   8. ANIMATED COUNTERS
    ────────────────────────────────────────────────────────── */
 let countersAnimated = false;
 
 function initCounters() {
-  // Observers as fallback (if ScrollTrigger not available)
   if (typeof IntersectionObserver === 'undefined') return;
 
   const counterEls = document.querySelectorAll('.counter');
@@ -306,10 +370,55 @@ function animateCounters() {
 }
 
 /* ──────────────────────────────────────────────────────────
-   8. PRODUCT CARD 3D TILT EFFECT (event delegation)
+   9. VANILLA TILT – Product cards 3D tilt (enhanced)
+   ────────────────────────────────────────────────────────── */
+function initVanillaTilt() {
+  if (typeof VanillaTilt === 'undefined') return;
+
+  VanillaTilt.init(document.querySelectorAll('.product-card'), {
+    max:          18,
+    speed:        600,
+    glare:        true,
+    'max-glare':  0.28,
+    perspective:  800,
+    scale:        1.06,
+    easing:       'cubic-bezier(.03,.98,.52,.99)',
+    gyroscope:    true,
+  });
+}
+
+/* ──────────────────────────────────────────────────────────
+   9b. PRODUCT CARD 3D TILT EFFECT (fallback when Vanilla Tilt unavailable)
+       Also drives the specular highlight on all cards.
    ────────────────────────────────────────────────────────── */
 function initProductCardTilt() {
-  // Use event delegation on the products grid container
+  /* Specular highlight: cache the rect on enter, update vars on move.
+     Works independently of VanillaTilt — adds a realistic specular layer. */
+  document.querySelectorAll('.product-card').forEach(card => {
+    let rect = null;
+    let pendingRaf = false;
+
+    card.addEventListener('mouseenter', () => {
+      rect = card.getBoundingClientRect(); // cache once on enter
+    }, { passive: true });
+
+    card.addEventListener('mousemove', e => {
+      if (!rect || pendingRaf) return;
+      pendingRaf = true;
+      requestAnimationFrame(() => {
+        const x = ((e.clientX - rect.left) / rect.width  * 100).toFixed(1);
+        const y = ((e.clientY - rect.top)  / rect.height * 100).toFixed(1);
+        card.style.setProperty('--card-x', `${x}%`);
+        card.style.setProperty('--card-y', `${y}%`);
+        pendingRaf = false;
+      });
+    }, { passive: true });
+
+    card.addEventListener('mouseleave', () => { rect = null; }, { passive: true });
+  });
+
+  if (typeof VanillaTilt !== 'undefined') return; // Vanilla Tilt handles the tilt
+
   const grids = document.querySelectorAll('#products .grid');
   grids.forEach(grid => {
     grid.addEventListener('mousemove', e => {
@@ -324,34 +433,31 @@ function initProductCardTilt() {
 }
 
 function onTiltMove(e, card) {
-  if (!card) card = e.currentTarget;
   const rect     = card.getBoundingClientRect();
   const cx       = rect.left + rect.width  / 2;
   const cy       = rect.top  + rect.height / 2;
   const dx       = (e.clientX - cx) / (rect.width  / 2);
   const dy       = (e.clientY - cy) / (rect.height / 2);
-  const rotateX  = -dy * 12;
-  const rotateY  =  dx * 12;
-  // Dynamic shadow offset follows mouse direction
-  const shadowX  =  dx * 16;
-  const shadowY  =  dy * 16;
+  const rotateX  = -dy * 18;
+  const rotateY  =  dx * 18;
+  const shadowX  =  dx * 20;
+  const shadowY  =  dy * 20;
 
   card.style.transition = 'none';
   card.style.transform  =
-    `perspective(700px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px) scale(1.04)`;
+    `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-12px) scale(1.06)`;
   card.style.boxShadow  =
-    `${shadowX}px ${shadowY + 20}px 50px rgba(22,163,74,0.28), 0 0 30px rgba(22,163,74,0.12)`;
+    `${shadowX}px ${shadowY + 24}px 60px rgba(34,197,94,0.22), 0 0 40px rgba(34,197,94,0.10)`;
 }
 
 function onTiltLeave(card) {
-  if (!card) card = this;
   card.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.5s ease';
   card.style.transform  = '';
   card.style.boxShadow  = '';
 }
 
 /* ──────────────────────────────────────────────────────────
-   8b. PRODUCTS SECTION CANVAS PARTICLE NETWORK
+   9c. PRODUCTS SECTION CANVAS PARTICLE NETWORK
    ────────────────────────────────────────────────────────── */
 function initProductCanvasParticles() {
   const canvas = document.getElementById('products-canvas');
@@ -359,7 +465,7 @@ function initProductCanvasParticles() {
 
   const ctx     = canvas.getContext('2d');
   const section = document.getElementById('products');
-  const COUNT   = window.innerWidth < 600 ? 35 : 60;
+  const COUNT   = window.innerWidth < 600 ? 25 : 45;
   const CONNECT = 120;
   let particles = [];
   let animId;
@@ -373,10 +479,10 @@ function initProductCanvasParticles() {
     return {
       x:  Math.random() * canvas.width,
       y:  Math.random() * canvas.height,
-      vx: (Math.random() - 0.5) * 0.35,
-      vy: (Math.random() - 0.5) * 0.35,
-      r:  Math.random() * 2 + 0.8,
-      op: Math.random() * 0.30 + 0.08,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.3,
+      r:  Math.random() * 1.5 + 0.5,
+      op: Math.random() * 0.18 + 0.05,
     };
   }
 
@@ -391,7 +497,7 @@ function initProductCanvasParticles() {
 
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(22,163,74,${p.op + 0.05})`;
+      ctx.fillStyle = `rgba(34,197,94,${p.op})`;
       ctx.fill();
     });
 
@@ -402,8 +508,8 @@ function initProductCanvasParticles() {
         const dist = Math.sqrt(dx * dx + dy * dy);
         if (dist < CONNECT) {
           ctx.beginPath();
-          ctx.lineWidth   = 0.5;
-          ctx.strokeStyle = `rgba(22,163,74,${0.12 * (1 - dist / CONNECT)})`;
+          ctx.lineWidth   = 0.4;
+          ctx.strokeStyle = `rgba(56,189,248,${0.08 * (1 - dist / CONNECT)})`;
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
           ctx.stroke();
@@ -429,7 +535,7 @@ function initProductCanvasParticles() {
 }
 
 /* ──────────────────────────────────────────────────────────
-   9. SCROLL-TO-TOP BUTTON
+   10. SCROLL-TO-TOP BUTTON
    ────────────────────────────────────────────────────────── */
 function initScrollTopBtn() {
   const btn = document.getElementById('scroll-top');
@@ -441,10 +547,9 @@ function initScrollTopBtn() {
 }
 
 /* ──────────────────────────────────────────────────────────
-   10. SMOOTH SCROLL FOR NAV LINKS
+   11. SMOOTH SCROLL FOR NAV LINKS
    ────────────────────────────────────────────────────────── */
 function initSmoothScroll() {
-  // Target only explicit navigation anchors to avoid interfering with unrelated links
   const navSelectors = [
     'a.nav-link[href^="#"]',
     'a.mobile-link[href^="#"]',
@@ -475,34 +580,46 @@ function initSmoothScroll() {
 }
 
 /* ──────────────────────────────────────────────────────────
-   11. PAGE TRANSITION EFFECT (between page loads / links)
+   12. PAGE TRANSITION – 5-strip curtain wipe
    ────────────────────────────────────────────────────────── */
 function initPageTransition() {
-  if (typeof gsap === 'undefined') return;
+  // Build curtain; animate it away after the loader hides (via runEntryAnimations)
+  const curtain = document.createElement('div');
+  curtain.id = 'page-curtain';
+  for (let i = 0; i < 5; i++) {
+    const strip = document.createElement('div');
+    strip.className = 'curtain-strip';
+    curtain.appendChild(strip);
+  }
+  document.body.appendChild(curtain);
+}
 
-  // Create overlay element
-  const overlay = document.createElement('div');
-  overlay.id = 'page-transition';
-  document.body.appendChild(overlay);
+function animatePageCurtain() {
+  const curtain = document.getElementById('page-curtain');
+  if (!curtain) return;
 
-  // Animate out on load
-  gsap.from(overlay, {
-    scaleY: 1,
-    transformOrigin: 'top',
-    duration: 0.8,
-    ease: 'power3.inOut',
-    delay: 0.1,
+  if (typeof gsap === 'undefined') {
+    curtain.remove();
+    return;
+  }
+
+  gsap.to('.curtain-strip', {
+    yPercent: -105,
+    duration:  1.1,
+    ease:      'power4.inOut',
+    stagger:   { each: 0.07, from: 'center' },
+    onComplete: () => curtain.remove(),
   });
 }
 
 /* ──────────────────────────────────────────────────────────
-   12. GALLERY HOVER (extra glow)
+   13. GALLERY HOVER (glow effect)
    ────────────────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.gallery-item').forEach(item => {
     item.addEventListener('mouseenter', () => {
       if (typeof gsap !== 'undefined') {
-        gsap.to(item, { boxShadow: '0 20px 50px rgba(22,163,74,0.35)', duration: 0.4 });
+        gsap.to(item, { boxShadow: '0 20px 50px rgba(34,197,94,0.3), 0 0 30px rgba(56,189,248,0.15)', duration: 0.4 });
       }
     });
     item.addEventListener('mouseleave', () => {
@@ -514,7 +631,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ──────────────────────────────────────────────────────────
-   13. FLOATING BUTTONS ENTRANCE
+   14. FLOATING BUTTONS ENTRANCE
    ────────────────────────────────────────────────────────── */
 window.addEventListener('load', () => {
   if (typeof gsap === 'undefined') return;
@@ -528,3 +645,44 @@ window.addEventListener('load', () => {
     delay: 2.2,
   });
 });
+
+/* ──────────────────────────────────────────────────────────
+   15. MOUSE TRACKING SPOTLIGHT EFFECT
+   ────────────────────────────────────────────────────────── */
+function initMouseSpotlight() {
+  const el = document.getElementById('spotlight');
+  if (!el) return;
+
+  /* Lerp-smoothed tracking so the spotlight glides rather than snaps */
+  let targetX = -500, targetY = -500;
+  let currentX = -500, currentY = -500;
+  let rafId;
+
+  const lerp = (a, b, t) => a + (b - a) * t;
+
+  document.addEventListener('mousemove', e => {
+    targetX = e.clientX;
+    targetY = e.clientY;
+  }, { passive: true });
+
+  document.addEventListener('mouseleave', () => {
+    /* Move spotlight off-screen smoothly when cursor leaves */
+    targetX = -500;
+    targetY = -500;
+  });
+
+  function tick() {
+    currentX = lerp(currentX, targetX, 0.08);
+    currentY = lerp(currentY, targetY, 0.08);
+    /* Update the spotlight element directly to limit style recalculation scope */
+    el.style.background =
+      `radial-gradient(500px circle at ${currentX.toFixed(1)}px ${currentY.toFixed(1)}px, rgba(34,197,94,0.055), transparent 42%)`;
+    rafId = requestAnimationFrame(tick);
+  }
+
+  tick();
+
+  /* Cancel the loop on page unload to prevent memory leaks */
+  window.addEventListener('pagehide', () => cancelAnimationFrame(rafId), { once: true });
+}
+

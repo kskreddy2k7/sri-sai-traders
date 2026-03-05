@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="libs/aos.css" />
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="libs/fontawesome.min.css" />
@@ -26,27 +26,29 @@
       theme: {
         extend: {
           colors: {
-            primary: '#16a34a',
-            'primary-dark': '#15803d',
-            'primary-light': '#22c55e',
-            accent: '#f0fdf4',
+            primary:   '#22c55e',
+            'primary-dark': '#16a34a',
+            secondary: '#38bdf8',
+            dark:      '#0f172a',
+            'dark-card': 'rgba(255,255,255,0.05)',
           },
           fontFamily: {
-            sans: ['Inter', 'sans-serif'],
-            display: ['Playfair Display', 'serif'],
+            sans:    ['Poppins', 'Inter', 'sans-serif'],
+            display: ['Poppins', 'Inter', 'sans-serif'],
           }
         }
       }
     }
   </script>
 </head>
-<body class="font-sans bg-white text-gray-800 overflow-x-hidden">
+<body class="font-sans overflow-x-hidden" style="background:#0f172a;color:#e2e8f0;">
 
   <!-- ─────────────────────────────── LOADER ─────────────────────────────── -->
-  <div id="page-loader" class="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-gradient-to-br from-green-700 to-green-500">
-    <div class="loader-logo text-white text-4xl font-display font-bold mb-4">Sri Sai Traders</div>
-    <div class="loader-bar w-48 h-1 bg-white/30 rounded-full overflow-hidden">
-      <div id="loader-progress" class="h-full bg-white rounded-full"></div>
+  <div id="page-loader" class="fixed inset-0 z-[9999] flex flex-col items-center justify-center" style="background:#0f172a;">
+    <div class="loader-logo text-white text-4xl font-display font-bold mb-2" style="text-shadow:0 0 30px rgba(34,197,94,0.6);">Sri Sai Traders</div>
+    <div class="text-sm mb-6" style="color:#22c55e;">Kurnool, Andhra Pradesh</div>
+    <div class="loader-bar w-56 h-1 rounded-full overflow-hidden" style="background:rgba(255,255,255,0.1);">
+      <div id="loader-progress" class="h-full rounded-full" style="background:linear-gradient(90deg,#22c55e,#38bdf8);"></div>
     </div>
   </div>
 
@@ -55,47 +57,47 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
       <!-- Logo -->
       <a href="#home" class="flex items-center gap-3 group">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-green-500 to-green-700 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300" style="background:linear-gradient(135deg,#22c55e,#16a34a);">
           <span class="text-white font-bold text-lg">S</span>
         </div>
         <div>
           <div class="font-bold text-lg leading-none text-white nav-text">Sri Sai Traders</div>
-          <div class="text-xs text-green-200 nav-text-sub">Kurnool</div>
+          <div class="text-xs nav-text-sub" style="color:#22c55e;">Kurnool</div>
         </div>
       </a>
 
       <!-- Desktop Links -->
       <ul class="hidden md:flex items-center gap-8 text-sm font-medium">
-        <li><a href="#home"     class="nav-link text-white/90 hover:text-white transition">Home</a></li>
-        <li><a href="#about"    class="nav-link text-white/90 hover:text-white transition">About</a></li>
-        <li><a href="#products" class="nav-link text-white/90 hover:text-white transition">Products</a></li>
-        <li><a href="#gallery"  class="nav-link text-white/90 hover:text-white transition">Gallery</a></li>
-        <li><a href="#contact"  class="nav-link text-white/90 hover:text-white transition">Contact</a></li>
+        <li><a href="#home"     class="nav-link text-white/80 hover:text-white transition">Home</a></li>
+        <li><a href="#about"    class="nav-link text-white/80 hover:text-white transition">About</a></li>
+        <li><a href="#products" class="nav-link text-white/80 hover:text-white transition">Products</a></li>
+        <li><a href="#gallery"  class="nav-link text-white/80 hover:text-white transition">Gallery</a></li>
+        <li><a href="#contact"  class="nav-link text-white/80 hover:text-white transition">Contact</a></li>
       </ul>
 
       <!-- CTA + Hamburger -->
       <div class="flex items-center gap-3">
-        <a href="tel:8639602820" class="hidden sm:flex items-center gap-2 bg-white text-green-700 font-semibold text-sm px-4 py-2 rounded-full shadow hover:shadow-lg hover:scale-105 transition-all duration-200">
+        <a href="tel:8639602820" class="hidden sm:flex items-center gap-2 font-semibold text-sm px-4 py-2 rounded-full shadow hover:shadow-lg hover:scale-105 transition-all duration-200" style="background:#22c55e;color:#0f172a;">
           <i class="fa-solid fa-phone text-xs"></i> Call Now
         </a>
         <button id="hamburger" class="md:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5 text-white" aria-label="Toggle menu">
-          <span class="ham-line w-6 h-0.5 bg-white rounded transition-all duration-300"></span>
-          <span class="ham-line w-6 h-0.5 bg-white rounded transition-all duration-300"></span>
-          <span class="ham-line w-4 h-0.5 bg-white rounded transition-all duration-300"></span>
+          <span class="ham-line w-6 h-0.5 rounded transition-all duration-300" style="background:white;"></span>
+          <span class="ham-line w-6 h-0.5 rounded transition-all duration-300" style="background:white;"></span>
+          <span class="ham-line w-4 h-0.5 rounded transition-all duration-300" style="background:white;"></span>
         </button>
       </div>
     </div>
 
     <!-- Mobile Menu -->
-    <div id="mobile-menu" class="md:hidden hidden px-4 pt-2 pb-4 bg-green-800/95 backdrop-blur-sm mt-2 rounded-2xl mx-4">
+    <div id="mobile-menu" class="md:hidden hidden px-4 pt-2 pb-4 mt-2 rounded-2xl mx-4" style="background:rgba(15,23,42,0.97);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.08);">
       <ul class="flex flex-col gap-1 text-sm font-medium">
-        <li><a href="#home"     class="mobile-link block px-4 py-2.5 text-white/90 hover:bg-white/10 rounded-xl transition">Home</a></li>
-        <li><a href="#about"    class="mobile-link block px-4 py-2.5 text-white/90 hover:bg-white/10 rounded-xl transition">About</a></li>
-        <li><a href="#products" class="mobile-link block px-4 py-2.5 text-white/90 hover:bg-white/10 rounded-xl transition">Products</a></li>
-        <li><a href="#gallery"  class="mobile-link block px-4 py-2.5 text-white/90 hover:bg-white/10 rounded-xl transition">Gallery</a></li>
-        <li><a href="#contact"  class="mobile-link block px-4 py-2.5 text-white/90 hover:bg-white/10 rounded-xl transition">Contact</a></li>
+        <li><a href="#home"     class="mobile-link block px-4 py-2.5 text-white/80 rounded-xl transition">Home</a></li>
+        <li><a href="#about"    class="mobile-link block px-4 py-2.5 text-white/80 rounded-xl transition">About</a></li>
+        <li><a href="#products" class="mobile-link block px-4 py-2.5 text-white/80 rounded-xl transition">Products</a></li>
+        <li><a href="#gallery"  class="mobile-link block px-4 py-2.5 text-white/80 rounded-xl transition">Gallery</a></li>
+        <li><a href="#contact"  class="mobile-link block px-4 py-2.5 text-white/80 rounded-xl transition">Contact</a></li>
         <li>
-          <a href="tel:8639602820" class="flex items-center gap-2 mt-1 bg-white text-green-700 font-semibold px-4 py-2.5 rounded-xl">
+          <a href="tel:8639602820" class="flex items-center gap-2 mt-1 font-semibold px-4 py-2.5 rounded-xl" style="background:#22c55e;color:#0f172a;">
             <i class="fa-solid fa-phone"></i> 8639602820
           </a>
         </li>
@@ -106,58 +108,68 @@
   <!-- ─────────────────────────────── HERO ──────────────────────────────── -->
   <section id="home" class="hero-section relative min-h-screen flex items-center justify-center overflow-hidden">
     <!-- Animated gradient background -->
-    <div class="hero-bg absolute inset-0 bg-gradient-to-br from-green-900 via-green-700 to-emerald-500"></div>
+    <div class="hero-bg absolute inset-0"></div>
 
     <!-- Floating blobs -->
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
     <div class="blob blob-3"></div>
 
-    <!-- Hero canvas particle network -->
+    <!-- Aurora beam layer -->
+    <div class="hero-aurora" aria-hidden="true">
+      <div class="aurora-beam aurora-beam-1"></div>
+      <div class="aurora-beam aurora-beam-2"></div>
+      <div class="aurora-beam aurora-beam-3"></div>
+    </div>
+
+    <!-- tsParticles container -->
+    <div id="tsparticles" class="absolute inset-0" aria-hidden="true"></div>
+
+    <!-- Hero canvas particle network (fallback) -->
     <canvas id="hero-canvas" aria-hidden="true"></canvas>
 
     <!-- Grid overlay -->
     <div class="absolute inset-0 hero-grid-overlay opacity-10"></div>
 
     <!-- Content -->
-    <div class="relative z-10 text-center px-4 max-w-5xl mx-auto pt-20">
-      <div class="hero-badge inline-flex items-center gap-2 bg-white/10 backdrop-blur text-white text-sm font-medium px-4 py-2 rounded-full mb-6 border border-white/20">
-        <span class="w-2 h-2 bg-green-300 rounded-full animate-pulse"></span>
+    <div class="relative z-10 text-center px-4 max-w-5xl mx-auto pt-20 parallax-hero-content">
+      <div class="hero-badge inline-flex items-center gap-2 text-white text-sm font-medium px-4 py-2 rounded-full mb-6" style="background:rgba(34,197,94,0.15);border:1px solid rgba(34,197,94,0.35);backdrop-filter:blur(10px);">
+        <span class="w-2 h-2 rounded-full animate-pulse" style="background:#22c55e;"></span>
         Srinagar Colony B-Camp, Kurnool
       </div>
 
-      <h1 class="hero-title font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white leading-tight mb-6">
-        <span class="block">Sri Sai</span>
-        <span class="block text-green-300">Traders</span>
+      <h1 class="hero-title font-display font-bold text-white leading-tight mb-6" style="font-size:clamp(2.8rem,7vw,5.5rem);">
+        <span class="block">Serving Kurnool</span>
+        <span class="block" style="background:linear-gradient(135deg,#22c55e,#38bdf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">With Pride</span>
       </h1>
 
-      <p class="hero-subtitle text-white/80 text-lg sm:text-xl md:text-2xl max-w-2xl mx-auto mb-4 font-light">
-        Your One-Stop Shop for <span class="text-green-300 font-semibold">Disposable Items</span>, 
-        General Goods &amp; Fresh <span class="text-green-300 font-semibold">Milk Center</span>
+      <p class="hero-subtitle text-white/70 text-lg sm:text-xl md:text-2xl max-w-2xl mx-auto mb-4 font-light">
+        All Disposable Items &amp; General Store |
+        <span class="font-semibold" style="color:#38bdf8;">Milk Center</span>
       </p>
 
-      <p class="hero-owner text-white/60 text-sm sm:text-base mb-10">
-        Owned by <span class="text-white font-medium">K. Mohan Reddy</span> · GST: 37AIQPR6762G1ZJ
+      <p class="hero-owner text-sm sm:text-base mb-10" style="color:rgba(255,255,255,0.45);">
+        Owned by <span class="font-medium text-white">K. Mohan Reddy</span> · GST: 37AIQPR6762G1ZJ
       </p>
 
       <div class="hero-buttons flex flex-wrap items-center justify-center gap-4">
         <a href="tel:8639602820"
-           class="cta-btn bg-white text-green-700 font-bold px-8 py-4 rounded-2xl shadow-xl hover:shadow-2xl flex items-center gap-3 text-base">
-          <i class="fa-solid fa-phone-volume"></i>
+           class="cta-btn btn-ring-glow font-bold px-8 py-4 rounded-2xl shadow-xl flex items-center gap-3 text-base" style="background:white;color:#0f172a;">
+          <i class="fa-solid fa-phone-volume" style="color:#22c55e;"></i>
           Call Now
         </a>
         <a href="https://wa.me/918639602820?text=Hello%20Sri%20Sai%20Traders%2C%20I%20would%20like%20to%20place%20an%20order."
            target="_blank" rel="noopener"
-           class="cta-btn cta-btn-glow-loop bg-gradient-to-r from-green-400 to-emerald-500 text-white font-bold px-8 py-4 rounded-2xl shadow-xl hover:shadow-2xl flex items-center gap-3 text-base border border-white/20">
+           class="cta-btn btn-gradient-animated btn-ring-glow cta-btn-glow-loop font-bold px-8 py-4 rounded-2xl shadow-xl flex items-center gap-3 text-base" style="color:white;border:1px solid rgba(255,255,255,0.15);">
           <i class="fa-brands fa-whatsapp text-xl"></i>
           WhatsApp Order
         </a>
       </div>
 
       <!-- Scroll Indicator -->
-      <div class="scroll-indicator mt-16 flex flex-col items-center gap-2 text-white/50 text-xs">
+      <div class="scroll-indicator mt-16 flex flex-col items-center gap-2 text-xs" style="color:rgba(255,255,255,0.35);">
         <span>Scroll Down</span>
-        <div class="scroll-arrow w-6 h-6 border-2 border-white/30 rounded-full flex items-center justify-center">
+        <div class="w-6 h-6 rounded-full flex items-center justify-center" style="border:2px solid rgba(255,255,255,0.2);">
           <i class="fa-solid fa-chevron-down text-xs animate-bounce"></i>
         </div>
       </div>
@@ -166,37 +178,37 @@
     <!-- Bottom wave -->
     <div class="absolute bottom-0 left-0 right-0">
       <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-        <path d="M0 80L1440 80L1440 40C1200 0 960 80 720 40C480 0 240 80 0 40L0 80Z" fill="white"/>
+        <path d="M0 80L1440 80L1440 40C1200 0 960 80 720 40C480 0 240 80 0 40L0 80Z" fill="#0f172a"/>
       </svg>
     </div>
   </section>
 
   <!-- ────────────────────────── STATS BAND ─────────────────────────────── -->
-  <section class="py-12 bg-white">
+  <section class="py-12" style="background:#0f172a;">
     <div class="max-w-5xl mx-auto px-4">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-        <div class="stat-card text-center p-6 rounded-2xl bg-green-50 border border-green-100" data-aos="zoom-in" data-aos-delay="0">
-          <div class="text-3xl font-bold text-green-700 counter" data-target="500">0</div>
-          <div class="text-sm text-gray-500 mt-1">+ Products</div>
+        <div class="stat-card text-center p-6 rounded-2xl" data-aos="zoom-in" data-aos-delay="0" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);">
+          <div class="text-3xl font-bold counter" data-target="500" style="color:#22c55e;">0</div>
+          <div class="text-sm mt-1" style="color:rgba(255,255,255,0.5);">+ Products</div>
         </div>
-        <div class="stat-card text-center p-6 rounded-2xl bg-green-50 border border-green-100" data-aos="zoom-in" data-aos-delay="100">
-          <div class="text-3xl font-bold text-green-700 counter" data-target="10">0</div>
-          <div class="text-sm text-gray-500 mt-1">+ Years Experience</div>
+        <div class="stat-card text-center p-6 rounded-2xl" data-aos="zoom-in" data-aos-delay="100" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);">
+          <div class="text-3xl font-bold counter" data-target="10" style="color:#22c55e;">0</div>
+          <div class="text-sm mt-1" style="color:rgba(255,255,255,0.5);">+ Years Experience</div>
         </div>
-        <div class="stat-card text-center p-6 rounded-2xl bg-green-50 border border-green-100" data-aos="zoom-in" data-aos-delay="200">
-          <div class="text-3xl font-bold text-green-700 counter" data-target="1000">0</div>
-          <div class="text-sm text-gray-500 mt-1">+ Happy Customers</div>
+        <div class="stat-card text-center p-6 rounded-2xl" data-aos="zoom-in" data-aos-delay="200" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);">
+          <div class="text-3xl font-bold counter" data-target="1000" style="color:#22c55e;">0</div>
+          <div class="text-sm mt-1" style="color:rgba(255,255,255,0.5);">+ Happy Customers</div>
         </div>
-        <div class="stat-card text-center p-6 rounded-2xl bg-green-50 border border-green-100" data-aos="zoom-in" data-aos-delay="300">
-          <div class="text-3xl font-bold text-green-700 counter" data-target="7">0</div>
-          <div class="text-sm text-gray-500 mt-1">Days / Week Open</div>
+        <div class="stat-card text-center p-6 rounded-2xl" data-aos="zoom-in" data-aos-delay="300" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);">
+          <div class="text-3xl font-bold counter" data-target="7" style="color:#22c55e;">0</div>
+          <div class="text-sm mt-1" style="color:rgba(255,255,255,0.5);">Days / Week Open</div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ─────────────────────────────── ABOUT ─────────────────────────────── -->
-  <section id="about" class="py-20 bg-white overflow-hidden">
+  <section id="about" class="py-20 overflow-hidden" style="background:#0f172a;">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-col lg:flex-row items-center gap-16">
 
@@ -204,29 +216,29 @@
         <div class="w-full lg:w-1/2" data-aos="fade-right" data-aos-duration="800">
           <div class="relative">
             <!-- Main card -->
-            <div class="about-img-card relative rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-br from-green-600 to-emerald-500 aspect-[4/3] flex items-center justify-center">
+            <div class="about-img-card relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/3] flex items-center justify-center" style="background:linear-gradient(135deg,#0d3d1f,#134e2a,#1a6636);">
               <div class="text-center text-white p-8">
                 <div class="text-8xl mb-4">🏪</div>
                 <div class="text-2xl font-bold font-display">Sri Sai Traders</div>
-                <div class="text-green-200 text-sm mt-1">Est. in Kurnool</div>
+                <div class="text-sm mt-1" style="color:#22c55e;">Est. in Kurnool</div>
               </div>
               <!-- Shimmer overlay -->
               <div class="shimmer-overlay absolute inset-0"></div>
             </div>
             <!-- Floating badge -->
-            <div class="about-badge absolute -bottom-5 -right-5 bg-white rounded-2xl shadow-xl p-4 flex items-center gap-3 border border-green-100">
-              <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center text-2xl">🥛</div>
+            <div class="about-badge absolute -bottom-5 -right-5 rounded-2xl shadow-xl p-4 flex items-center gap-3" style="background:rgba(15,23,42,0.95);border:1px solid rgba(34,197,94,0.3);">
+              <div class="w-12 h-12 rounded-xl flex items-center justify-center text-2xl" style="background:rgba(34,197,94,0.15);">🥛</div>
               <div>
-                <div class="font-bold text-gray-800 text-sm">Milk Center</div>
-                <div class="text-green-600 text-xs">Fresh Daily</div>
+                <div class="font-bold text-sm text-white">Milk Center</div>
+                <div class="text-xs" style="color:#22c55e;">Fresh Daily</div>
               </div>
             </div>
             <!-- Floating badge 2 -->
-            <div class="about-badge-2 absolute -top-5 -left-5 bg-white rounded-2xl shadow-xl p-4 flex items-center gap-3 border border-green-100">
-              <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center text-2xl">♻️</div>
+            <div class="about-badge-2 absolute -top-5 -left-5 rounded-2xl shadow-xl p-4 flex items-center gap-3" style="background:rgba(15,23,42,0.95);border:1px solid rgba(56,189,248,0.3);">
+              <div class="w-12 h-12 rounded-xl flex items-center justify-center text-2xl" style="background:rgba(56,189,248,0.12);">♻️</div>
               <div>
-                <div class="font-bold text-gray-800 text-sm">Eco-Friendly</div>
-                <div class="text-green-600 text-xs">Disposables</div>
+                <div class="font-bold text-sm text-white">Eco-Friendly</div>
+                <div class="text-xs" style="color:#38bdf8;">Disposables</div>
               </div>
             </div>
           </div>
@@ -234,20 +246,20 @@
 
         <!-- Text Side -->
         <div class="w-full lg:w-1/2" data-aos="fade-left" data-aos-duration="800">
-          <div class="inline-flex items-center gap-2 bg-green-50 text-green-700 text-sm font-semibold px-4 py-2 rounded-full mb-4 border border-green-200">
+          <div class="inline-flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-full mb-4" style="background:rgba(34,197,94,0.12);color:#22c55e;border:1px solid rgba(34,197,94,0.25);">
             <i class="fa-solid fa-store text-xs"></i> About Us
           </div>
-          <h2 class="text-4xl md:text-5xl font-display font-bold text-gray-900 mb-6 leading-tight">
-            Serving Kurnool <br /><span class="text-green-600">With Pride</span>
+          <h2 class="text-4xl md:text-5xl font-display font-bold text-white mb-6 leading-tight">
+            Serving Kurnool <br /><span style="background:linear-gradient(135deg,#22c55e,#38bdf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">With Pride</span>
           </h2>
-          <p class="text-gray-600 text-lg mb-6 leading-relaxed">
+          <p class="text-lg mb-6 leading-relaxed" style="color:rgba(255,255,255,0.65);">
             Sri Sai Traders is your trusted neighborhood store in Srinagar Colony B-Camp, Kurnool. 
-            We specialize in all kinds of <strong class="text-green-700">disposable items</strong> — from paper cups 
+            We specialize in all kinds of <strong style="color:#22c55e;">disposable items</strong> — from paper cups 
             and plates to cutlery and packaging — along with a full general store and a 
-            <strong class="text-green-700">fresh milk center</strong>.
+            <strong style="color:#22c55e;">fresh milk center</strong>.
           </p>
-          <p class="text-gray-500 text-base mb-8 leading-relaxed">
-            Under the ownership of <span class="font-semibold text-gray-700">K. Mohan Reddy</span>, 
+          <p class="text-base mb-8 leading-relaxed" style="color:rgba(255,255,255,0.45);">
+            Under the ownership of <span class="font-semibold text-white">K. Mohan Reddy</span>, 
             we are committed to providing high-quality products at fair prices, ensuring every customer 
             leaves satisfied. Located opposite Shakuntala Kalaa Mandir Road, we are easily accessible 
             to all residents and businesses in the area.
@@ -255,22 +267,22 @@
 
           <!-- Feature pills -->
           <div class="flex flex-wrap gap-3 mb-8">
-            <span class="feature-pill flex items-center gap-2 bg-green-50 text-green-700 text-sm px-4 py-2 rounded-full border border-green-200">
+            <span class="feature-pill flex items-center gap-2 text-sm px-4 py-2 rounded-full" style="background:rgba(34,197,94,0.1);color:#22c55e;border:1px solid rgba(34,197,94,0.25);">
               <i class="fa-solid fa-check-circle"></i> GST Registered
             </span>
-            <span class="feature-pill flex items-center gap-2 bg-green-50 text-green-700 text-sm px-4 py-2 rounded-full border border-green-200">
+            <span class="feature-pill flex items-center gap-2 text-sm px-4 py-2 rounded-full" style="background:rgba(34,197,94,0.1);color:#22c55e;border:1px solid rgba(34,197,94,0.25);">
               <i class="fa-solid fa-check-circle"></i> Quality Products
             </span>
-            <span class="feature-pill flex items-center gap-2 bg-green-50 text-green-700 text-sm px-4 py-2 rounded-full border border-green-200">
+            <span class="feature-pill flex items-center gap-2 text-sm px-4 py-2 rounded-full" style="background:rgba(56,189,248,0.1);color:#38bdf8;border:1px solid rgba(56,189,248,0.25);">
               <i class="fa-solid fa-check-circle"></i> Home Delivery
             </span>
-            <span class="feature-pill flex items-center gap-2 bg-green-50 text-green-700 text-sm px-4 py-2 rounded-full border border-green-200">
+            <span class="feature-pill flex items-center gap-2 text-sm px-4 py-2 rounded-full" style="background:rgba(56,189,248,0.1);color:#38bdf8;border:1px solid rgba(56,189,248,0.25);">
               <i class="fa-solid fa-check-circle"></i> Bulk Orders
             </span>
           </div>
 
           <a href="#contact"
-             class="inline-flex items-center gap-3 bg-gradient-to-r from-green-600 to-emerald-500 text-white font-semibold px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
+             class="inline-flex items-center gap-3 font-semibold px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300" style="background:linear-gradient(135deg,#22c55e,#16a34a);color:white;">
             Get In Touch <i class="fa-solid fa-arrow-right"></i>
           </a>
         </div>
@@ -279,19 +291,19 @@
   </section>
 
   <!-- ─────────────────────────── PRODUCTS ──────────────────────────────── -->
-  <section id="products" class="py-20 bg-gradient-to-b from-green-50 to-white relative overflow-hidden">
+  <section id="products" class="py-20 relative overflow-hidden" style="background:linear-gradient(180deg,#0f172a 0%,#0d1f0f 100%);">
     <!-- Canvas particle network background -->
     <canvas id="products-canvas" aria-hidden="true"></canvas>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
       <div class="text-center mb-14" data-aos="fade-up">
-        <div class="inline-flex items-center gap-2 bg-green-100 text-green-700 text-sm font-semibold px-4 py-2 rounded-full mb-4 border border-green-200">
+        <div class="inline-flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-full mb-4" style="background:rgba(34,197,94,0.12);color:#22c55e;border:1px solid rgba(34,197,94,0.25);">
           <i class="fa-solid fa-box-open text-xs"></i> Our Products
         </div>
-        <h2 class="text-4xl md:text-5xl font-display font-bold text-gray-900 mb-4">
-          Everything You <span class="text-green-600">Need</span>
+        <h2 class="text-4xl md:text-5xl font-display font-bold text-white mb-4">
+          Everything You <span style="color:#22c55e;">Need</span>
         </h2>
-        <p class="text-gray-500 max-w-xl mx-auto text-lg">
+        <p class="max-w-xl mx-auto text-lg" style="color:rgba(255,255,255,0.5);">
           From premium disposables to everyday essentials — we stock it all.
         </p>
       </div>
@@ -300,73 +312,81 @@
 
         <!-- Product Card Template -->
         <div class="product-card glass-card rounded-2xl p-6 text-center" data-aos="fade-up" data-aos-delay="0">
+          <div class="card-specular"></div>
           <div class="card-icon text-5xl mb-4">☕</div>
-          <h3 class="font-bold text-gray-800 text-lg mb-2">Paper Cups</h3>
-          <p class="text-gray-500 text-sm">Tea, coffee & cold drink cups in all sizes. Bulk supply available.</p>
-          <div class="mt-4 inline-flex items-center gap-1 text-green-600 text-sm font-medium hover:gap-2 transition-all cursor-pointer">
+          <h3 class="font-bold text-lg mb-2 text-white">Paper Cups</h3>
+          <p class="text-sm" style="color:rgba(255,255,255,0.5);">Tea, coffee & cold drink cups in all sizes. Bulk supply available.</p>
+          <div class="mt-4 inline-flex items-center gap-1 text-sm font-medium hover:gap-2 transition-all cursor-pointer" style="color:#22c55e;">
             Enquire <i class="fa-solid fa-arrow-right text-xs"></i>
           </div>
         </div>
 
         <div class="product-card glass-card rounded-2xl p-6 text-center" data-aos="fade-up" data-aos-delay="60">
+          <div class="card-specular"></div>
           <div class="card-icon text-5xl mb-4">🍽️</div>
-          <h3 class="font-bold text-gray-800 text-lg mb-2">Paper Plates</h3>
-          <p class="text-gray-500 text-sm">Eco-friendly paper plates for events, parties & daily use.</p>
-          <div class="mt-4 inline-flex items-center gap-1 text-green-600 text-sm font-medium hover:gap-2 transition-all cursor-pointer">
+          <h3 class="font-bold text-lg mb-2 text-white">Paper Plates</h3>
+          <p class="text-sm" style="color:rgba(255,255,255,0.5);">Eco-friendly paper plates for events, parties & daily use.</p>
+          <div class="mt-4 inline-flex items-center gap-1 text-sm font-medium hover:gap-2 transition-all cursor-pointer" style="color:#22c55e;">
             Enquire <i class="fa-solid fa-arrow-right text-xs"></i>
           </div>
         </div>
 
         <div class="product-card glass-card rounded-2xl p-6 text-center" data-aos="fade-up" data-aos-delay="120">
+          <div class="card-specular"></div>
           <div class="card-icon text-5xl mb-4">🥢</div>
-          <h3 class="font-bold text-gray-800 text-lg mb-2">Disposable Cutlery</h3>
-          <p class="text-gray-500 text-sm">Spoons, forks, knives & chopsticks for all occasions.</p>
-          <div class="mt-4 inline-flex items-center gap-1 text-green-600 text-sm font-medium hover:gap-2 transition-all cursor-pointer">
+          <h3 class="font-bold text-lg mb-2 text-white">Disposable Cutlery</h3>
+          <p class="text-sm" style="color:rgba(255,255,255,0.5);">Spoons, forks, knives & chopsticks for all occasions.</p>
+          <div class="mt-4 inline-flex items-center gap-1 text-sm font-medium hover:gap-2 transition-all cursor-pointer" style="color:#22c55e;">
             Enquire <i class="fa-solid fa-arrow-right text-xs"></i>
           </div>
         </div>
 
         <div class="product-card glass-card rounded-2xl p-6 text-center" data-aos="fade-up" data-aos-delay="180">
+          <div class="card-specular"></div>
           <div class="card-icon text-5xl mb-4">🥛</div>
-          <h3 class="font-bold text-gray-800 text-lg mb-2">Fresh Milk</h3>
-          <p class="text-gray-500 text-sm">Pure farm-fresh milk available daily at our milk center.</p>
-          <div class="mt-4 inline-flex items-center gap-1 text-green-600 text-sm font-medium hover:gap-2 transition-all cursor-pointer">
+          <h3 class="font-bold text-lg mb-2 text-white">Fresh Milk</h3>
+          <p class="text-sm" style="color:rgba(255,255,255,0.5);">Pure farm-fresh milk available daily at our milk center.</p>
+          <div class="mt-4 inline-flex items-center gap-1 text-sm font-medium hover:gap-2 transition-all cursor-pointer" style="color:#38bdf8;">
             Enquire <i class="fa-solid fa-arrow-right text-xs"></i>
           </div>
         </div>
 
         <div class="product-card glass-card rounded-2xl p-6 text-center" data-aos="fade-up" data-aos-delay="0">
+          <div class="card-specular"></div>
           <div class="card-icon text-5xl mb-4">📦</div>
-          <h3 class="font-bold text-gray-800 text-lg mb-2">Packaging Material</h3>
-          <p class="text-gray-500 text-sm">Carry bags, wrapping sheets, foil, cling film & more.</p>
-          <div class="mt-4 inline-flex items-center gap-1 text-green-600 text-sm font-medium hover:gap-2 transition-all cursor-pointer">
+          <h3 class="font-bold text-lg mb-2 text-white">Packaging Material</h3>
+          <p class="text-sm" style="color:rgba(255,255,255,0.5);">Carry bags, wrapping sheets, foil, cling film & more.</p>
+          <div class="mt-4 inline-flex items-center gap-1 text-sm font-medium hover:gap-2 transition-all cursor-pointer" style="color:#22c55e;">
             Enquire <i class="fa-solid fa-arrow-right text-xs"></i>
           </div>
         </div>
 
         <div class="product-card glass-card rounded-2xl p-6 text-center" data-aos="fade-up" data-aos-delay="60">
+          <div class="card-specular"></div>
           <div class="card-icon text-5xl mb-4">🧴</div>
-          <h3 class="font-bold text-gray-800 text-lg mb-2">Cleaning Products</h3>
-          <p class="text-gray-500 text-sm">Soaps, detergents, sanitizers & household cleaners.</p>
-          <div class="mt-4 inline-flex items-center gap-1 text-green-600 text-sm font-medium hover:gap-2 transition-all cursor-pointer">
+          <h3 class="font-bold text-lg mb-2 text-white">Cleaning Products</h3>
+          <p class="text-sm" style="color:rgba(255,255,255,0.5);">Soaps, detergents, sanitizers & household cleaners.</p>
+          <div class="mt-4 inline-flex items-center gap-1 text-sm font-medium hover:gap-2 transition-all cursor-pointer" style="color:#22c55e;">
             Enquire <i class="fa-solid fa-arrow-right text-xs"></i>
           </div>
         </div>
 
         <div class="product-card glass-card rounded-2xl p-6 text-center" data-aos="fade-up" data-aos-delay="120">
+          <div class="card-specular"></div>
           <div class="card-icon text-5xl mb-4">🛒</div>
-          <h3 class="font-bold text-gray-800 text-lg mb-2">Groceries</h3>
-          <p class="text-gray-500 text-sm">Rice, dal, spices, oil & all daily grocery essentials.</p>
-          <div class="mt-4 inline-flex items-center gap-1 text-green-600 text-sm font-medium hover:gap-2 transition-all cursor-pointer">
+          <h3 class="font-bold text-lg mb-2 text-white">Groceries</h3>
+          <p class="text-sm" style="color:rgba(255,255,255,0.5);">Rice, dal, spices, oil & all daily grocery essentials.</p>
+          <div class="mt-4 inline-flex items-center gap-1 text-sm font-medium hover:gap-2 transition-all cursor-pointer" style="color:#22c55e;">
             Enquire <i class="fa-solid fa-arrow-right text-xs"></i>
           </div>
         </div>
 
         <div class="product-card glass-card rounded-2xl p-6 text-center" data-aos="fade-up" data-aos-delay="180">
+          <div class="card-specular"></div>
           <div class="card-icon text-5xl mb-4">🧻</div>
-          <h3 class="font-bold text-gray-800 text-lg mb-2">Tissue & Napkins</h3>
-          <p class="text-gray-500 text-sm">Tissue rolls, facial tissues, paper napkins & hand towels.</p>
-          <div class="mt-4 inline-flex items-center gap-1 text-green-600 text-sm font-medium hover:gap-2 transition-all cursor-pointer">
+          <h3 class="font-bold text-lg mb-2 text-white">Tissue & Napkins</h3>
+          <p class="text-sm" style="color:rgba(255,255,255,0.5);">Tissue rolls, facial tissues, paper napkins & hand towels.</p>
+          <div class="mt-4 inline-flex items-center gap-1 text-sm font-medium hover:gap-2 transition-all cursor-pointer" style="color:#22c55e;">
             Enquire <i class="fa-solid fa-arrow-right text-xs"></i>
           </div>
         </div>
@@ -374,15 +394,15 @@
       </div>
 
       <!-- CTA Banner -->
-      <div class="mt-14 rounded-3xl bg-gradient-to-r from-green-600 to-emerald-500 p-8 sm:p-12 text-center text-white relative overflow-hidden" data-aos="zoom-in">
-        <div class="blob-cta absolute -top-10 -right-10 w-48 h-48 bg-white/10 rounded-full blur-2xl"></div>
-        <div class="blob-cta absolute -bottom-10 -left-10 w-48 h-48 bg-white/10 rounded-full blur-2xl"></div>
+      <div class="mt-14 rounded-3xl p-8 sm:p-12 text-center text-white relative overflow-hidden" data-aos="zoom-in" style="background:linear-gradient(135deg,rgba(34,197,94,0.2),rgba(56,189,248,0.15));border:1px solid rgba(34,197,94,0.25);">
+        <div class="blob-cta absolute -top-10 -right-10 w-48 h-48 rounded-full blur-2xl" style="background:rgba(34,197,94,0.1);"></div>
+        <div class="blob-cta absolute -bottom-10 -left-10 w-48 h-48 rounded-full blur-2xl" style="background:rgba(56,189,248,0.1);"></div>
         <div class="relative z-10">
           <h3 class="text-2xl sm:text-3xl font-display font-bold mb-3">Need Bulk Orders?</h3>
-          <p class="text-white/80 mb-6 text-lg">We supply to restaurants, caterers, offices and events. Get in touch!</p>
+          <p class="mb-6 text-lg" style="color:rgba(255,255,255,0.65);">We supply to restaurants, caterers, offices and events. Get in touch!</p>
           <a href="https://wa.me/918639602820?text=I%20need%20a%20bulk%20order%20quote."
              target="_blank" rel="noopener"
-             class="inline-flex items-center gap-3 bg-white text-green-700 font-bold px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
+             class="btn-ring-glow inline-flex items-center gap-3 font-bold px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300" style="background:#22c55e;color:#0f172a;">
             <i class="fa-brands fa-whatsapp text-xl"></i> WhatsApp for Quote
           </a>
         </div>
@@ -391,17 +411,17 @@
   </section>
 
   <!-- ─────────────────────────── GALLERY ───────────────────────────────── -->
-  <section id="gallery" class="py-20 bg-white">
+  <section id="gallery" class="py-20" style="background:#0f172a;">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
       <div class="text-center mb-14" data-aos="fade-up">
-        <div class="inline-flex items-center gap-2 bg-green-100 text-green-700 text-sm font-semibold px-4 py-2 rounded-full mb-4 border border-green-200">
+        <div class="inline-flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-full mb-4" style="background:rgba(56,189,248,0.12);color:#38bdf8;border:1px solid rgba(56,189,248,0.25);">
           <i class="fa-solid fa-images text-xs"></i> Gallery
         </div>
-        <h2 class="text-4xl md:text-5xl font-display font-bold text-gray-900 mb-4">
-          Our Store &amp; <span class="text-green-600">Products</span>
+        <h2 class="text-4xl md:text-5xl font-display font-bold text-white mb-4">
+          Our Store &amp; <span style="color:#38bdf8;">Products</span>
         </h2>
-        <p class="text-gray-500 max-w-xl mx-auto text-lg">
+        <p class="max-w-xl mx-auto text-lg" style="color:rgba(255,255,255,0.5);">
           A glimpse into Sri Sai Traders — quality you can trust.
         </p>
       </div>
@@ -409,19 +429,19 @@
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
 
         <div class="gallery-item rounded-2xl overflow-hidden col-span-2 row-span-2" data-aos="fade-up" data-aos-delay="0">
-          <div class="gallery-thumb bg-gradient-to-br from-green-600 to-emerald-400 h-64 md:h-80 flex items-center justify-center cursor-pointer">
+          <div class="gallery-thumb h-64 md:h-80 flex items-center justify-center cursor-pointer relative" style="background:linear-gradient(135deg,#0d3d1f,#1a5c2e);">
             <div class="text-center text-white">
               <div class="text-6xl mb-3">🏪</div>
               <div class="font-bold text-xl">Our Store Front</div>
             </div>
-            <div class="gallery-overlay absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 transition-opacity duration-300 rounded-2xl">
+            <div class="gallery-overlay absolute inset-0 flex items-center justify-center rounded-2xl" style="background:rgba(34,197,94,0.25);">
               <i class="fa-solid fa-expand text-white text-2xl"></i>
             </div>
           </div>
         </div>
 
         <div class="gallery-item rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="60">
-          <div class="gallery-thumb bg-gradient-to-br from-green-500 to-teal-400 h-36 md:h-44 flex items-center justify-center cursor-pointer">
+          <div class="gallery-thumb h-36 md:h-44 flex items-center justify-center cursor-pointer" style="background:linear-gradient(135deg,#0a2540,#0d3d5c);">
             <div class="text-center text-white">
               <div class="text-4xl mb-1">☕</div>
               <div class="font-semibold text-sm">Paper Cups</div>
@@ -430,7 +450,7 @@
         </div>
 
         <div class="gallery-item rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="120">
-          <div class="gallery-thumb bg-gradient-to-br from-emerald-500 to-green-400 h-36 md:h-44 flex items-center justify-center cursor-pointer">
+          <div class="gallery-thumb h-36 md:h-44 flex items-center justify-center cursor-pointer" style="background:linear-gradient(135deg,#0d2d0f,#1a4a1c);">
             <div class="text-center text-white">
               <div class="text-4xl mb-1">🍽️</div>
               <div class="font-semibold text-sm">Paper Plates</div>
@@ -439,7 +459,7 @@
         </div>
 
         <div class="gallery-item rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="180">
-          <div class="gallery-thumb bg-gradient-to-br from-teal-600 to-green-500 h-36 md:h-44 flex items-center justify-center cursor-pointer">
+          <div class="gallery-thumb h-36 md:h-44 flex items-center justify-center cursor-pointer" style="background:linear-gradient(135deg,#0a2540,#163854);">
             <div class="text-center text-white">
               <div class="text-4xl mb-1">🥛</div>
               <div class="font-semibold text-sm">Milk Center</div>
@@ -448,7 +468,7 @@
         </div>
 
         <div class="gallery-item rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="60">
-          <div class="gallery-thumb bg-gradient-to-br from-green-700 to-emerald-600 h-36 md:h-44 flex items-center justify-center cursor-pointer">
+          <div class="gallery-thumb h-36 md:h-44 flex items-center justify-center cursor-pointer" style="background:linear-gradient(135deg,#1a1a0a,#2d2d0d);">
             <div class="text-center text-white">
               <div class="text-4xl mb-1">📦</div>
               <div class="font-semibold text-sm">Packaging</div>
@@ -457,7 +477,7 @@
         </div>
 
         <div class="gallery-item rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="120">
-          <div class="gallery-thumb bg-gradient-to-br from-emerald-600 to-green-500 h-36 md:h-44 flex items-center justify-center cursor-pointer">
+          <div class="gallery-thumb h-36 md:h-44 flex items-center justify-center cursor-pointer" style="background:linear-gradient(135deg,#0d1f0d,#162916);">
             <div class="text-center text-white">
               <div class="text-4xl mb-1">🛒</div>
               <div class="font-semibold text-sm">Groceries</div>
@@ -466,7 +486,7 @@
         </div>
 
         <div class="gallery-item rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="180">
-          <div class="gallery-thumb bg-gradient-to-br from-green-500 to-emerald-400 h-36 md:h-44 flex items-center justify-center cursor-pointer">
+          <div class="gallery-thumb h-36 md:h-44 flex items-center justify-center cursor-pointer" style="background:linear-gradient(135deg,#1a0d2e,#2d1645);">
             <div class="text-center text-white">
               <div class="text-4xl mb-1">🧻</div>
               <div class="font-semibold text-sm">Tissues</div>
@@ -475,7 +495,7 @@
         </div>
 
         <div class="gallery-item rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="120">
-          <div class="gallery-thumb bg-gradient-to-br from-teal-500 to-green-600 h-36 md:h-44 flex items-center justify-center cursor-pointer">
+          <div class="gallery-thumb h-36 md:h-44 flex items-center justify-center cursor-pointer" style="background:linear-gradient(135deg,#0d2020,#1a3333);">
             <div class="text-center text-white">
               <div class="text-4xl mb-1">🧴</div>
               <div class="font-semibold text-sm">Cleaners</div>
@@ -488,64 +508,64 @@
   </section>
 
   <!-- ─────────────────────────── WHY CHOOSE US ─────────────────────────── -->
-  <section class="py-20 bg-gradient-to-b from-white to-green-50">
+  <section class="py-20" style="background:linear-gradient(180deg,#0f172a 0%,#0a1628 100%);">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-14" data-aos="fade-up">
-        <div class="inline-flex items-center gap-2 bg-green-100 text-green-700 text-sm font-semibold px-4 py-2 rounded-full mb-4 border border-green-200">
+        <div class="inline-flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-full mb-4" style="background:rgba(34,197,94,0.12);color:#22c55e;border:1px solid rgba(34,197,94,0.25);">
           <i class="fa-solid fa-star text-xs"></i> Why Choose Us
         </div>
-        <h2 class="text-4xl md:text-5xl font-display font-bold text-gray-900">
-          The Sri Sai <span class="text-green-600">Difference</span>
+        <h2 class="text-4xl md:text-5xl font-display font-bold text-white">
+          The Sri Sai <span style="color:#22c55e;">Difference</span>
         </h2>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="why-card p-8 rounded-2xl bg-white border border-green-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="0">
-          <div class="w-14 h-14 bg-green-100 rounded-2xl flex items-center justify-center text-3xl mb-5">🏆</div>
-          <h3 class="font-bold text-xl text-gray-800 mb-3">Premium Quality</h3>
-          <p class="text-gray-500 leading-relaxed">We source only the best quality products ensuring your complete satisfaction with every purchase.</p>
+        <div class="why-card p-8 rounded-2xl transition-all duration-300 hover:-translate-y-2" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);" data-aos="fade-up" data-aos-delay="0">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl mb-5" style="background:rgba(34,197,94,0.15);">🏆</div>
+          <h3 class="font-bold text-xl text-white mb-3">Premium Quality</h3>
+          <p class="leading-relaxed" style="color:rgba(255,255,255,0.5);">We source only the best quality products ensuring your complete satisfaction with every purchase.</p>
         </div>
-        <div class="why-card p-8 rounded-2xl bg-white border border-green-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="100">
-          <div class="w-14 h-14 bg-green-100 rounded-2xl flex items-center justify-center text-3xl mb-5">💰</div>
-          <h3 class="font-bold text-xl text-gray-800 mb-3">Best Prices</h3>
-          <p class="text-gray-500 leading-relaxed">Competitive wholesale and retail prices for individuals, restaurants, caterers and businesses.</p>
+        <div class="why-card p-8 rounded-2xl transition-all duration-300 hover:-translate-y-2" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);" data-aos="fade-up" data-aos-delay="100">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl mb-5" style="background:rgba(56,189,248,0.15);">💰</div>
+          <h3 class="font-bold text-xl text-white mb-3">Best Prices</h3>
+          <p class="leading-relaxed" style="color:rgba(255,255,255,0.5);">Competitive wholesale and retail prices for individuals, restaurants, caterers and businesses.</p>
         </div>
-        <div class="why-card p-8 rounded-2xl bg-white border border-green-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
-          <div class="w-14 h-14 bg-green-100 rounded-2xl flex items-center justify-center text-3xl mb-5">🚀</div>
-          <h3 class="font-bold text-xl text-gray-800 mb-3">Fast Delivery</h3>
-          <p class="text-gray-500 leading-relaxed">Quick delivery to your doorstep within Srinagar Colony and nearby areas in Kurnool.</p>
+        <div class="why-card p-8 rounded-2xl transition-all duration-300 hover:-translate-y-2" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);" data-aos="fade-up" data-aos-delay="200">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl mb-5" style="background:rgba(34,197,94,0.15);">🚀</div>
+          <h3 class="font-bold text-xl text-white mb-3">Fast Delivery</h3>
+          <p class="leading-relaxed" style="color:rgba(255,255,255,0.5);">Quick delivery to your doorstep within Srinagar Colony and nearby areas in Kurnool.</p>
         </div>
-        <div class="why-card p-8 rounded-2xl bg-white border border-green-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="0">
-          <div class="w-14 h-14 bg-green-100 rounded-2xl flex items-center justify-center text-3xl mb-5">📞</div>
-          <h3 class="font-bold text-xl text-gray-800 mb-3">Easy Ordering</h3>
-          <p class="text-gray-500 leading-relaxed">Order via phone or WhatsApp — simple, quick and convenient from the comfort of your home.</p>
+        <div class="why-card p-8 rounded-2xl transition-all duration-300 hover:-translate-y-2" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);" data-aos="fade-up" data-aos-delay="0">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl mb-5" style="background:rgba(56,189,248,0.15);">📞</div>
+          <h3 class="font-bold text-xl text-white mb-3">Easy Ordering</h3>
+          <p class="leading-relaxed" style="color:rgba(255,255,255,0.5);">Order via phone or WhatsApp — simple, quick and convenient from the comfort of your home.</p>
         </div>
-        <div class="why-card p-8 rounded-2xl bg-white border border-green-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="100">
-          <div class="w-14 h-14 bg-green-100 rounded-2xl flex items-center justify-center text-3xl mb-5">📋</div>
-          <h3 class="font-bold text-xl text-gray-800 mb-3">GST Registered</h3>
-          <p class="text-gray-500 leading-relaxed">Fully GST-registered business (37AIQPR6762G1ZJ) — official receipts provided for all purchases.</p>
+        <div class="why-card p-8 rounded-2xl transition-all duration-300 hover:-translate-y-2" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);" data-aos="fade-up" data-aos-delay="100">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl mb-5" style="background:rgba(34,197,94,0.15);">📋</div>
+          <h3 class="font-bold text-xl text-white mb-3">GST Registered</h3>
+          <p class="leading-relaxed" style="color:rgba(255,255,255,0.5);">Fully GST-registered business (37AIQPR6762G1ZJ) — official receipts provided for all purchases.</p>
         </div>
-        <div class="why-card p-8 rounded-2xl bg-white border border-green-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
-          <div class="w-14 h-14 bg-green-100 rounded-2xl flex items-center justify-center text-3xl mb-5">❤️</div>
-          <h3 class="font-bold text-xl text-gray-800 mb-3">Trusted by Many</h3>
-          <p class="text-gray-500 leading-relaxed">Serving hundreds of happy customers, restaurants, and event organizers across Kurnool.</p>
+        <div class="why-card p-8 rounded-2xl transition-all duration-300 hover:-translate-y-2" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);" data-aos="fade-up" data-aos-delay="200">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl mb-5" style="background:rgba(56,189,248,0.15);">❤️</div>
+          <h3 class="font-bold text-xl text-white mb-3">Trusted by Many</h3>
+          <p class="leading-relaxed" style="color:rgba(255,255,255,0.5);">Serving hundreds of happy customers, restaurants, and event organizers across Kurnool.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ─────────────────────────── CONTACT ───────────────────────────────── -->
-  <section id="contact" class="py-20 bg-green-50">
+  <section id="contact" class="py-20" style="background:#0f172a;">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
       <div class="text-center mb-14" data-aos="fade-up">
-        <div class="inline-flex items-center gap-2 bg-green-100 text-green-700 text-sm font-semibold px-4 py-2 rounded-full mb-4 border border-green-200">
+        <div class="inline-flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-full mb-4" style="background:rgba(34,197,94,0.12);color:#22c55e;border:1px solid rgba(34,197,94,0.25);">
           <i class="fa-solid fa-location-dot text-xs"></i> Find Us
         </div>
-        <h2 class="text-4xl md:text-5xl font-display font-bold text-gray-900 mb-4">
-          Get In <span class="text-green-600">Touch</span>
+        <h2 class="text-4xl md:text-5xl font-display font-bold text-white mb-4">
+          Get In <span style="color:#22c55e;">Touch</span>
         </h2>
-        <p class="text-gray-500 max-w-xl mx-auto text-lg">
+        <p class="max-w-xl mx-auto text-lg" style="color:rgba(255,255,255,0.5);">
           Visit us at our store or reach out via phone and WhatsApp.
         </p>
       </div>
@@ -555,13 +575,13 @@
         <!-- Contact Cards -->
         <div class="space-y-5" data-aos="fade-right">
           <!-- Address -->
-          <div class="contact-card bg-white rounded-2xl p-6 shadow-sm border border-green-100 flex items-start gap-4 hover:shadow-lg transition-all duration-300">
-            <div class="w-12 h-12 min-w-[3rem] bg-green-100 rounded-xl flex items-center justify-center text-green-700 text-xl">
+          <div class="contact-card rounded-2xl p-6 flex items-start gap-4 transition-all duration-300" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);">
+            <div class="w-12 h-12 min-w-[3rem] rounded-xl flex items-center justify-center text-xl" style="background:rgba(34,197,94,0.15);color:#22c55e;">
               <i class="fa-solid fa-location-dot"></i>
             </div>
             <div>
-              <h4 class="font-bold text-gray-800 mb-1">Store Address</h4>
-              <p class="text-gray-500 text-sm leading-relaxed">
+              <h4 class="font-bold text-white mb-1">Store Address</h4>
+              <p class="text-sm leading-relaxed" style="color:rgba(255,255,255,0.5);">
                 Srinagar Colony B-Camp,<br />
                 Opp. Shakuntala Kalaa Mandir Road,<br />
                 Kurnool, Andhra Pradesh, India
@@ -569,18 +589,18 @@
             </div>
           </div>
 
-          <!-- Phone 1 -->
-          <div class="contact-card bg-white rounded-2xl p-6 shadow-sm border border-green-100 flex items-start gap-4 hover:shadow-lg transition-all duration-300">
-            <div class="w-12 h-12 min-w-[3rem] bg-green-100 rounded-xl flex items-center justify-center text-green-700 text-xl">
+          <!-- Phone -->
+          <div class="contact-card rounded-2xl p-6 flex items-start gap-4 transition-all duration-300" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);">
+            <div class="w-12 h-12 min-w-[3rem] rounded-xl flex items-center justify-center text-xl" style="background:rgba(34,197,94,0.15);color:#22c55e;">
               <i class="fa-solid fa-phone"></i>
             </div>
             <div class="w-full">
-              <h4 class="font-bold text-gray-800 mb-2">Phone Numbers</h4>
+              <h4 class="font-bold text-white mb-2">Phone Numbers</h4>
               <div class="flex flex-col sm:flex-row gap-3">
-                <a href="tel:8639602820" class="flex items-center gap-2 bg-green-50 text-green-700 font-semibold px-4 py-2 rounded-xl hover:bg-green-100 transition text-sm">
+                <a href="tel:8639602820" class="flex items-center gap-2 font-semibold px-4 py-2 rounded-xl transition text-sm" style="background:rgba(34,197,94,0.12);color:#22c55e;border:1px solid rgba(34,197,94,0.25);">
                   <i class="fa-solid fa-phone text-xs"></i> 8639602820
                 </a>
-                <a href="tel:9440244677" class="flex items-center gap-2 bg-green-50 text-green-700 font-semibold px-4 py-2 rounded-xl hover:bg-green-100 transition text-sm">
+                <a href="tel:9440244677" class="flex items-center gap-2 font-semibold px-4 py-2 rounded-xl transition text-sm" style="background:rgba(34,197,94,0.12);color:#22c55e;border:1px solid rgba(34,197,94,0.25);">
                   <i class="fa-solid fa-phone text-xs"></i> 9440244677
                 </a>
               </div>
@@ -588,47 +608,47 @@
           </div>
 
           <!-- WhatsApp -->
-          <div class="contact-card bg-white rounded-2xl p-6 shadow-sm border border-green-100 flex items-start gap-4 hover:shadow-lg transition-all duration-300">
-            <div class="w-12 h-12 min-w-[3rem] bg-green-100 rounded-xl flex items-center justify-center text-green-700 text-xl">
+          <div class="contact-card rounded-2xl p-6 flex items-start gap-4 transition-all duration-300" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);">
+            <div class="w-12 h-12 min-w-[3rem] rounded-xl flex items-center justify-center text-xl" style="background:rgba(34,197,94,0.15);color:#22c55e;">
               <i class="fa-brands fa-whatsapp"></i>
             </div>
             <div class="w-full">
-              <h4 class="font-bold text-gray-800 mb-2">WhatsApp Order</h4>
+              <h4 class="font-bold text-white mb-2">WhatsApp Order</h4>
               <a href="https://wa.me/918639602820?text=Hello%20Sri%20Sai%20Traders%2C%20I%20would%20like%20to%20place%20an%20order."
                  target="_blank" rel="noopener"
-                 class="inline-flex items-center gap-2 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-semibold px-5 py-2.5 rounded-xl shadow hover:shadow-lg hover:scale-105 transition-all duration-300 text-sm">
+                 class="inline-flex items-center gap-2 font-semibold px-5 py-2.5 rounded-xl shadow hover:shadow-lg hover:scale-105 transition-all duration-300 text-sm" style="background:linear-gradient(135deg,#22c55e,#16a34a);color:white;">
                 <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
               </a>
             </div>
           </div>
 
           <!-- GST -->
-          <div class="contact-card bg-white rounded-2xl p-6 shadow-sm border border-green-100 flex items-start gap-4 hover:shadow-lg transition-all duration-300">
-            <div class="w-12 h-12 min-w-[3rem] bg-green-100 rounded-xl flex items-center justify-center text-green-700 text-xl">
+          <div class="contact-card rounded-2xl p-6 flex items-start gap-4 transition-all duration-300" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);">
+            <div class="w-12 h-12 min-w-[3rem] rounded-xl flex items-center justify-center text-xl" style="background:rgba(56,189,248,0.15);color:#38bdf8;">
               <i class="fa-solid fa-file-invoice"></i>
             </div>
             <div>
-              <h4 class="font-bold text-gray-800 mb-1">GST Number</h4>
-              <p class="text-gray-600 font-mono text-sm bg-gray-50 px-3 py-1 rounded-lg inline-block mt-1">37AIQPR6762G1ZJ</p>
+              <h4 class="font-bold text-white mb-1">GST Number</h4>
+              <p class="font-mono text-sm px-3 py-1 rounded-lg inline-block mt-1" style="background:rgba(255,255,255,0.06);color:#38bdf8;">37AIQPR6762G1ZJ</p>
             </div>
           </div>
 
           <!-- Hours -->
-          <div class="contact-card bg-white rounded-2xl p-6 shadow-sm border border-green-100 flex items-start gap-4 hover:shadow-lg transition-all duration-300">
-            <div class="w-12 h-12 min-w-[3rem] bg-green-100 rounded-xl flex items-center justify-center text-green-700 text-xl">
+          <div class="contact-card rounded-2xl p-6 flex items-start gap-4 transition-all duration-300" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);">
+            <div class="w-12 h-12 min-w-[3rem] rounded-xl flex items-center justify-center text-xl" style="background:rgba(34,197,94,0.15);color:#22c55e;">
               <i class="fa-solid fa-clock"></i>
             </div>
             <div>
-              <h4 class="font-bold text-gray-800 mb-1">Business Hours</h4>
-              <p class="text-gray-500 text-sm">Monday – Sunday</p>
-              <p class="text-green-700 font-semibold text-sm">6:00 AM – 9:00 PM</p>
+              <h4 class="font-bold text-white mb-1">Business Hours</h4>
+              <p class="text-sm" style="color:rgba(255,255,255,0.5);">Monday – Sunday</p>
+              <p class="font-semibold text-sm" style="color:#22c55e;">6:00 AM – 9:00 PM</p>
             </div>
           </div>
         </div>
 
         <!-- Map -->
         <div data-aos="fade-left">
-          <div class="rounded-3xl overflow-hidden shadow-xl border-4 border-white">
+          <div class="rounded-3xl overflow-hidden shadow-xl" style="border:2px solid rgba(255,255,255,0.08);">
             <iframe
               title="Sri Sai Traders Location – Srinagar Colony B-Camp, Kurnool"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3870.1234567890!2d78.0373!3d15.8281!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bb5db3b7be00001%3A0x1!2sSrinagar+Colony+B+Camp%2C+Kurnool%2C+Andhra+Pradesh!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
@@ -645,12 +665,12 @@
           <div class="mt-5 grid grid-cols-2 gap-4">
             <a href="https://maps.google.com/?q=Srinagar+Colony+B+Camp+Kurnool+Andhra+Pradesh"
                target="_blank" rel="noopener"
-               class="flex items-center justify-center gap-2 bg-white text-gray-700 font-semibold px-4 py-3 rounded-2xl shadow border border-gray-200 hover:shadow-md hover:border-green-300 transition text-sm">
-              <i class="fa-solid fa-map-location-dot text-green-600"></i> Get Directions
+               class="flex items-center justify-center gap-2 font-semibold px-4 py-3 rounded-2xl shadow transition text-sm" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.8);border:1px solid rgba(255,255,255,0.1);">
+              <i class="fa-solid fa-map-location-dot" style="color:#22c55e;"></i> Get Directions
             </a>
             <a href="https://wa.me/918639602820?text=Hello%20Sri%20Sai%20Traders%2C%20I%20would%20like%20to%20place%20an%20order."
                target="_blank" rel="noopener"
-               class="flex items-center justify-center gap-2 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-semibold px-4 py-3 rounded-2xl shadow hover:shadow-lg transition text-sm">
+               class="flex items-center justify-center gap-2 font-semibold px-4 py-3 rounded-2xl shadow hover:shadow-lg transition text-sm" style="background:linear-gradient(135deg,#22c55e,#16a34a);color:white;">
               <i class="fa-brands fa-whatsapp"></i> Order Now
             </a>
           </div>
@@ -660,31 +680,31 @@
   </section>
 
   <!-- ──────────────────────────── FOOTER ───────────────────────────────── -->
-  <footer class="bg-gray-900 text-white">
+  <footer style="background:#060d1a;color:white;">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
 
         <!-- Brand -->
         <div>
           <div class="flex items-center gap-3 mb-4">
-            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-green-500 to-green-700 flex items-center justify-center shadow">
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center shadow" style="background:linear-gradient(135deg,#22c55e,#16a34a);">
               <span class="text-white font-bold text-lg">S</span>
             </div>
             <div>
               <div class="font-bold text-lg leading-none">Sri Sai Traders</div>
-              <div class="text-xs text-gray-400">Kurnool, Andhra Pradesh</div>
+              <div class="text-xs" style="color:rgba(255,255,255,0.4);">Kurnool, Andhra Pradesh</div>
             </div>
           </div>
-          <p class="text-gray-400 text-sm leading-relaxed mb-4">
+          <p class="text-sm leading-relaxed mb-4" style="color:rgba(255,255,255,0.4);">
             Your trusted store for disposable items, general goods and fresh milk in Srinagar Colony B-Camp, Kurnool.
           </p>
           <div class="flex gap-3">
             <a href="https://wa.me/918639602820" target="_blank" rel="noopener"
-               class="w-9 h-9 bg-white/5 hover:bg-green-600 rounded-xl flex items-center justify-center transition-colors text-gray-400 hover:text-white">
+               class="w-9 h-9 rounded-xl flex items-center justify-center transition-all" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.4);">
               <i class="fa-brands fa-whatsapp"></i>
             </a>
             <a href="tel:8639602820"
-               class="w-9 h-9 bg-white/5 hover:bg-green-600 rounded-xl flex items-center justify-center transition-colors text-gray-400 hover:text-white">
+               class="w-9 h-9 rounded-xl flex items-center justify-center transition-all" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.4);">
               <i class="fa-solid fa-phone text-xs"></i>
             </a>
           </div>
@@ -693,33 +713,33 @@
         <!-- Quick Links -->
         <div>
           <h4 class="font-bold text-white mb-4">Quick Links</h4>
-          <ul class="space-y-2 text-sm text-gray-400">
-            <li><a href="#home"     class="hover:text-green-400 transition">Home</a></li>
-            <li><a href="#about"    class="hover:text-green-400 transition">About Us</a></li>
-            <li><a href="#products" class="hover:text-green-400 transition">Products</a></li>
-            <li><a href="#gallery"  class="hover:text-green-400 transition">Gallery</a></li>
-            <li><a href="#contact"  class="hover:text-green-400 transition">Contact</a></li>
+          <ul class="space-y-2 text-sm footer-links" style="color:rgba(255,255,255,0.4);">
+            <li><a href="#home"     class="footer-link transition">Home</a></li>
+            <li><a href="#about"    class="footer-link transition">About Us</a></li>
+            <li><a href="#products" class="footer-link transition">Products</a></li>
+            <li><a href="#gallery"  class="footer-link transition">Gallery</a></li>
+            <li><a href="#contact"  class="footer-link transition">Contact</a></li>
           </ul>
         </div>
 
         <!-- Contact Info -->
         <div>
           <h4 class="font-bold text-white mb-4">Contact</h4>
-          <ul class="space-y-3 text-sm text-gray-400">
+          <ul class="space-y-3 text-sm" style="color:rgba(255,255,255,0.4);">
             <li class="flex items-start gap-2">
-              <i class="fa-solid fa-location-dot text-green-500 mt-0.5"></i>
+              <i class="fa-solid fa-location-dot mt-0.5" style="color:#22c55e;"></i>
               <span>Srinagar Colony B-Camp, Opp. Shakuntala Kalaa Mandir Rd, Kurnool, AP</span>
             </li>
             <li class="flex items-center gap-2">
-              <i class="fa-solid fa-phone text-green-500"></i>
-              <a href="tel:8639602820" class="hover:text-green-400 transition">8639602820</a>
+              <i class="fa-solid fa-phone" style="color:#22c55e;"></i>
+              <a href="tel:8639602820" class="transition">8639602820</a>
             </li>
             <li class="flex items-center gap-2">
-              <i class="fa-solid fa-phone text-green-500"></i>
-              <a href="tel:9440244677" class="hover:text-green-400 transition">9440244677</a>
+              <i class="fa-solid fa-phone" style="color:#22c55e;"></i>
+              <a href="tel:9440244677" class="transition">9440244677</a>
             </li>
             <li class="flex items-center gap-2">
-              <i class="fa-solid fa-file-invoice text-green-500"></i>
+              <i class="fa-solid fa-file-invoice" style="color:#38bdf8;"></i>
               <span class="font-mono">37AIQPR6762G1ZJ</span>
             </li>
           </ul>
@@ -727,37 +747,43 @@
       </div>
     </div>
 
-    <div class="border-t border-white/5 py-5">
-      <div class="max-w-7xl mx-auto px-4 text-center text-xs text-gray-500">
-        © 2025 Sri Sai Traders. All rights reserved. Owned by <span class="text-gray-400">K. Mohan Reddy</span>.
+    <div class="py-5" style="border-top:1px solid rgba(255,255,255,0.05);">
+      <div class="max-w-7xl mx-auto px-4 text-center text-xs" style="color:rgba(255,255,255,0.25);">
+        © 2025 Sri Sai Traders. All rights reserved. Owned by <span style="color:rgba(255,255,255,0.4);">K. Mohan Reddy</span>.
       </div>
     </div>
   </footer>
+
+  <!-- Mouse tracking spotlight overlay -->
+  <div id="spotlight" aria-hidden="true"></div>
 
   <!-- ─────────────────────── FLOATING BUTTONS ──────────────────────────── -->
   <div class="floating-btns fixed right-5 bottom-6 z-40 flex flex-col gap-3">
     <!-- WhatsApp -->
     <a href="https://wa.me/918639602820?text=Hello%20Sri%20Sai%20Traders%2C%20I%20would%20like%20to%20place%20an%20order."
        target="_blank" rel="noopener"
-       class="float-btn w-14 h-14 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center shadow-lg hover:shadow-2xl text-white text-2xl hover:scale-110 transition-all duration-300 relative group"
+       class="float-btn w-14 h-14 rounded-full flex items-center justify-center shadow-lg text-white text-2xl hover:scale-110 transition-all duration-300 relative group"
+       style="background:linear-gradient(135deg,#22c55e,#16a34a);"
        aria-label="WhatsApp">
       <i class="fa-brands fa-whatsapp"></i>
-      <span class="float-tooltip absolute right-16 bg-gray-900 text-white text-xs px-3 py-1.5 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+      <span class="float-tooltip absolute right-16 text-white text-xs px-3 py-1.5 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" style="background:rgba(15,23,42,0.95);border:1px solid rgba(255,255,255,0.1);">
         WhatsApp Order
       </span>
     </a>
     <!-- Call -->
     <a href="tel:8639602820"
-       class="float-btn w-14 h-14 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center shadow-lg hover:shadow-2xl text-white text-xl hover:scale-110 transition-all duration-300 relative group"
+       class="float-btn w-14 h-14 rounded-full flex items-center justify-center shadow-lg text-white text-xl hover:scale-110 transition-all duration-300 relative group"
+       style="background:linear-gradient(135deg,#38bdf8,#0284c7);"
        aria-label="Call">
       <i class="fa-solid fa-phone"></i>
-      <span class="float-tooltip absolute right-16 bg-gray-900 text-white text-xs px-3 py-1.5 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+      <span class="float-tooltip absolute right-16 text-white text-xs px-3 py-1.5 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" style="background:rgba(15,23,42,0.95);border:1px solid rgba(255,255,255,0.1);">
         Call Now
       </span>
     </a>
     <!-- Scroll Top -->
     <button id="scroll-top" aria-label="Scroll to top"
-       class="float-btn w-14 h-14 bg-white border border-gray-200 rounded-full flex items-center justify-center shadow-lg hover:shadow-2xl text-gray-600 text-xl hover:scale-110 hover:bg-green-50 hover:text-green-700 transition-all duration-300 opacity-0">
+       class="float-btn w-14 h-14 rounded-full flex items-center justify-center shadow-lg text-xl hover:scale-110 transition-all duration-300 opacity-0"
+       style="background:rgba(255,255,255,0.08);color:white;border:1px solid rgba(255,255,255,0.12);">
       <i class="fa-solid fa-chevron-up"></i>
     </button>
   </div>
@@ -768,6 +794,10 @@
   <!-- GSAP -->
   <script src="libs/gsap.min.js"></script>
   <script src="libs/ScrollTrigger.min.js"></script>
+  <!-- tsParticles -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
+  <!-- Vanilla Tilt -->
+  <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.1/dist/vanilla-tilt.min.js"></script>
   <!-- Custom Script -->
   <script src="script.js"></script>
 </body>
