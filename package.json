@@ -1,0 +1,28 @@
+{
+  "name": "sri_sait_traders",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kskreddy2k7/sri_sait_traders.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/kskreddy2k7/sri_sait_traders/issues"
+  },
+  "homepage": "https://github.com/kskreddy2k7/sri_sait_traders#readme",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^7.2.0",
+    "@tailwindcss/cli": "^4.2.1",
+    "aos": "^2.3.4",
+    "gsap": "^3.14.2",
+    "tailwindcss": "^4.2.1"
+  }
+}

@@ -1,0 +1,556 @@
+/* =========================================================
+   Sri Sai Traders – style.css
+   Premium Modern Business Website
+   ========================================================= */
+
+/* ---------- CSS Custom Properties ---------- */
+:root {
+  --green-primary: #16a34a;
+  --green-dark:    #15803d;
+  --green-light:   #22c55e;
+  --green-pale:    #f0fdf4;
+  --white:         #ffffff;
+  --gray-900:      #111827;
+  --radius-xl:     1rem;
+  --radius-2xl:    1.5rem;
+  --transition:    all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ---------- Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #fff;
+  color: #1f2937;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- Selection Color ---------- */
+::selection {
+  background: #bbf7d0;
+  color: #14532d;
+}
+
+/* =========================================================
+   PAGE LOADER
+   ========================================================= */
+#page-loader {
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+#page-loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.loader-logo {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: loaderFadeIn 0.8s 0.2s forwards;
+}
+.loader-bar {
+  opacity: 0;
+  animation: loaderFadeIn 0.8s 0.4s forwards;
+}
+
+@keyframes loaderFadeIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+#loader-progress {
+  width: 0;
+  animation: loadProgress 1.8s ease forwards;
+}
+@keyframes loadProgress {
+  to { width: 100%; }
+}
+
+/* =========================================================
+   NAVBAR
+   ========================================================= */
+#navbar {
+  transition: background 0.4s ease, padding 0.3s ease, box-shadow 0.3s ease;
+}
+#navbar.scrolled {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+}
+#navbar.scrolled .nav-link { color: #374151; }
+#navbar.scrolled .nav-link:hover { color: var(--green-primary); }
+#navbar.scrolled .nav-text  { color: #111827; }
+#navbar.scrolled .nav-text-sub { color: #6b7280; }
+#navbar.scrolled .ham-line  { background: #374151; }
+
+.nav-link {
+  position: relative;
+  padding-bottom: 2px;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--green-light);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+.nav-link:hover::after,
+.nav-link.active::after { width: 100%; }
+
+/* Hamburger open state */
+#hamburger.open .ham-line:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+#hamburger.open .ham-line:nth-child(2) {
+  opacity: 0;
+}
+#hamburger.open .ham-line:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+  width: 1.5rem;
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+.hero-section { position: relative; }
+
+.hero-bg {
+  background: linear-gradient(135deg, #14532d 0%, #166534 20%, #15803d 40%, #059669 65%, #10b981 85%, #16a34a 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 10s ease infinite;
+}
+@keyframes gradientShift {
+  0%   { background-position: 0%   50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0%   50%; }
+}
+
+/* Animated blobs */
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.35;
+  animation: blobFloat 10s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+.blob-1 {
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, #4ade80, #16a34a);
+  top: -150px; left: -150px;
+  animation-delay: 0s;
+}
+.blob-2 {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, #34d399, #059669);
+  bottom: 50px; right: -100px;
+  animation-delay: 3s;
+}
+.blob-3 {
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, #6ee7b7, #10b981);
+  top: 40%; left: 50%;
+  transform: translate(-50%, -50%);
+  animation-delay: 6s;
+}
+@keyframes blobFloat {
+  0%   { transform: scale(1) translate(0, 0); }
+  100% { transform: scale(1.15) translate(30px, -30px); }
+}
+
+/* Hero grid overlay */
+.hero-grid-overlay {
+  background-image:
+    linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Hero canvas particle network */
+#hero-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Legacy div particles (kept for non-canvas fallback) */
+#particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: rgba(255,255,255,0.35);
+  border-radius: 50%;
+  box-shadow: 0 0 8px 3px rgba(134, 239, 172, 0.45);
+  animation: particleDrift var(--dur, 8s) ease-in-out infinite alternate;
+}
+@keyframes particleDrift {
+  0%   { transform: translate(0, 0) scale(1); opacity: 0.25; }
+  50%  { opacity: 0.9; }
+  100% { transform: translate(var(--tx, 40px), var(--ty, -40px)) scale(1.5); opacity: 0.25; }
+}
+
+/* Products section canvas particle network */
+#products-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Hero text animations (driven by GSAP, but fallbacks here) */
+.hero-badge,
+.hero-title,
+.hero-subtitle,
+.hero-owner,
+.hero-buttons { opacity: 0; }
+
+/* CTA buttons – glow on hover */
+.cta-btn {
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition);
+  transform: translateY(0);
+}
+.cta-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.15);
+  transform: translateX(-100%) skewX(-15deg);
+  transition: transform 0.4s ease;
+}
+.cta-btn:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.15),
+    0 0 25px rgba(34, 197, 94, 0.50),
+    0 0 55px rgba(34, 197, 94, 0.20);
+}
+.cta-btn:hover::before { transform: translateX(200%) skewX(-15deg); }
+
+/* Glow animation for the primary green CTA */
+@keyframes btnGlowPulse {
+  0%   { box-shadow: 0 0 12px rgba(34, 197, 94, 0.4); }
+  50%  { box-shadow: 0 0 28px rgba(34, 197, 94, 0.7), 0 0 50px rgba(34, 197, 94, 0.25); }
+  100% { box-shadow: 0 0 12px rgba(34, 197, 94, 0.4); }
+}
+/* Applied to the WhatsApp hero CTA */
+.cta-btn-glow-loop {
+  animation: btnGlowPulse 2.5s ease-in-out infinite;
+}
+
+/* Scroll indicator */
+.scroll-indicator { opacity: 0; animation: fadeInUp 1s 2.5s forwards; }
+
+/* =========================================================
+   STATS BAND
+   ========================================================= */
+.stat-card {
+  transition: var(--transition);
+}
+.stat-card:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 16px 40px rgba(22, 163, 74, 0.18),
+    0 0 20px rgba(22, 163, 74, 0.10);
+}
+
+/* =========================================================
+   ABOUT SECTION
+   ========================================================= */
+.about-img-card {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.about-img-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.25);
+}
+
+/* Shimmer overlay on image card */
+.shimmer-overlay {
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255,255,255,0.15) 50%,
+    transparent 60%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite;
+}
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.about-badge,
+.about-badge-2 {
+  animation: floatBadge 4s ease-in-out infinite alternate;
+}
+.about-badge-2 { animation-delay: 2s; }
+
+@keyframes floatBadge {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(-8px); }
+}
+
+.feature-pill {
+  transition: var(--transition);
+}
+.feature-pill:hover {
+  background: #dcfce7;
+  transform: translateY(-2px);
+}
+
+/* =========================================================
+   PRODUCTS SECTION
+   ========================================================= */
+
+/* Glassmorphism card – enhanced */
+.glass-card {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(24px) saturate(200%);
+  -webkit-backdrop-filter: blur(24px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.07),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85),
+    inset 0 -1px 0 rgba(22, 163, 74, 0.05);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--green-primary), var(--green-light), #34d399);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+  border-radius: 4px 4px 0 0;
+}
+/* Subtle inner gloss spot */
+.glass-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -60%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.18) 50%,
+    transparent 60%
+  );
+  transform: skewX(-15deg);
+  transition: left 0.6s ease;
+  pointer-events: none;
+}
+.glass-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow:
+    0 25px 60px rgba(22, 163, 74, 0.22),
+    0 0 35px rgba(22, 163, 74, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  border-color: rgba(34, 197, 94, 0.45);
+  background: rgba(255, 255, 255, 0.88);
+}
+.glass-card:hover::before { transform: scaleX(1); }
+.glass-card:hover::after  { left: 120%; }
+
+/* 3D tilt – perspective wrapper */
+.glass-card.tilt {
+  transform-style: preserve-3d;
+  perspective: 700px;
+}
+
+.card-icon {
+  display: inline-block;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+              filter 0.4s ease;
+}
+.glass-card:hover .card-icon {
+  transform: scale(1.25) rotate(-8deg) translateZ(20px);
+  filter: drop-shadow(0 4px 12px rgba(22, 163, 74, 0.5));
+}
+
+/* =========================================================
+   GALLERY SECTION
+   ========================================================= */
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+}
+.gallery-thumb {
+  position: relative;
+  transition: transform 0.5s ease;
+}
+.gallery-item:hover .gallery-thumb {
+  transform: scale(1.08);
+}
+.gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: inherit;
+}
+.gallery-item:hover .gallery-overlay { opacity: 1; }
+
+/* =========================================================
+   CONTACT SECTION
+   ========================================================= */
+.contact-card {
+  transition: var(--transition);
+}
+.contact-card:hover { transform: translateX(4px); }
+
+/* =========================================================
+   FLOATING BUTTONS
+   ========================================================= */
+.float-btn {
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.4,0,0.2,1), box-shadow 0.3s ease !important;
+}
+.float-btn:hover {
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.22),
+    0 0 22px rgba(34, 197, 94, 0.55) !important;
+}
+.float-tooltip {
+  bottom: 50%;
+  transform: translateY(50%);
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+/* Pulse ring on WhatsApp button */
+.float-btn:first-child::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid #22c55e;
+  animation: pulseRing 2s ease-out infinite;
+}
+@keyframes pulseRing {
+  0%   { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+#scroll-top {
+  transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+#scroll-top.visible { opacity: 1; }
+
+/* =========================================================
+   SECTION HEADINGS (gradient text)
+   ========================================================= */
+.gradient-text {
+  background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* =========================================================
+   SCROLL REVEAL – AOS overrides
+   ========================================================= */
+[data-aos] {
+  transition-property: transform, opacity;
+}
+
+/* =========================================================
+   PARALLAX HERO (applied via GSAP ScrollTrigger in JS)
+   ========================================================= */
+.parallax-hero-content { will-change: transform; }
+
+/* =========================================================
+   COUNTER
+   ========================================================= */
+.counter { font-variant-numeric: tabular-nums; }
+
+/* =========================================================
+   PAGE TRANSITION OVERLAY
+   ========================================================= */
+#page-transition {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  background: var(--green-primary);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  pointer-events: none;
+}
+
+/* =========================================================
+   UTILITIES
+   ========================================================= */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #f1f5f9; }
+::-webkit-scrollbar-thumb {
+  background: #86efac;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--green-primary); }
+
+/* =========================================================
+   RESPONSIVE TWEAKS
+   ========================================================= */
+@media (max-width: 640px) {
+  .hero-section .hero-title { font-size: 3rem; }
+  .float-tooltip { display: none; }
+  .blob-1 { width: 300px; height: 300px; }
+  .blob-2 { width: 250px; height: 250px; }
+  .blob-3 { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
