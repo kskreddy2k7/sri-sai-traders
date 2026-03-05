@@ -3,822 +3,227 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Sri Sai Traders – All Disposable Items, General Store & Milk Center in Srinagar Colony B-Camp, Kurnool. Contact: 8639602820" />
+  <meta name="description" content="Sri Sai Traders – All Disposable Items, General Store & Milk Center in Srinagar Colony B-Camp, Kurnool, Andhra Pradesh. Contact: 8639602820" />
   <title>Sri Sai Traders | Disposable Items & General Store – Kurnool</title>
 
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- AOS – Animate On Scroll -->
   <link rel="stylesheet" href="libs/aos.css" />
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="libs/fontawesome.min.css" />
-
-  <!-- Custom Styles -->
   <link rel="stylesheet" href="style.css" />
-
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary:   '#22c55e',
-            'primary-dark': '#16a34a',
-            secondary: '#38bdf8',
-            dark:      '#0f172a',
-            'dark-card': 'rgba(255,255,255,0.05)',
-          },
-          fontFamily: {
-            sans:    ['Poppins', 'Inter', 'sans-serif'],
-            display: ['Poppins', 'Inter', 'sans-serif'],
-          }
-        }
-      }
-    }
-  </script>
 </head>
-<body class="font-sans overflow-x-hidden" style="background:#0f172a;color:#e2e8f0;">
+<body>
 
-  <!-- ─────────────────────────────── LOADER ─────────────────────────────── -->
-  <div id="page-loader" class="fixed inset-0 z-[9999] flex flex-col items-center justify-center" style="background:#0f172a;">
-    <div class="loader-logo text-white text-4xl font-display font-bold mb-2" style="text-shadow:0 0 30px rgba(34,197,94,0.6);">Sri Sai Traders</div>
-    <div class="text-sm mb-6" style="color:#22c55e;">Kurnool, Andhra Pradesh</div>
-    <div class="loader-bar w-56 h-1 rounded-full overflow-hidden" style="background:rgba(255,255,255,0.1);">
-      <div id="loader-progress" class="h-full rounded-full" style="background:linear-gradient(90deg,#22c55e,#38bdf8);"></div>
-    </div>
-  </div>
-
-  <!-- ─────────────────────────────── NAV ───────────────────────────────── -->
-  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-      <!-- Logo -->
-      <a href="#home" class="flex items-center gap-3 group">
-        <div class="w-10 h-10 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300" style="background:linear-gradient(135deg,#22c55e,#16a34a);">
-          <span class="text-white font-bold text-lg">S</span>
-        </div>
-        <div>
-          <div class="font-bold text-lg leading-none text-white nav-text">Sri Sai Traders</div>
-          <div class="text-xs nav-text-sub" style="color:#22c55e;">Kurnool</div>
-        </div>
+  <!-- ===== NAVBAR ===== -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#" class="nav-logo">
+        <i class="fa-solid fa-store"></i>
+        <span>Sri Sai Traders</span>
       </a>
 
-      <!-- Desktop Links -->
-      <ul class="hidden md:flex items-center gap-8 text-sm font-medium">
-        <li><a href="#home"     class="nav-link text-white/80 hover:text-white transition">Home</a></li>
-        <li><a href="#about"    class="nav-link text-white/80 hover:text-white transition">About</a></li>
-        <li><a href="#products" class="nav-link text-white/80 hover:text-white transition">Products</a></li>
-        <li><a href="#gallery"  class="nav-link text-white/80 hover:text-white transition">Gallery</a></li>
-        <li><a href="#contact"  class="nav-link text-white/80 hover:text-white transition">Contact</a></li>
-      </ul>
+      <nav class="nav-links" id="navLinks">
+        <a href="#" onclick="closeMenu()">Home</a>
+        <a href="#products" onclick="closeMenu()">Products</a>
+        <a href="#gallery" onclick="closeMenu()">Gallery</a>
+        <a href="#about" onclick="closeMenu()">About</a>
+        <a href="#contact" onclick="closeMenu()">Contact</a>
+      </nav>
 
-      <!-- CTA + Hamburger -->
-      <div class="flex items-center gap-3">
-        <a href="tel:8639602820" class="hidden sm:flex items-center gap-2 font-semibold text-sm px-4 py-2 rounded-full shadow hover:shadow-lg hover:scale-105 transition-all duration-200" style="background:#22c55e;color:#0f172a;">
-          <i class="fa-solid fa-phone text-xs"></i> Call Now
-        </a>
-        <button id="hamburger" class="md:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5 text-white" aria-label="Toggle menu">
-          <span class="ham-line w-6 h-0.5 rounded transition-all duration-300" style="background:white;"></span>
-          <span class="ham-line w-6 h-0.5 rounded transition-all duration-300" style="background:white;"></span>
-          <span class="ham-line w-4 h-0.5 rounded transition-all duration-300" style="background:white;"></span>
-        </button>
+      <div class="nav-phone">
+        <i class="fa-solid fa-phone"></i>
+        <a href="tel:8639602820">8639602820</a>
       </div>
-    </div>
 
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="md:hidden hidden px-4 pt-2 pb-4 mt-2 rounded-2xl mx-4" style="background:rgba(15,23,42,0.97);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.08);">
-      <ul class="flex flex-col gap-1 text-sm font-medium">
-        <li><a href="#home"     class="mobile-link block px-4 py-2.5 text-white/80 rounded-xl transition">Home</a></li>
-        <li><a href="#about"    class="mobile-link block px-4 py-2.5 text-white/80 rounded-xl transition">About</a></li>
-        <li><a href="#products" class="mobile-link block px-4 py-2.5 text-white/80 rounded-xl transition">Products</a></li>
-        <li><a href="#gallery"  class="mobile-link block px-4 py-2.5 text-white/80 rounded-xl transition">Gallery</a></li>
-        <li><a href="#contact"  class="mobile-link block px-4 py-2.5 text-white/80 rounded-xl transition">Contact</a></li>
-        <li>
-          <a href="tel:8639602820" class="flex items-center gap-2 mt-1 font-semibold px-4 py-2.5 rounded-xl" style="background:#22c55e;color:#0f172a;">
-            <i class="fa-solid fa-phone"></i> 8639602820
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="home">
+    <div class="hero-container">
+      <div class="hero-text" data-aos="fade-right">
+        <div class="hero-badge">
+          <i class="fa-solid fa-star"></i> Trusted Local Shop Since 2008
+        </div>
+        <h1 class="hero-title">Sri Sai Traders</h1>
+        <p class="hero-tagline">All Disposable Items &amp; General Store | Milk Center</p>
+        <p class="hero-location">
+          <i class="fa-solid fa-location-dot"></i>
+          Srinagar Colony B-Camp, Kurnool, Andhra Pradesh
+        </p>
+        <div class="hero-buttons">
+          <a href="tel:8639602820" class="btn btn-primary">
+            <i class="fa-solid fa-phone"></i> Call Now
           </a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-
-  <!-- ─────────────────────────────── HERO ──────────────────────────────── -->
-  <section id="home" class="hero-section relative min-h-screen flex items-center justify-center overflow-hidden">
-    <!-- Animated gradient background -->
-    <div class="hero-bg absolute inset-0"></div>
-
-    <!-- Floating blobs -->
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-    <div class="blob blob-3"></div>
-
-    <!-- Aurora beam layer -->
-    <div class="hero-aurora" aria-hidden="true">
-      <div class="aurora-beam aurora-beam-1"></div>
-      <div class="aurora-beam aurora-beam-2"></div>
-      <div class="aurora-beam aurora-beam-3"></div>
-    </div>
-
-    <!-- tsParticles container -->
-    <div id="tsparticles" class="absolute inset-0" aria-hidden="true"></div>
-
-    <!-- Hero canvas particle network (fallback) -->
-    <canvas id="hero-canvas" aria-hidden="true"></canvas>
-
-    <!-- Grid overlay -->
-    <div class="absolute inset-0 hero-grid-overlay opacity-10"></div>
-
-    <!-- Content -->
-    <div class="relative z-10 w-full px-4 max-w-7xl mx-auto pt-24 pb-8 parallax-hero-content">
-      <div class="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
-
-        <!-- Left: Text Content -->
-        <div class="w-full lg:w-1/2 text-center lg:text-left">
-          <div class="hero-badge inline-flex items-center gap-2 text-white text-sm font-medium px-4 py-2 rounded-full mb-5" style="background:rgba(34,197,94,0.15);border:1px solid rgba(34,197,94,0.35);backdrop-filter:blur(10px);">
-            <span class="w-2 h-2 rounded-full animate-pulse" style="background:#22c55e;"></span>
-            Srinagar Colony B-Camp, Kurnool
-          </div>
-          <!-- Milk Center Badge -->
-          <div class="hero-badge inline-flex items-center gap-2 text-white text-xs font-semibold px-3 py-1.5 rounded-full mb-5 ml-2" style="background:rgba(251,146,60,0.2);border:1px solid rgba(251,146,60,0.45);backdrop-filter:blur(10px);" aria-label="Milk Center">
-            <span aria-hidden="true">🥛</span> Milk Center
-          </div>
-
-          <h1 class="hero-title font-display font-bold text-white leading-tight mb-5" style="font-size:clamp(2.4rem,6vw,4.8rem);">
-            <span class="block">Sri Sai Traders</span>
-            <span class="block text-2xl sm:text-3xl font-medium mt-1" style="color:rgba(255,255,255,0.7);">All Disposable Items &amp; General Store</span>
-            <span class="block mt-2" style="background:linear-gradient(135deg,#22c55e,#38bdf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Serving Kurnool With Pride</span>
-          </h1>
-
-          <p class="hero-subtitle text-white/60 text-base sm:text-lg max-w-xl mb-3 font-light">
-            Paper cups · Carry bags · Containers · Milk · Grocery · Cleaning items — all under one roof.
-          </p>
-
-          <p class="hero-owner text-sm mb-8" style="color:rgba(255,255,255,0.4);">
-            Owned by <span class="font-medium text-white">K. Mohan Reddy</span> · GST: 37AIQPR6762G1ZJ
-          </p>
-
-          <div class="hero-buttons flex flex-wrap items-center justify-center lg:justify-start gap-4">
-            <a href="tel:8639602820"
-               class="cta-btn btn-ring-glow font-bold px-7 py-3.5 rounded-2xl shadow-xl flex items-center gap-3 text-base" style="background:white;color:#0f172a;">
-              <i class="fa-solid fa-phone-volume" style="color:#22c55e;"></i>
-              Call Now
-            </a>
-            <a href="https://wa.me/918639602820?text=Hello%20Sri%20Sai%20Traders%2C%20I%20would%20like%20to%20place%20an%20order."
-               target="_blank" rel="noopener"
-               class="cta-btn btn-gradient-animated btn-ring-glow cta-btn-glow-loop font-bold px-7 py-3.5 rounded-2xl shadow-xl flex items-center gap-3 text-base" style="color:white;border:1px solid rgba(255,255,255,0.15);">
-              <i class="fa-brands fa-whatsapp text-xl"></i>
-              WhatsApp Order
-            </a>
-          </div>
-
-          <!-- Scroll Indicator -->
-          <div class="scroll-indicator mt-10 flex flex-col items-center lg:items-start gap-2 text-xs" style="color:rgba(255,255,255,0.35);">
-            <span>Scroll Down</span>
-            <div class="w-6 h-6 rounded-full flex items-center justify-center" style="border:2px solid rgba(255,255,255,0.2);">
-              <i class="fa-solid fa-chevron-down text-xs animate-bounce"></i>
-            </div>
-          </div>
-        </div>
-
-        <!-- Right: Product Photo Collage -->
-        <div class="w-full lg:w-1/2 hero-product-collage hidden lg:grid grid-cols-2 gap-3">
-          <div class="hero-photo-card rounded-2xl overflow-hidden relative" style="height:200px;">
-            <img src="images/milk.jpg" onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?india,milk,packets,dairy'"
-                 alt="Fresh Milk & Dairy" class="w-full h-full object-cover" loading="eager" />
-            <div class="hero-photo-label absolute bottom-0 left-0 right-0 px-3 py-2 text-white text-sm font-semibold" style="background:linear-gradient(to top, rgba(0,0,0,0.75), transparent);">
-              <span aria-hidden="true">🥛</span> Milk &amp; Dairy
-            </div>
-          </div>
-          <div class="hero-photo-card rounded-2xl overflow-hidden relative" style="height:200px;">
-            <img src="images/paper-cups.jpg" onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?paper-cups,stack,disposable'"
-                 alt="Disposable Cups" class="w-full h-full object-cover" loading="eager" />
-            <div class="hero-photo-label absolute bottom-0 left-0 right-0 px-3 py-2 text-white text-sm font-semibold" style="background:linear-gradient(to top, rgba(0,0,0,0.75), transparent);">
-              <span aria-hidden="true">☕</span> Disposable Cups
-            </div>
-          </div>
-          <div class="hero-photo-card rounded-2xl overflow-hidden relative" style="height:200px;">
-            <img src="images/grocery.jpg" onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?indian,grocery,store,shelf'"
-                 alt="Grocery Items" class="w-full h-full object-cover" loading="eager" />
-            <div class="hero-photo-label absolute bottom-0 left-0 right-0 px-3 py-2 text-white text-sm font-semibold" style="background:linear-gradient(to top, rgba(0,0,0,0.75), transparent);">
-              <span aria-hidden="true">🛒</span> Grocery Items
-            </div>
-          </div>
-          <div class="hero-photo-card rounded-2xl overflow-hidden relative" style="height:200px;">
-            <img src="images/carry-bags.jpg" onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?plastic-carry-bags,shopping'"
-                 alt="Carry Bags" class="w-full h-full object-cover" loading="eager" />
-            <div class="hero-photo-label absolute bottom-0 left-0 right-0 px-3 py-2 text-white text-sm font-semibold" style="background:linear-gradient(to top, rgba(0,0,0,0.75), transparent);">
-              <span aria-hidden="true">🛍️</span> Carry Bags
-            </div>
-          </div>
+          <a href="https://wa.me/918639602820" target="_blank" rel="noopener" class="btn btn-whatsapp">
+            <i class="fa-brands fa-whatsapp"></i> WhatsApp Order
+          </a>
         </div>
       </div>
-    </div>
 
-    <!-- Bottom wave -->
-    <div class="absolute bottom-0 left-0 right-0">
-      <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-        <path d="M0 80L1440 80L1440 40C1200 0 960 80 720 40C480 0 240 80 0 40L0 80Z" fill="#0f172a"/>
-      </svg>
-    </div>
-  </section>
-
-  <!-- ────────────────────────── STATS BAND ─────────────────────────────── -->
-  <section class="py-12" style="background:#0f172a;">
-    <div class="max-w-5xl mx-auto px-4">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-        <div class="stat-card text-center p-6 rounded-2xl" data-aos="zoom-in" data-aos-delay="0" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);">
-          <div class="text-3xl font-bold counter" data-target="500" style="color:#22c55e;">0</div>
-          <div class="text-sm mt-1" style="color:rgba(255,255,255,0.5);">+ Products</div>
-        </div>
-        <div class="stat-card text-center p-6 rounded-2xl" data-aos="zoom-in" data-aos-delay="100" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);">
-          <div class="text-3xl font-bold counter" data-target="10" style="color:#22c55e;">0</div>
-          <div class="text-sm mt-1" style="color:rgba(255,255,255,0.5);">+ Years Experience</div>
-        </div>
-        <div class="stat-card text-center p-6 rounded-2xl" data-aos="zoom-in" data-aos-delay="200" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);">
-          <div class="text-3xl font-bold counter" data-target="1000" style="color:#22c55e;">0</div>
-          <div class="text-sm mt-1" style="color:rgba(255,255,255,0.5);">+ Happy Customers</div>
-        </div>
-        <div class="stat-card text-center p-6 rounded-2xl" data-aos="zoom-in" data-aos-delay="300" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);">
-          <div class="text-3xl font-bold counter" data-target="7" style="color:#22c55e;">0</div>
-          <div class="text-sm mt-1" style="color:rgba(255,255,255,0.5);">Days / Week Open</div>
+      <div class="hero-images" data-aos="fade-left">
+        <div class="hero-grid">
+          <div class="hero-img-wrap">
+            <img src="images/shop-front.jpg"
+                 onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?indian,kirana,store,shop'"
+                 alt="Shop Front" loading="lazy" />
+          </div>
+          <div class="hero-img-wrap">
+            <img src="images/milk.jpg"
+                 onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?india,milk,packets,dairy'"
+                 alt="Milk Products" loading="lazy" />
+          </div>
+          <div class="hero-img-wrap">
+            <img src="images/paper-cups.jpg"
+                 onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?paper-cups,stack,disposable'"
+                 alt="Paper Cups" loading="lazy" />
+          </div>
+          <div class="hero-img-wrap">
+            <img src="images/grocery.jpg"
+                 onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?indian,grocery,store,shelf'"
+                 alt="Grocery" loading="lazy" />
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ─────────────────── PRODUCT SHOWCASE STRIP ───────────────────────── -->
-  <section class="py-12 overflow-hidden" style="background:linear-gradient(180deg,#0f172a 0%,#0a1a12 100%);">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6" data-aos="fade-up">
-      <div class="flex items-center justify-between">
+  <!-- ===== STATS BAR ===== -->
+  <section class="stats-bar">
+    <div class="stats-container">
+      <div class="stat-item" data-aos="fade-up" data-aos-delay="0">
+        <span class="stat-icon"><i class="fa-solid fa-store"></i></span>
         <div>
-          <div class="inline-flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-full mb-2" style="background:rgba(251,146,60,0.12);color:#fb923c;border:1px solid rgba(251,146,60,0.25);">
-            <i class="fa-solid fa-store text-xs"></i> What We Sell
-          </div>
-          <h2 class="text-2xl sm:text-3xl font-display font-bold text-white">
-            All Products at a Glance
-          </h2>
+          <strong>15+ Years</strong>
+          <span>Experience</span>
         </div>
-        <a href="#products" class="hidden sm:flex items-center gap-2 text-sm font-semibold hover:gap-3 transition-all" style="color:#22c55e;">
-          View All <i class="fa-solid fa-arrow-right text-xs"></i>
-        </a>
       </div>
-    </div>
-
-    <!-- Scrollable product strip -->
-    <div class="product-strip-wrapper" data-aos="fade-up" data-aos-delay="100">
-      <div class="product-strip">
-        <!-- Strip item 1 -->
-        <div class="product-strip-item">
-          <div class="product-strip-img-wrap">
-            <img src="images/milk.jpg" onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?india,milk,packets,dairy'"
-                 alt="Fresh Milk" loading="lazy" class="product-strip-img" />
-          </div>
-          <p class="product-strip-label">Fresh Milk</p>
+      <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
+        <span class="stat-icon"><i class="fa-solid fa-box-open"></i></span>
+        <div>
+          <strong>500+ Products</strong>
+          <span>In Stock</span>
         </div>
-        <!-- Strip item 2 -->
-        <div class="product-strip-item">
-          <div class="product-strip-img-wrap">
-            <img src="images/paper-cups.jpg" onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?paper-cups,stack,disposable'"
-                 alt="Disposable Cups" loading="lazy" class="product-strip-img" />
-          </div>
-          <p class="product-strip-label">Disposable Cups</p>
+      </div>
+      <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
+        <span class="stat-icon"><i class="fa-solid fa-users"></i></span>
+        <div>
+          <strong>2000+</strong>
+          <span>Happy Customers</span>
         </div>
-        <!-- Strip item 3 -->
-        <div class="product-strip-item">
-          <div class="product-strip-img-wrap">
-            <img src="images/paper-plates.jpg" onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?paper-plates,disposable,stack'"
-                 alt="Paper Plates" loading="lazy" class="product-strip-img" />
-          </div>
-          <p class="product-strip-label">Paper Plates</p>
-        </div>
-        <!-- Strip item 4 -->
-        <div class="product-strip-item">
-          <div class="product-strip-img-wrap">
-            <img src="images/carry-bags.jpg" onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?plastic-carry-bags,shopping'"
-                 alt="Carry Bags" loading="lazy" class="product-strip-img" />
-          </div>
-          <p class="product-strip-label">Carry Bags</p>
-        </div>
-        <!-- Strip item 5 -->
-        <div class="product-strip-item">
-          <div class="product-strip-img-wrap">
-            <img src="images/grocery.jpg" onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?indian,grocery,store,shelf'"
-                 alt="Grocery Items" loading="lazy" class="product-strip-img" />
-          </div>
-          <p class="product-strip-label">Grocery Items</p>
-        </div>
-        <!-- Strip item 6 -->
-        <div class="product-strip-item">
-          <div class="product-strip-img-wrap">
-            <img src="images/containers.jpg" onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?plastic-food-containers,boxes'"
-                 alt="Plastic Containers" loading="lazy" class="product-strip-img" />
-          </div>
-          <p class="product-strip-label">Containers</p>
-        </div>
-        <!-- Strip item 7 -->
-        <div class="product-strip-item">
-          <div class="product-strip-img-wrap">
-            <img src="images/cleaning.jpg" onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?cleaning-products,bottles'"
-                 alt="Cleaning Products" loading="lazy" class="product-strip-img" />
-          </div>
-          <p class="product-strip-label">Cleaning Items</p>
-        </div>
-        <!-- Strip item 8 -->
-        <div class="product-strip-item">
-          <div class="product-strip-img-wrap">
-            <img src="images/carry-bags.jpg" onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?plastic-carry-bags,shopping'"
-                 alt="Packaging Materials" loading="lazy" class="product-strip-img" />
-          </div>
-          <p class="product-strip-label">Packaging</p>
-        </div>
-        <!-- Duplicate for seamless loop feel on desktop -->
-        <div class="product-strip-item">
-          <div class="product-strip-img-wrap">
-            <img src="images/milk.jpg" onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?india,milk,packets,dairy'"
-                 alt="Fresh Milk" loading="lazy" class="product-strip-img" />
-          </div>
-          <p class="product-strip-label">Fresh Milk</p>
-        </div>
-        <div class="product-strip-item">
-          <div class="product-strip-img-wrap">
-            <img src="images/paper-cups.jpg" onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?paper-cups,stack,disposable'"
-                 alt="Disposable Cups" loading="lazy" class="product-strip-img" />
-          </div>
-          <p class="product-strip-label">Disposable Cups</p>
+      </div>
+      <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
+        <span class="stat-icon"><i class="fa-solid fa-star"></i></span>
+        <div>
+          <strong>Trusted Shop</strong>
+          <span>Since 2008</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ─────────────────────────────── ABOUT ─────────────────────────────── -->
-  <section id="about" class="py-20 overflow-hidden" style="background:#0f172a;">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col lg:flex-row items-center gap-16">
-
-        <!-- Image Side -->
-        <div class="w-full lg:w-1/2" data-aos="fade-right" data-aos-duration="800">
-          <div class="relative">
-            <!-- Main card -->
-            <div class="about-img-card relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/3] flex items-center justify-center" style="background:linear-gradient(135deg,#0d3d1f,#134e2a,#1a6636);">
-              <div class="text-center text-white p-8">
-                <div class="text-8xl mb-4">🏪</div>
-                <div class="text-2xl font-bold font-display">Sri Sai Traders</div>
-                <div class="text-sm mt-1" style="color:#22c55e;">Est. in Kurnool</div>
-              </div>
-              <!-- Shimmer overlay -->
-              <div class="shimmer-overlay absolute inset-0"></div>
-            </div>
-            <!-- Floating badge -->
-            <div class="about-badge absolute -bottom-5 -right-5 rounded-2xl shadow-xl p-4 flex items-center gap-3" style="background:rgba(15,23,42,0.95);border:1px solid rgba(34,197,94,0.3);">
-              <div class="w-12 h-12 rounded-xl flex items-center justify-center text-2xl" style="background:rgba(34,197,94,0.15);">🥛</div>
-              <div>
-                <div class="font-bold text-sm text-white">Milk Center</div>
-                <div class="text-xs" style="color:#22c55e;">Fresh Daily</div>
-              </div>
-            </div>
-            <!-- Floating badge 2 -->
-            <div class="about-badge-2 absolute -top-5 -left-5 rounded-2xl shadow-xl p-4 flex items-center gap-3" style="background:rgba(15,23,42,0.95);border:1px solid rgba(56,189,248,0.3);">
-              <div class="w-12 h-12 rounded-xl flex items-center justify-center text-2xl" style="background:rgba(56,189,248,0.12);">♻️</div>
-              <div>
-                <div class="font-bold text-sm text-white">Eco-Friendly</div>
-                <div class="text-xs" style="color:#38bdf8;">Disposables</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Text Side -->
-        <div class="w-full lg:w-1/2" data-aos="fade-left" data-aos-duration="800">
-          <div class="inline-flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-full mb-4" style="background:rgba(34,197,94,0.12);color:#22c55e;border:1px solid rgba(34,197,94,0.25);">
-            <i class="fa-solid fa-store text-xs"></i> About Us
-          </div>
-          <h2 class="text-4xl md:text-5xl font-display font-bold text-white mb-6 leading-tight">
-            Serving Kurnool <br /><span style="background:linear-gradient(135deg,#22c55e,#38bdf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">With Pride</span>
-          </h2>
-          <p class="text-lg mb-6 leading-relaxed" style="color:rgba(255,255,255,0.65);">
-            Sri Sai Traders is your trusted neighborhood store in Srinagar Colony B-Camp, Kurnool. 
-            We specialize in all kinds of <strong style="color:#22c55e;">disposable items</strong> — from paper cups 
-            and plates to cutlery and packaging — along with a full general store and a 
-            <strong style="color:#22c55e;">fresh milk center</strong>.
-          </p>
-          <p class="text-base mb-8 leading-relaxed" style="color:rgba(255,255,255,0.45);">
-            Under the ownership of <span class="font-semibold text-white">K. Mohan Reddy</span>, 
-            we are committed to providing high-quality products at fair prices, ensuring every customer 
-            leaves satisfied. Located opposite Shakuntala Kalaa Mandir Road, we are easily accessible 
-            to all residents and businesses in the area.
-          </p>
-
-          <!-- Feature pills -->
-          <div class="flex flex-wrap gap-3 mb-8">
-            <span class="feature-pill flex items-center gap-2 text-sm px-4 py-2 rounded-full" style="background:rgba(34,197,94,0.1);color:#22c55e;border:1px solid rgba(34,197,94,0.25);">
-              <i class="fa-solid fa-check-circle"></i> GST Registered
-            </span>
-            <span class="feature-pill flex items-center gap-2 text-sm px-4 py-2 rounded-full" style="background:rgba(34,197,94,0.1);color:#22c55e;border:1px solid rgba(34,197,94,0.25);">
-              <i class="fa-solid fa-check-circle"></i> Quality Products
-            </span>
-            <span class="feature-pill flex items-center gap-2 text-sm px-4 py-2 rounded-full" style="background:rgba(56,189,248,0.1);color:#38bdf8;border:1px solid rgba(56,189,248,0.25);">
-              <i class="fa-solid fa-check-circle"></i> Home Delivery
-            </span>
-            <span class="feature-pill flex items-center gap-2 text-sm px-4 py-2 rounded-full" style="background:rgba(56,189,248,0.1);color:#38bdf8;border:1px solid rgba(56,189,248,0.25);">
-              <i class="fa-solid fa-check-circle"></i> Bulk Orders
-            </span>
-          </div>
-
-          <a href="#contact"
-             class="inline-flex items-center gap-3 font-semibold px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300" style="background:linear-gradient(135deg,#22c55e,#16a34a);color:white;">
-            Get In Touch <i class="fa-solid fa-arrow-right"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─────────────────────── PRODUCT CATEGORIES ───────────────────────── -->
-  <section class="py-20" style="background:linear-gradient(180deg,#0a1628 0%,#0d1f0f 100%);">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12" data-aos="fade-up">
-        <div class="inline-flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-full mb-4" style="background:rgba(251,146,60,0.12);color:#fb923c;border:1px solid rgba(251,146,60,0.25);">
-          <i class="fa-solid fa-grid-2 text-xs"></i> Product Categories
-        </div>
-        <h2 class="text-4xl md:text-5xl font-display font-bold text-white mb-4">
-          Shop By <span style="color:#fb923c;">Category</span>
-        </h2>
-        <p class="max-w-xl mx-auto text-lg" style="color:rgba(255,255,255,0.5);">
-          Browse our wide range of products — from fresh milk to disposable items and everyday groceries.
-        </p>
+  <!-- ===== PRODUCTS ===== -->
+  <section class="products-section" id="products">
+    <div class="section-container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-badge">What We Offer</span>
+        <h2>Our Products</h2>
+        <p>Quality products at the best prices — wholesale &amp; retail available</p>
       </div>
 
-      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6" data-aos="fade-up" data-aos-delay="100">
+      <div class="products-grid">
 
-        <!-- Category 1: Milk & Dairy -->
-        <a href="https://wa.me/918639602820?text=I%20need%20Milk%20%26%20Dairy%20products" target="_blank" rel="noopener"
-           class="cat-card group relative overflow-hidden rounded-2xl cursor-pointer">
-          <img src="images/milk.jpg" onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?india,milk,packets,dairy'"
-               alt="Milk & Dairy" class="cat-card-img w-full h-full object-cover" loading="lazy" />
-          <div class="cat-card-overlay absolute inset-0" style="background:linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.25) 55%, transparent 100%);"></div>
-          <div class="absolute inset-0 flex flex-col justify-end p-4">
-            <div class="cat-card-icon text-2xl mb-1" aria-hidden="true">🥛</div>
-            <h3 class="font-bold text-white text-sm sm:text-base leading-tight">Milk &amp; Dairy</h3>
-            <p class="text-xs mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="color:#22c55e;">Order on WhatsApp →</p>
+        <div class="product-card" data-aos="fade-up" data-aos-delay="0">
+          <div class="product-img-wrap">
+            <img src="images/milk.jpg"
+                 onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?india,milk,packets,dairy'"
+                 alt="Milk & Dairy" loading="lazy" />
           </div>
-        </a>
-
-        <!-- Category 2: Disposable Cups -->
-        <a href="https://wa.me/918639602820?text=I%20need%20Disposable%20Cups" target="_blank" rel="noopener"
-           class="cat-card group relative overflow-hidden rounded-2xl cursor-pointer">
-          <img src="images/paper-cups.jpg" onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?paper-cups,stack,disposable'"
-               alt="Disposable Cups" class="cat-card-img w-full h-full object-cover" loading="lazy" />
-          <div class="cat-card-overlay absolute inset-0" style="background:linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.25) 55%, transparent 100%);"></div>
-          <div class="absolute inset-0 flex flex-col justify-end p-4">
-            <div class="cat-card-icon text-2xl mb-1" aria-hidden="true">☕</div>
-            <h3 class="font-bold text-white text-sm sm:text-base leading-tight">Disposable Cups</h3>
-            <p class="text-xs mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="color:#22c55e;">Order on WhatsApp →</p>
-          </div>
-        </a>
-
-        <!-- Category 3: Paper Plates -->
-        <a href="https://wa.me/918639602820?text=I%20need%20Paper%20Plates" target="_blank" rel="noopener"
-           class="cat-card group relative overflow-hidden rounded-2xl cursor-pointer">
-          <img src="images/paper-plates.jpg" onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?paper-plates,disposable,stack'"
-               alt="Paper Plates" class="cat-card-img w-full h-full object-cover" loading="lazy" />
-          <div class="cat-card-overlay absolute inset-0" style="background:linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.25) 55%, transparent 100%);"></div>
-          <div class="absolute inset-0 flex flex-col justify-end p-4">
-            <div class="cat-card-icon text-2xl mb-1" aria-hidden="true">🍽️</div>
-            <h3 class="font-bold text-white text-sm sm:text-base leading-tight">Paper Plates</h3>
-            <p class="text-xs mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="color:#22c55e;">Order on WhatsApp →</p>
-          </div>
-        </a>
-
-        <!-- Category 4: Carry Bags -->
-        <a href="https://wa.me/918639602820?text=I%20need%20Carry%20Bags" target="_blank" rel="noopener"
-           class="cat-card group relative overflow-hidden rounded-2xl cursor-pointer">
-          <img src="images/carry-bags.jpg" onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?plastic-carry-bags,shopping'"
-               alt="Carry Bags" class="cat-card-img w-full h-full object-cover" loading="lazy" />
-          <div class="cat-card-overlay absolute inset-0" style="background:linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.25) 55%, transparent 100%);"></div>
-          <div class="absolute inset-0 flex flex-col justify-end p-4">
-            <div class="cat-card-icon text-2xl mb-1" aria-hidden="true">🛍️</div>
-            <h3 class="font-bold text-white text-sm sm:text-base leading-tight">Carry Bags</h3>
-            <p class="text-xs mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="color:#22c55e;">Order on WhatsApp →</p>
-          </div>
-        </a>
-
-        <!-- Category 5: Plastic Containers -->
-        <a href="https://wa.me/918639602820?text=I%20need%20Plastic%20Containers" target="_blank" rel="noopener"
-           class="cat-card group relative overflow-hidden rounded-2xl cursor-pointer">
-          <img src="images/containers.jpg" onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?plastic-food-containers,boxes'"
-               alt="Plastic Containers" class="cat-card-img w-full h-full object-cover" loading="lazy" />
-          <div class="cat-card-overlay absolute inset-0" style="background:linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.25) 55%, transparent 100%);"></div>
-          <div class="absolute inset-0 flex flex-col justify-end p-4">
-            <div class="cat-card-icon text-2xl mb-1" aria-hidden="true">📦</div>
-            <h3 class="font-bold text-white text-sm sm:text-base leading-tight">Plastic Containers</h3>
-            <p class="text-xs mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="color:#22c55e;">Order on WhatsApp →</p>
-          </div>
-        </a>
-
-        <!-- Category 6: Cleaning Products -->
-        <a href="https://wa.me/918639602820?text=I%20need%20Cleaning%20Products" target="_blank" rel="noopener"
-           class="cat-card group relative overflow-hidden rounded-2xl cursor-pointer">
-          <img src="images/cleaning.jpg" onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?cleaning-products,bottles'"
-               alt="Cleaning Products" class="cat-card-img w-full h-full object-cover" loading="lazy" />
-          <div class="cat-card-overlay absolute inset-0" style="background:linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.25) 55%, transparent 100%);"></div>
-          <div class="absolute inset-0 flex flex-col justify-end p-4">
-            <div class="cat-card-icon text-2xl mb-1" aria-hidden="true">🧴</div>
-            <h3 class="font-bold text-white text-sm sm:text-base leading-tight">Cleaning Products</h3>
-            <p class="text-xs mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="color:#22c55e;">Order on WhatsApp →</p>
-          </div>
-        </a>
-
-        <!-- Category 7: Grocery Items -->
-        <a href="https://wa.me/918639602820?text=I%20need%20Grocery%20Items" target="_blank" rel="noopener"
-           class="cat-card group relative overflow-hidden rounded-2xl cursor-pointer col-span-2 sm:col-span-1">
-          <img src="images/grocery.jpg" onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?indian,grocery,store,shelf'"
-               alt="Grocery Items" class="cat-card-img w-full h-full object-cover" loading="lazy" />
-          <div class="cat-card-overlay absolute inset-0" style="background:linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.25) 55%, transparent 100%);"></div>
-          <div class="absolute inset-0 flex flex-col justify-end p-4">
-            <div class="cat-card-icon text-2xl mb-1" aria-hidden="true">🛒</div>
-            <h3 class="font-bold text-white text-sm sm:text-base leading-tight">Grocery Items</h3>
-            <p class="text-xs mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="color:#22c55e;">Order on WhatsApp →</p>
-          </div>
-        </a>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ─────────────────────────── PRODUCTS ──────────────────────────────── -->
-  <section id="products" class="py-20 relative overflow-hidden" style="background:linear-gradient(180deg,#0f172a 0%,#0d1f0f 100%);">
-    <!-- Canvas particle network background -->
-    <canvas id="products-canvas" aria-hidden="true"></canvas>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-
-      <div class="text-center mb-14" data-aos="fade-up">
-        <div class="inline-flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-full mb-4" style="background:rgba(34,197,94,0.12);color:#22c55e;border:1px solid rgba(34,197,94,0.25);">
-          <i class="fa-solid fa-box-open text-xs"></i> Our Products
-        </div>
-        <h2 class="text-4xl md:text-5xl font-display font-bold text-white mb-4">
-          Everything You <span style="color:#22c55e;">Need</span>
-        </h2>
-        <p class="max-w-xl mx-auto text-lg" style="color:rgba(255,255,255,0.5);">
-          From premium disposables to everyday essentials — we stock it all.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-
-        <!-- Product Card 1 -->
-        <div class="product-card glass-card rounded-2xl overflow-hidden text-left" data-aos="fade-up" data-aos-delay="0">
-          <div class="card-specular"></div>
-          <div class="product-card-img-wrap">
-            <img src="images/paper-cups.jpg" onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?paper-cups,stack,disposable'"
-                 alt="Paper Cups" loading="lazy" class="product-card-photo" />
-          </div>
-          <div class="p-5">
-            <h3 class="font-bold text-lg mb-2 text-white">Paper Cups</h3>
-            <p class="text-sm" style="color:rgba(255,255,255,0.5);">Tea, coffee &amp; cold drink cups in all sizes. Bulk supply available.</p>
-            <a href="https://wa.me/918639602820?text=I%20need%20Paper%20Cups" target="_blank" rel="noopener"
-               class="mt-4 inline-flex items-center gap-1 text-sm font-medium hover:gap-2 transition-all" style="color:#22c55e;">
-              Order Now <i class="fa-solid fa-arrow-right text-xs"></i>
-            </a>
+          <div class="product-body">
+            <h3><i class="fa-solid fa-droplet"></i> Milk &amp; Dairy</h3>
+            <p>Fresh milk packets, curd, butter and daily dairy essentials delivered fresh every morning.</p>
+            <a href="https://wa.me/918639602820?text=I%20want%20to%20order%20Milk%20%26%20Dairy%20products" target="_blank" rel="noopener" class="order-link">Order Now <i class="fa-solid fa-arrow-right"></i></a>
           </div>
         </div>
 
-        <!-- Product Card 2 -->
-        <div class="product-card glass-card rounded-2xl overflow-hidden text-left" data-aos="fade-up" data-aos-delay="60">
-          <div class="card-specular"></div>
-          <div class="product-card-img-wrap">
-            <img src="images/paper-plates.jpg" onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?paper-plates,disposable,stack'"
-                 alt="Paper Plates" loading="lazy" class="product-card-photo" />
+        <div class="product-card" data-aos="fade-up" data-aos-delay="50">
+          <div class="product-img-wrap">
+            <img src="images/paper-cups.jpg"
+                 onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?paper-cups,stack,disposable'"
+                 alt="Disposable Cups" loading="lazy" />
           </div>
-          <div class="p-5">
-            <h3 class="font-bold text-lg mb-2 text-white">Paper Plates</h3>
-            <p class="text-sm" style="color:rgba(255,255,255,0.5);">Eco-friendly paper plates for events, parties &amp; daily use.</p>
-            <a href="https://wa.me/918639602820?text=I%20need%20Paper%20Plates" target="_blank" rel="noopener"
-               class="mt-4 inline-flex items-center gap-1 text-sm font-medium hover:gap-2 transition-all" style="color:#22c55e;">
-              Order Now <i class="fa-solid fa-arrow-right text-xs"></i>
-            </a>
+          <div class="product-body">
+            <h3><i class="fa-solid fa-mug-hot"></i> Disposable Cups</h3>
+            <p>Paper cups and plastic cups in all sizes — ideal for tea, coffee, events and parties.</p>
+            <a href="https://wa.me/918639602820?text=I%20want%20to%20order%20Disposable%20Cups" target="_blank" rel="noopener" class="order-link">Order Now <i class="fa-solid fa-arrow-right"></i></a>
           </div>
         </div>
 
-        <!-- Product Card 3 -->
-        <div class="product-card glass-card rounded-2xl overflow-hidden text-left" data-aos="fade-up" data-aos-delay="120">
-          <div class="card-specular"></div>
-          <div class="product-card-img-wrap">
-            <img src="images/paper-plates.jpg" onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?paper-plates,disposable,stack'"
-                 alt="Disposable Cutlery" loading="lazy" class="product-card-photo" />
+        <div class="product-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="product-img-wrap">
+            <img src="images/paper-plates.jpg"
+                 onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?paper-plates,disposable,stack'"
+                 alt="Paper Plates" loading="lazy" />
           </div>
-          <div class="p-5">
-            <h3 class="font-bold text-lg mb-2 text-white">Disposable Cutlery</h3>
-            <p class="text-sm" style="color:rgba(255,255,255,0.5);">Spoons, forks, knives &amp; chopsticks for all occasions.</p>
-            <a href="https://wa.me/918639602820?text=I%20need%20Disposable%20Cutlery" target="_blank" rel="noopener"
-               class="mt-4 inline-flex items-center gap-1 text-sm font-medium hover:gap-2 transition-all" style="color:#22c55e;">
-              Order Now <i class="fa-solid fa-arrow-right text-xs"></i>
-            </a>
+          <div class="product-body">
+            <h3><i class="fa-solid fa-circle"></i> Paper Plates</h3>
+            <p>Disposable paper plates and thermocol plates for functions, weddings and daily use.</p>
+            <a href="https://wa.me/918639602820?text=I%20want%20to%20order%20Paper%20Plates" target="_blank" rel="noopener" class="order-link">Order Now <i class="fa-solid fa-arrow-right"></i></a>
           </div>
         </div>
 
-        <!-- Product Card 4 -->
-        <div class="product-card glass-card rounded-2xl overflow-hidden text-left" data-aos="fade-up" data-aos-delay="180">
-          <div class="card-specular"></div>
-          <div class="product-card-img-wrap">
-            <img src="images/milk.jpg" onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?india,milk,packets,dairy'"
-                 alt="Fresh Milk" loading="lazy" class="product-card-photo" />
+        <div class="product-card" data-aos="fade-up" data-aos-delay="150">
+          <div class="product-img-wrap">
+            <img src="images/carry-bags.jpg"
+                 onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?plastic-carry-bags,shopping'"
+                 alt="Carry Bags" loading="lazy" />
           </div>
-          <div class="p-5">
-            <h3 class="font-bold text-lg mb-2 text-white">Fresh Milk</h3>
-            <p class="text-sm" style="color:rgba(255,255,255,0.5);">Pure farm-fresh milk available daily at our milk center.</p>
-            <a href="https://wa.me/918639602820?text=I%20need%20Fresh%20Milk" target="_blank" rel="noopener"
-               class="mt-4 inline-flex items-center gap-1 text-sm font-medium hover:gap-2 transition-all" style="color:#38bdf8;">
-              Order Now <i class="fa-solid fa-arrow-right text-xs"></i>
-            </a>
+          <div class="product-body">
+            <h3><i class="fa-solid fa-bag-shopping"></i> Carry Bags</h3>
+            <p>Wide range of carry bags — non-woven, plastic and paper bags in all sizes and colours.</p>
+            <a href="https://wa.me/918639602820?text=I%20want%20to%20order%20Carry%20Bags" target="_blank" rel="noopener" class="order-link">Order Now <i class="fa-solid fa-arrow-right"></i></a>
           </div>
         </div>
 
-        <!-- Product Card 5 -->
-        <div class="product-card glass-card rounded-2xl overflow-hidden text-left" data-aos="fade-up" data-aos-delay="0">
-          <div class="card-specular"></div>
-          <div class="product-card-img-wrap">
-            <img src="images/carry-bags.jpg" onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?plastic-carry-bags,shopping'"
-                 alt="Packaging Material" loading="lazy" class="product-card-photo" />
+        <div class="product-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="product-img-wrap">
+            <img src="images/containers.jpg"
+                 onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?plastic-food-containers,boxes'"
+                 alt="Plastic Containers" loading="lazy" />
           </div>
-          <div class="p-5">
-            <h3 class="font-bold text-lg mb-2 text-white">Packaging Material</h3>
-            <p class="text-sm" style="color:rgba(255,255,255,0.5);">Carry bags, wrapping sheets, foil, cling film &amp; more.</p>
-            <a href="https://wa.me/918639602820?text=I%20need%20Packaging%20Materials" target="_blank" rel="noopener"
-               class="mt-4 inline-flex items-center gap-1 text-sm font-medium hover:gap-2 transition-all" style="color:#22c55e;">
-              Order Now <i class="fa-solid fa-arrow-right text-xs"></i>
-            </a>
+          <div class="product-body">
+            <h3><i class="fa-solid fa-box"></i> Plastic Containers</h3>
+            <p>Food-grade plastic containers, tiffin boxes and storage solutions for home and catering.</p>
+            <a href="https://wa.me/918639602820?text=I%20want%20to%20order%20Plastic%20Containers" target="_blank" rel="noopener" class="order-link">Order Now <i class="fa-solid fa-arrow-right"></i></a>
           </div>
         </div>
 
-        <!-- Product Card 6 -->
-        <div class="product-card glass-card rounded-2xl overflow-hidden text-left" data-aos="fade-up" data-aos-delay="60">
-          <div class="card-specular"></div>
-          <div class="product-card-img-wrap">
-            <img src="images/cleaning.jpg" onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?cleaning-products,bottles'"
-                 alt="Cleaning Products" loading="lazy" class="product-card-photo" />
+        <div class="product-card" data-aos="fade-up" data-aos-delay="250">
+          <div class="product-img-wrap">
+            <img src="images/cleaning.jpg"
+                 onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?cleaning-products,bottles'"
+                 alt="Cleaning Products" loading="lazy" />
           </div>
-          <div class="p-5">
-            <h3 class="font-bold text-lg mb-2 text-white">Cleaning Products</h3>
-            <p class="text-sm" style="color:rgba(255,255,255,0.5);">Soaps, detergents, sanitizers &amp; household cleaners.</p>
-            <a href="https://wa.me/918639602820?text=I%20need%20Cleaning%20Products" target="_blank" rel="noopener"
-               class="mt-4 inline-flex items-center gap-1 text-sm font-medium hover:gap-2 transition-all" style="color:#22c55e;">
-              Order Now <i class="fa-solid fa-arrow-right text-xs"></i>
-            </a>
+          <div class="product-body">
+            <h3><i class="fa-solid fa-broom"></i> Cleaning Products</h3>
+            <p>Household cleaning supplies — phenyl, detergents, floor cleaners and more at great prices.</p>
+            <a href="https://wa.me/918639602820?text=I%20want%20to%20order%20Cleaning%20Products" target="_blank" rel="noopener" class="order-link">Order Now <i class="fa-solid fa-arrow-right"></i></a>
           </div>
         </div>
 
-        <!-- Product Card 7 -->
-        <div class="product-card glass-card rounded-2xl overflow-hidden text-left" data-aos="fade-up" data-aos-delay="120">
-          <div class="card-specular"></div>
-          <div class="product-card-img-wrap">
-            <img src="images/grocery.jpg" onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?indian,grocery,store,shelf'"
-                 alt="Groceries" loading="lazy" class="product-card-photo" />
+        <div class="product-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="product-img-wrap">
+            <img src="images/grocery.jpg"
+                 onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?indian,grocery,store,shelf'"
+                 alt="Grocery Items" loading="lazy" />
           </div>
-          <div class="p-5">
-            <h3 class="font-bold text-lg mb-2 text-white">Groceries</h3>
-            <p class="text-sm" style="color:rgba(255,255,255,0.5);">Rice, dal, spices, oil &amp; all daily grocery essentials.</p>
-            <a href="https://wa.me/918639602820?text=I%20need%20Grocery%20Items" target="_blank" rel="noopener"
-               class="mt-4 inline-flex items-center gap-1 text-sm font-medium hover:gap-2 transition-all" style="color:#22c55e;">
-              Order Now <i class="fa-solid fa-arrow-right text-xs"></i>
-            </a>
-          </div>
-        </div>
-
-        <!-- Product Card 8 -->
-        <div class="product-card glass-card rounded-2xl overflow-hidden text-left" data-aos="fade-up" data-aos-delay="180">
-          <div class="card-specular"></div>
-          <div class="product-card-img-wrap">
-            <img src="images/paper-cups.jpg" onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?tissue,paper-napkins,rolls'"
-                 alt="Tissue & Napkins" loading="lazy" class="product-card-photo" />
-          </div>
-          <div class="p-5">
-            <h3 class="font-bold text-lg mb-2 text-white">Tissue &amp; Napkins</h3>
-            <p class="text-sm" style="color:rgba(255,255,255,0.5);">Tissue rolls, facial tissues, paper napkins &amp; hand towels.</p>
-            <a href="https://wa.me/918639602820?text=I%20need%20Tissue%20and%20Napkins" target="_blank" rel="noopener"
-               class="mt-4 inline-flex items-center gap-1 text-sm font-medium hover:gap-2 transition-all" style="color:#22c55e;">
-              Order Now <i class="fa-solid fa-arrow-right text-xs"></i>
-            </a>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- CTA Banner -->
-      <div class="mt-14 rounded-3xl p-8 sm:p-12 text-center text-white relative overflow-hidden" data-aos="zoom-in" style="background:linear-gradient(135deg,rgba(34,197,94,0.2),rgba(56,189,248,0.15));border:1px solid rgba(34,197,94,0.25);">
-        <div class="blob-cta absolute -top-10 -right-10 w-48 h-48 rounded-full blur-2xl" style="background:rgba(34,197,94,0.1);"></div>
-        <div class="blob-cta absolute -bottom-10 -left-10 w-48 h-48 rounded-full blur-2xl" style="background:rgba(56,189,248,0.1);"></div>
-        <div class="relative z-10">
-          <h3 class="text-2xl sm:text-3xl font-display font-bold mb-3">Need Bulk Orders?</h3>
-          <p class="mb-6 text-lg" style="color:rgba(255,255,255,0.65);">We supply to restaurants, caterers, offices and events. Get in touch!</p>
-          <a href="https://wa.me/918639602820?text=I%20need%20a%20bulk%20order%20quote."
-             target="_blank" rel="noopener"
-             class="btn-ring-glow inline-flex items-center gap-3 font-bold px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300" style="background:#22c55e;color:#0f172a;">
-            <i class="fa-brands fa-whatsapp text-xl"></i> WhatsApp for Quote
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─────────────────────────── GALLERY ───────────────────────────────── -->
-  <section id="gallery" class="py-20" style="background:#0f172a;">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-      <div class="text-center mb-14" data-aos="fade-up">
-        <div class="inline-flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-full mb-4" style="background:rgba(56,189,248,0.12);color:#38bdf8;border:1px solid rgba(56,189,248,0.25);">
-          <i class="fa-solid fa-images text-xs"></i> Gallery
-        </div>
-        <h2 class="text-4xl md:text-5xl font-display font-bold text-white mb-4">
-          Our Store &amp; <span style="color:#38bdf8;">Products</span>
-        </h2>
-        <p class="max-w-xl mx-auto text-lg" style="color:rgba(255,255,255,0.5);">
-          A glimpse into Sri Sai Traders — quality you can trust.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-
-        <div class="gallery-item rounded-2xl overflow-hidden col-span-2 row-span-2" data-aos="fade-up" data-aos-delay="0">
-          <div class="gallery-thumb h-64 md:h-80 cursor-pointer relative">
-            <img src="images/shop-front.jpg" onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?indian,kirana,store,shop'"
-                 alt="Our Store Front" class="w-full h-full object-cover" loading="lazy" />
-            <div class="gallery-overlay absolute inset-0 flex flex-col items-center justify-center rounded-2xl" style="background:rgba(34,197,94,0.35);">
-              <i class="fa-solid fa-expand text-white text-2xl mb-2"></i>
-              <span class="text-white font-bold text-sm">Our Store Front</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="gallery-item rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="60">
-          <div class="gallery-thumb h-36 md:h-44 cursor-pointer relative">
-            <img src="images/paper-cups.jpg" onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?paper-cups,stack,disposable'"
-                 alt="Paper Cups" class="w-full h-full object-cover" loading="lazy" />
-            <div class="gallery-overlay absolute inset-0 flex items-center justify-center" style="background:rgba(34,197,94,0.3);">
-              <span class="text-white font-semibold text-xs">Paper Cups</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="gallery-item rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="120">
-          <div class="gallery-thumb h-36 md:h-44 cursor-pointer relative">
-            <img src="images/paper-plates.jpg" onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?paper-plates,disposable,stack'"
-                 alt="Paper Plates" class="w-full h-full object-cover" loading="lazy" />
-            <div class="gallery-overlay absolute inset-0 flex items-center justify-center" style="background:rgba(34,197,94,0.3);">
-              <span class="text-white font-semibold text-xs">Paper Plates</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="gallery-item rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="180">
-          <div class="gallery-thumb h-36 md:h-44 cursor-pointer relative">
-            <img src="images/milk.jpg" onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?india,milk,packets,dairy'"
-                 alt="Milk Center" class="w-full h-full object-cover" loading="lazy" />
-            <div class="gallery-overlay absolute inset-0 flex items-center justify-center" style="background:rgba(56,189,248,0.3);">
-              <span class="text-white font-semibold text-xs">Milk Center</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="gallery-item rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="60">
-          <div class="gallery-thumb h-36 md:h-44 cursor-pointer relative">
-            <img src="images/carry-bags.jpg" onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?plastic-carry-bags,shopping'"
-                 alt="Packaging & Carry Bags" class="w-full h-full object-cover" loading="lazy" />
-            <div class="gallery-overlay absolute inset-0 flex items-center justify-center" style="background:rgba(34,197,94,0.3);">
-              <span class="text-white font-semibold text-xs">Carry Bags</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="gallery-item rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="120">
-          <div class="gallery-thumb h-36 md:h-44 cursor-pointer relative">
-            <img src="images/grocery.jpg" onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?indian,grocery,store,shelf'"
-                 alt="Grocery Items" class="w-full h-full object-cover" loading="lazy" />
-            <div class="gallery-overlay absolute inset-0 flex items-center justify-center" style="background:rgba(34,197,94,0.3);">
-              <span class="text-white font-semibold text-xs">Groceries</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="gallery-item rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="180">
-          <div class="gallery-thumb h-36 md:h-44 cursor-pointer relative">
-            <img src="images/cleaning.jpg" onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?cleaning-products,bottles'"
-                 alt="Cleaning Products" class="w-full h-full object-cover" loading="lazy" />
-            <div class="gallery-overlay absolute inset-0 flex items-center justify-center" style="background:rgba(34,197,94,0.3);">
-              <span class="text-white font-semibold text-xs">Cleaners</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="gallery-item rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="120">
-          <div class="gallery-thumb h-36 md:h-44 cursor-pointer relative">
-            <img src="images/containers.jpg" onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?plastic-food-containers,boxes'"
-                 alt="Plastic Containers" class="w-full h-full object-cover" loading="lazy" />
-            <div class="gallery-overlay absolute inset-0 flex items-center justify-center" style="background:rgba(56,189,248,0.3);">
-              <span class="text-white font-semibold text-xs">Containers</span>
-            </div>
+          <div class="product-body">
+            <h3><i class="fa-solid fa-basket-shopping"></i> Grocery Items</h3>
+            <p>Everyday grocery staples — rice, dal, oil, spices and packaged foods for the whole family.</p>
+            <a href="https://wa.me/918639602820?text=I%20want%20to%20order%20Grocery%20Items" target="_blank" rel="noopener" class="order-link">Order Now <i class="fa-solid fa-arrow-right"></i></a>
           </div>
         </div>
 
@@ -826,314 +231,275 @@
     </div>
   </section>
 
-  <!-- ─────────────────────────── WHY CHOOSE US ─────────────────────────── -->
-  <section class="py-20" style="background:linear-gradient(180deg,#0f172a 0%,#0a1628 100%);">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-14" data-aos="fade-up">
-        <div class="inline-flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-full mb-4" style="background:rgba(34,197,94,0.12);color:#22c55e;border:1px solid rgba(34,197,94,0.25);">
-          <i class="fa-solid fa-star text-xs"></i> Why Choose Us
+  <!-- ===== ABOUT ===== -->
+  <section class="about-section" id="about">
+    <div class="section-container">
+      <div class="about-grid">
+        <div class="about-image" data-aos="fade-right">
+          <img src="images/shop-front.jpg"
+               onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?indian,kirana,store,shop'"
+               alt="Sri Sai Traders Shop Front" loading="lazy" />
+          <div class="about-img-badge">
+            <i class="fa-solid fa-award"></i>
+            <span>Est. 2008</span>
+          </div>
         </div>
-        <h2 class="text-4xl md:text-5xl font-display font-bold text-white">
-          The Sri Sai <span style="color:#22c55e;">Difference</span>
-        </h2>
-      </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="why-card p-8 rounded-2xl transition-all duration-300 hover:-translate-y-2" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);" data-aos="fade-up" data-aos-delay="0">
-          <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl mb-5" style="background:rgba(34,197,94,0.15);">🏆</div>
-          <h3 class="font-bold text-xl text-white mb-3">Premium Quality</h3>
-          <p class="leading-relaxed" style="color:rgba(255,255,255,0.5);">We source only the best quality products ensuring your complete satisfaction with every purchase.</p>
-        </div>
-        <div class="why-card p-8 rounded-2xl transition-all duration-300 hover:-translate-y-2" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);" data-aos="fade-up" data-aos-delay="100">
-          <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl mb-5" style="background:rgba(56,189,248,0.15);">💰</div>
-          <h3 class="font-bold text-xl text-white mb-3">Best Prices</h3>
-          <p class="leading-relaxed" style="color:rgba(255,255,255,0.5);">Competitive wholesale and retail prices for individuals, restaurants, caterers and businesses.</p>
-        </div>
-        <div class="why-card p-8 rounded-2xl transition-all duration-300 hover:-translate-y-2" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);" data-aos="fade-up" data-aos-delay="200">
-          <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl mb-5" style="background:rgba(34,197,94,0.15);">🚀</div>
-          <h3 class="font-bold text-xl text-white mb-3">Fast Delivery</h3>
-          <p class="leading-relaxed" style="color:rgba(255,255,255,0.5);">Quick delivery to your doorstep within Srinagar Colony and nearby areas in Kurnool.</p>
-        </div>
-        <div class="why-card p-8 rounded-2xl transition-all duration-300 hover:-translate-y-2" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);" data-aos="fade-up" data-aos-delay="0">
-          <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl mb-5" style="background:rgba(56,189,248,0.15);">📞</div>
-          <h3 class="font-bold text-xl text-white mb-3">Easy Ordering</h3>
-          <p class="leading-relaxed" style="color:rgba(255,255,255,0.5);">Order via phone or WhatsApp — simple, quick and convenient from the comfort of your home.</p>
-        </div>
-        <div class="why-card p-8 rounded-2xl transition-all duration-300 hover:-translate-y-2" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);" data-aos="fade-up" data-aos-delay="100">
-          <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl mb-5" style="background:rgba(34,197,94,0.15);">📋</div>
-          <h3 class="font-bold text-xl text-white mb-3">GST Registered</h3>
-          <p class="leading-relaxed" style="color:rgba(255,255,255,0.5);">Fully GST-registered business (37AIQPR6762G1ZJ) — official receipts provided for all purchases.</p>
-        </div>
-        <div class="why-card p-8 rounded-2xl transition-all duration-300 hover:-translate-y-2" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);" data-aos="fade-up" data-aos-delay="200">
-          <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl mb-5" style="background:rgba(56,189,248,0.15);">❤️</div>
-          <h3 class="font-bold text-xl text-white mb-3">Trusted by Many</h3>
-          <p class="leading-relaxed" style="color:rgba(255,255,255,0.5);">Serving hundreds of happy customers, restaurants, and event organizers across Kurnool.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+        <div class="about-content" data-aos="fade-left">
+          <span class="section-badge">Our Story</span>
+          <h2>About Sri Sai Traders</h2>
+          <p>Sri Sai Traders has been serving the Srinagar Colony community in Kurnool for over 15 years. We are your one-stop shop for all disposable items, general store essentials, and fresh daily milk. From paper cups and carry bags to fresh milk delivered every morning — we have it all.</p>
+          <p>Run by K. Mohan Reddy, we pride ourselves on offering quality products at competitive wholesale and retail prices. Our customers trust us for our reliability, fair pricing, and the wide range of products we stock.</p>
 
-  <!-- ─────────────────────────── CONTACT ───────────────────────────────── -->
-  <section id="contact" class="py-20" style="background:#0f172a;">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ul class="about-checklist">
+            <li><i class="fa-solid fa-circle-check"></i> GST Registered Business</li>
+            <li><i class="fa-solid fa-circle-check"></i> Quality Products Guaranteed</li>
+            <li><i class="fa-solid fa-circle-check"></i> Wholesale &amp; Retail Available</li>
+            <li><i class="fa-solid fa-circle-check"></i> Daily Fresh Milk Supply</li>
+          </ul>
 
-      <div class="text-center mb-14" data-aos="fade-up">
-        <div class="inline-flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-full mb-4" style="background:rgba(34,197,94,0.12);color:#22c55e;border:1px solid rgba(34,197,94,0.25);">
-          <i class="fa-solid fa-location-dot text-xs"></i> Find Us
-        </div>
-        <h2 class="text-4xl md:text-5xl font-display font-bold text-white mb-4">
-          Get In <span style="color:#22c55e;">Touch</span>
-        </h2>
-        <p class="max-w-xl mx-auto text-lg" style="color:rgba(255,255,255,0.5);">
-          Visit us at our store or reach out via phone and WhatsApp.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
-
-        <!-- Contact Cards -->
-        <div class="space-y-5" data-aos="fade-right">
-          <!-- Address -->
-          <div class="contact-card rounded-2xl p-6 flex items-start gap-4 transition-all duration-300" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);">
-            <div class="w-12 h-12 min-w-[3rem] rounded-xl flex items-center justify-center text-xl" style="background:rgba(34,197,94,0.15);color:#22c55e;">
-              <i class="fa-solid fa-location-dot"></i>
-            </div>
+          <div class="about-owner">
+            <img src="images/shop-inside.jpg"
+                 onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?indian,shop,shelves,inside'"
+                 alt="Shop Inside" loading="lazy" />
             <div>
-              <h4 class="font-bold text-white mb-1">Store Address</h4>
-              <p class="text-sm leading-relaxed" style="color:rgba(255,255,255,0.5);">
-                Srinagar Colony B-Camp,<br />
-                Opp. Shakuntala Kalaa Mandir Road,<br />
-                Kurnool, Andhra Pradesh, India
+              <strong>K. Mohan Reddy</strong>
+              <span>Owner, Sri Sai Traders</span>
+            </div>
+          </div>
+
+          <div class="about-buttons">
+            <a href="tel:8639602820" class="btn btn-primary">
+              <i class="fa-solid fa-phone"></i> Call Now
+            </a>
+            <a href="https://wa.me/918639602820" target="_blank" rel="noopener" class="btn btn-whatsapp">
+              <i class="fa-brands fa-whatsapp"></i> WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GALLERY ===== -->
+  <section class="gallery-section" id="gallery">
+    <div class="section-container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-badge">Visual Tour</span>
+        <h2>Our Shop Gallery</h2>
+        <p>Take a look inside Sri Sai Traders</p>
+      </div>
+
+      <div class="gallery-grid">
+        <div class="gallery-item gallery-large" data-aos="fade-up">
+          <img src="images/shop-front.jpg"
+               onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?indian,kirana,store,shop'"
+               alt="Shop Front" loading="lazy" />
+          <div class="gallery-overlay"><span>Shop Front</span></div>
+        </div>
+        <div class="gallery-item" data-aos="fade-up" data-aos-delay="50">
+          <img src="images/paper-cups.jpg"
+               onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?paper-cups,stack,disposable'"
+               alt="Paper Cups" loading="lazy" />
+          <div class="gallery-overlay"><span>Disposable Cups</span></div>
+        </div>
+        <div class="gallery-item" data-aos="fade-up" data-aos-delay="100">
+          <img src="images/paper-plates.jpg"
+               onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?paper-plates,disposable,stack'"
+               alt="Paper Plates" loading="lazy" />
+          <div class="gallery-overlay"><span>Paper Plates</span></div>
+        </div>
+        <div class="gallery-item" data-aos="fade-up" data-aos-delay="150">
+          <img src="images/milk.jpg"
+               onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?india,milk,packets,dairy'"
+               alt="Milk Products" loading="lazy" />
+          <div class="gallery-overlay"><span>Milk &amp; Dairy</span></div>
+        </div>
+        <div class="gallery-item" data-aos="fade-up" data-aos-delay="200">
+          <img src="images/carry-bags.jpg"
+               onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?plastic-carry-bags,shopping'"
+               alt="Carry Bags" loading="lazy" />
+          <div class="gallery-overlay"><span>Carry Bags</span></div>
+        </div>
+        <div class="gallery-item" data-aos="fade-up" data-aos-delay="250">
+          <img src="images/grocery.jpg"
+               onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?indian,grocery,store,shelf'"
+               alt="Grocery" loading="lazy" />
+          <div class="gallery-overlay"><span>Grocery</span></div>
+        </div>
+        <div class="gallery-item" data-aos="fade-up" data-aos-delay="300">
+          <img src="images/cleaning.jpg"
+               onerror="this.onerror=null;this.src='https://source.unsplash.com/600x400/?cleaning-products,bottles'"
+               alt="Cleaning Products" loading="lazy" />
+          <div class="gallery-overlay"><span>Cleaning Products</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHY CHOOSE US ===== -->
+  <section class="why-section">
+    <div class="section-container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-badge">Why Us</span>
+        <h2>Why Choose Sri Sai Traders?</h2>
+        <p>We go above and beyond for our customers</p>
+      </div>
+
+      <div class="why-grid">
+        <div class="why-card" data-aos="fade-up" data-aos-delay="0">
+          <div class="why-icon"><i class="fa-solid fa-file-invoice"></i></div>
+          <h3>GST Registered</h3>
+          <p>Fully GST compliant business with proper billing. Get GST invoices for your purchases.</p>
+        </div>
+        <div class="why-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="why-icon"><i class="fa-solid fa-box-open"></i></div>
+          <h3>Quality Products</h3>
+          <p>Only the best brands and quality products sourced from trusted manufacturers and suppliers.</p>
+        </div>
+        <div class="why-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="why-icon"><i class="fa-solid fa-truck"></i></div>
+          <h3>Wholesale &amp; Retail</h3>
+          <p>Best prices for both bulk wholesale orders and single retail purchases. Everyone gets a fair deal.</p>
+        </div>
+        <div class="why-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="why-icon"><i class="fa-solid fa-bottle-water"></i></div>
+          <h3>Daily Fresh Milk</h3>
+          <p>Fresh milk and dairy products available every morning. Sourced fresh and delivered daily.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section class="contact-section" id="contact">
+    <div class="section-container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-badge">Get In Touch</span>
+        <h2>Contact Us</h2>
+        <p>We're here to help — call, WhatsApp or visit us</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info" data-aos="fade-right">
+          <h3>Sri Sai Traders</h3>
+
+          <div class="contact-item">
+            <span class="contact-icon"><i class="fa-solid fa-location-dot"></i></span>
+            <div>
+              <strong>Address</strong>
+              <p>Srinagar Colony B-Camp, Opposite Shakuntala Kalaa Mandir Road,<br />Kurnool, Andhra Pradesh – 518 003</p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <span class="contact-icon"><i class="fa-solid fa-phone"></i></span>
+            <div>
+              <strong>Phone</strong>
+              <p>
+                <a href="tel:8639602820">8639602820</a><br />
+                <a href="tel:9440244677">9440244677</a>
               </p>
             </div>
           </div>
 
-          <!-- Phone -->
-          <div class="contact-card rounded-2xl p-6 flex items-start gap-4 transition-all duration-300" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);">
-            <div class="w-12 h-12 min-w-[3rem] rounded-xl flex items-center justify-center text-xl" style="background:rgba(34,197,94,0.15);color:#22c55e;">
-              <i class="fa-solid fa-phone"></i>
-            </div>
-            <div class="w-full">
-              <h4 class="font-bold text-white mb-2">Phone Numbers</h4>
-              <div class="flex flex-col sm:flex-row gap-3">
-                <a href="tel:8639602820" class="flex items-center gap-2 font-semibold px-4 py-2 rounded-xl transition text-sm" style="background:rgba(34,197,94,0.12);color:#22c55e;border:1px solid rgba(34,197,94,0.25);">
-                  <i class="fa-solid fa-phone text-xs"></i> 8639602820
-                </a>
-                <a href="tel:9440244677" class="flex items-center gap-2 font-semibold px-4 py-2 rounded-xl transition text-sm" style="background:rgba(34,197,94,0.12);color:#22c55e;border:1px solid rgba(34,197,94,0.25);">
-                  <i class="fa-solid fa-phone text-xs"></i> 9440244677
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- WhatsApp -->
-          <div class="contact-card rounded-2xl p-6 flex items-start gap-4 transition-all duration-300" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);">
-            <div class="w-12 h-12 min-w-[3rem] rounded-xl flex items-center justify-center text-xl" style="background:rgba(34,197,94,0.15);color:#22c55e;">
-              <i class="fa-brands fa-whatsapp"></i>
-            </div>
-            <div class="w-full">
-              <h4 class="font-bold text-white mb-2">WhatsApp Order</h4>
-              <a href="https://wa.me/918639602820?text=Hello%20Sri%20Sai%20Traders%2C%20I%20would%20like%20to%20place%20an%20order."
-                 target="_blank" rel="noopener"
-                 class="inline-flex items-center gap-2 font-semibold px-5 py-2.5 rounded-xl shadow hover:shadow-lg hover:scale-105 transition-all duration-300 text-sm" style="background:linear-gradient(135deg,#22c55e,#16a34a);color:white;">
-                <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
-              </a>
-            </div>
-          </div>
-
-          <!-- GST -->
-          <div class="contact-card rounded-2xl p-6 flex items-start gap-4 transition-all duration-300" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);">
-            <div class="w-12 h-12 min-w-[3rem] rounded-xl flex items-center justify-center text-xl" style="background:rgba(56,189,248,0.15);color:#38bdf8;">
-              <i class="fa-solid fa-file-invoice"></i>
-            </div>
+          <div class="contact-item">
+            <span class="contact-icon"><i class="fa-solid fa-file-invoice"></i></span>
             <div>
-              <h4 class="font-bold text-white mb-1">GST Number</h4>
-              <p class="font-mono text-sm px-3 py-1 rounded-lg inline-block mt-1" style="background:rgba(255,255,255,0.06);color:#38bdf8;">37AIQPR6762G1ZJ</p>
+              <strong>GST Number</strong>
+              <p>37AIQPR6762G1ZJ</p>
             </div>
           </div>
 
-          <!-- Hours -->
-          <div class="contact-card rounded-2xl p-6 flex items-start gap-4 transition-all duration-300" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);">
-            <div class="w-12 h-12 min-w-[3rem] rounded-xl flex items-center justify-center text-xl" style="background:rgba(34,197,94,0.15);color:#22c55e;">
-              <i class="fa-solid fa-clock"></i>
-            </div>
+          <div class="contact-item">
+            <span class="contact-icon"><i class="fa-solid fa-clock"></i></span>
             <div>
-              <h4 class="font-bold text-white mb-1">Business Hours</h4>
-              <p class="text-sm" style="color:rgba(255,255,255,0.5);">Monday – Sunday</p>
-              <p class="font-semibold text-sm" style="color:#22c55e;">6:00 AM – 9:00 PM</p>
+              <strong>Business Hours</strong>
+              <p>Mon – Sat: 6 AM – 9 PM<br />Sun: 6 AM – 12 PM</p>
             </div>
           </div>
+
+          <a href="https://wa.me/918639602820" target="_blank" rel="noopener" class="btn btn-whatsapp btn-full">
+            <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
+          </a>
         </div>
 
-        <!-- Map -->
-        <div data-aos="fade-left">
-          <div class="rounded-3xl overflow-hidden shadow-xl" style="border:2px solid rgba(255,255,255,0.08);">
-            <iframe
-              title="Sri Sai Traders Location – Srinagar Colony B-Camp, Kurnool"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3870.1234567890!2d78.0373!3d15.8281!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bb5db3b7be00001%3A0x1!2sSrinagar+Colony+B+Camp%2C+Kurnool%2C+Andhra+Pradesh!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
-              width="100%"
-              height="420"
-              style="border:0;"
-              allowfullscreen=""
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
-          </div>
-
-          <!-- Quick action buttons below map -->
-          <div class="mt-5 grid grid-cols-2 gap-4">
-            <a href="https://maps.google.com/?q=Srinagar+Colony+B+Camp+Kurnool+Andhra+Pradesh"
-               target="_blank" rel="noopener"
-               class="flex items-center justify-center gap-2 font-semibold px-4 py-3 rounded-2xl shadow transition text-sm" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.8);border:1px solid rgba(255,255,255,0.1);">
-              <i class="fa-solid fa-map-location-dot" style="color:#22c55e;"></i> Get Directions
-            </a>
-            <a href="https://wa.me/918639602820?text=Hello%20Sri%20Sai%20Traders%2C%20I%20would%20like%20to%20place%20an%20order."
-               target="_blank" rel="noopener"
-               class="flex items-center justify-center gap-2 font-semibold px-4 py-3 rounded-2xl shadow hover:shadow-lg transition text-sm" style="background:linear-gradient(135deg,#22c55e,#16a34a);color:white;">
-              <i class="fa-brands fa-whatsapp"></i> Order Now
-            </a>
+        <div class="contact-map" data-aos="fade-left">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3843.5!2d78.0372!3d15.8281!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTXCsDQ5JzQxLjEiTiA3OMKwMDInMTMuOSJF!5e0!3m2!1sen!2sin!4v1234567890"
+            width="100%"
+            height="350"
+            style="border:0; border-radius:16px;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Sri Sai Traders Location, Kurnool">
+          </iframe>
+          <div class="map-card">
+            <i class="fa-solid fa-location-dot"></i>
+            <div>
+              <strong>Find Us Here</strong>
+              <span>Srinagar Colony B-Camp, Kurnool, AP</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ──────────────────────────── FOOTER ───────────────────────────────── -->
-  <footer style="background:#060d1a;color:white;">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-
-        <!-- Brand -->
-        <div>
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-10 h-10 rounded-xl flex items-center justify-center shadow" style="background:linear-gradient(135deg,#22c55e,#16a34a);">
-              <span class="text-white font-bold text-lg">S</span>
-            </div>
-            <div>
-              <div class="font-bold text-lg leading-none">Sri Sai Traders</div>
-              <div class="text-xs" style="color:rgba(255,255,255,0.4);">Kurnool, Andhra Pradesh</div>
-            </div>
-          </div>
-          <p class="text-sm leading-relaxed mb-4" style="color:rgba(255,255,255,0.4);">
-            Your trusted store for disposable items, general goods and fresh milk in Srinagar Colony B-Camp, Kurnool.
-          </p>
-          <div class="flex gap-3">
-            <a href="https://wa.me/918639602820" target="_blank" rel="noopener"
-               class="w-9 h-9 rounded-xl flex items-center justify-center transition-all" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.4);">
-              <i class="fa-brands fa-whatsapp"></i>
-            </a>
-            <a href="tel:8639602820"
-               class="w-9 h-9 rounded-xl flex items-center justify-center transition-all" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.4);">
-              <i class="fa-solid fa-phone text-xs"></i>
-            </a>
-          </div>
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <i class="fa-solid fa-store"></i>
+          <span>Sri Sai Traders</span>
         </div>
-
-        <!-- Quick Links -->
-        <div>
-          <h4 class="font-bold text-white mb-4">Quick Links</h4>
-          <ul class="space-y-2 text-sm footer-links" style="color:rgba(255,255,255,0.4);">
-            <li><a href="#home"     class="footer-link transition">Home</a></li>
-            <li><a href="#about"    class="footer-link transition">About Us</a></li>
-            <li><a href="#products" class="footer-link transition">Products</a></li>
-            <li><a href="#gallery"  class="footer-link transition">Gallery</a></li>
-            <li><a href="#contact"  class="footer-link transition">Contact</a></li>
-          </ul>
+        <p>All Disposable Items &amp; General Store | Milk Center. Serving Kurnool since 2008.</p>
+        <div class="footer-social">
+          <a href="https://wa.me/918639602820" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+          </a>
+          <a href="tel:8639602820" aria-label="Call Us">
+            <i class="fa-solid fa-phone"></i>
+          </a>
         </div>
+      </div>
 
-        <!-- Contact Info -->
-        <div>
-          <h4 class="font-bold text-white mb-4">Contact</h4>
-          <ul class="space-y-3 text-sm" style="color:rgba(255,255,255,0.4);">
-            <li class="flex items-start gap-2">
-              <i class="fa-solid fa-location-dot mt-0.5" style="color:#22c55e;"></i>
-              <span>Srinagar Colony B-Camp, Opp. Shakuntala Kalaa Mandir Rd, Kurnool, AP</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <i class="fa-solid fa-phone" style="color:#22c55e;"></i>
-              <a href="tel:8639602820" class="transition">8639602820</a>
-            </li>
-            <li class="flex items-center gap-2">
-              <i class="fa-solid fa-phone" style="color:#22c55e;"></i>
-              <a href="tel:9440244677" class="transition">9440244677</a>
-            </li>
-            <li class="flex items-center gap-2">
-              <i class="fa-solid fa-file-invoice" style="color:#38bdf8;"></i>
-              <span class="font-mono">37AIQPR6762G1ZJ</span>
-            </li>
-          </ul>
-        </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-contact">
+        <h4>Contact Info</h4>
+        <ul>
+          <li><i class="fa-solid fa-location-dot"></i> Srinagar Colony B-Camp, Kurnool, AP</li>
+          <li><i class="fa-solid fa-phone"></i> <a href="tel:8639602820">8639602820</a></li>
+          <li><i class="fa-solid fa-phone"></i> <a href="tel:9440244677">9440244677</a></li>
+          <li><i class="fa-solid fa-file-invoice"></i> GST: 37AIQPR6762G1ZJ</li>
+          <li><i class="fa-solid fa-clock"></i> Mon–Sat: 6 AM – 9 PM</li>
+        </ul>
       </div>
     </div>
 
-    <div class="py-5" style="border-top:1px solid rgba(255,255,255,0.05);">
-      <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs" style="color:rgba(255,255,255,0.25);">
-        <span>© 2025 Sri Sai Traders. All rights reserved. Owned by <span style="color:rgba(255,255,255,0.4);">K. Mohan Reddy</span>.</span>
-        <a href="admin.html" class="hover:opacity-70 transition flex items-center gap-1" style="color:rgba(255,255,255,0.2);">
-          <i class="fa-solid fa-gear text-xs"></i> Admin
-        </a>
-      </div>
+    <div class="footer-bottom">
+      <p>© 2025 Sri Sai Traders. All rights reserved. | Owner: K. Mohan Reddy</p>
     </div>
   </footer>
 
-  <!-- Mouse tracking spotlight overlay -->
-  <div id="spotlight" aria-hidden="true"></div>
+  <!-- Scroll to top -->
+  <button class="scroll-top" id="scrollTop" aria-label="Scroll to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <i class="fa-solid fa-chevron-up"></i>
+  </button>
 
-  <!-- ─────────────────────── FLOATING BUTTONS ──────────────────────────── -->
-  <div class="floating-btns fixed right-5 bottom-6 z-40 flex flex-col gap-3">
-    <!-- WhatsApp -->
-    <a href="https://wa.me/918639602820?text=Hello%20Sri%20Sai%20Traders%2C%20I%20would%20like%20to%20place%20an%20order."
-       target="_blank" rel="noopener"
-       class="float-btn w-14 h-14 rounded-full flex items-center justify-center shadow-lg text-white text-2xl hover:scale-110 transition-all duration-300 relative group"
-       style="background:linear-gradient(135deg,#22c55e,#16a34a);"
-       aria-label="WhatsApp">
-      <i class="fa-brands fa-whatsapp"></i>
-      <span class="float-tooltip absolute right-16 text-white text-xs px-3 py-1.5 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" style="background:rgba(15,23,42,0.95);border:1px solid rgba(255,255,255,0.1);">
-        WhatsApp Order
-      </span>
-    </a>
-    <!-- Call -->
-    <a href="tel:8639602820"
-       class="float-btn w-14 h-14 rounded-full flex items-center justify-center shadow-lg text-white text-xl hover:scale-110 transition-all duration-300 relative group"
-       style="background:linear-gradient(135deg,#38bdf8,#0284c7);"
-       aria-label="Call">
-      <i class="fa-solid fa-phone"></i>
-      <span class="float-tooltip absolute right-16 text-white text-xs px-3 py-1.5 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" style="background:rgba(15,23,42,0.95);border:1px solid rgba(255,255,255,0.1);">
-        Call Now
-      </span>
-    </a>
-    <!-- Scroll Top -->
-    <button id="scroll-top" aria-label="Scroll to top"
-       class="float-btn w-14 h-14 rounded-full flex items-center justify-center shadow-lg text-xl hover:scale-110 transition-all duration-300 opacity-0"
-       style="background:rgba(255,255,255,0.08);color:white;border:1px solid rgba(255,255,255,0.12);">
-      <i class="fa-solid fa-chevron-up"></i>
-    </button>
-  </div>
-
-  <!-- ─────────────────── SCRIPTS ────────────────────────────────────────── -->
-  <!-- AOS -->
   <script src="libs/aos.js"></script>
-  <!-- GSAP -->
-  <script src="libs/gsap.min.js"></script>
-  <script src="libs/ScrollTrigger.min.js"></script>
-  <!-- tsParticles -->
-  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
-  <!-- Vanilla Tilt -->
-  <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.1/dist/vanilla-tilt.min.js"></script>
-  <!-- Admin Image Sync: apply any images saved via admin.html -->
-  <script>
-    (function applyAdminImages() {
-      var IMAGE_KEYS = ['milk','paper-cups','paper-plates','carry-bags','containers','cleaning','grocery','shop-front','shop-inside','shop-display'];
-      IMAGE_KEYS.forEach(function(key) {
-        var saved = localStorage.getItem('img_' + key);
-        if (!saved) return;
-        document.querySelectorAll('img[src="images/' + key + '.jpg"]').forEach(function(img) {
-          img.src = saved;
-        });
-      });
-    })();
-  </script>
-  <!-- Custom Script -->
   <script src="script.js"></script>
 </body>
 </html>
