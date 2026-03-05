@@ -47,12 +47,16 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollTopBtn();
   initSmoothScroll();
   initPageTransition();
+  initMouseSpotlight();
 });
 
 /* ──────────────────────────────────────────────────────────
    3. HERO ENTRY ANIMATIONS (GSAP)
    ────────────────────────────────────────────────────────── */
 function runEntryAnimations() {
+  // Trigger the curtain wipe-away first
+  animatePageCurtain();
+
   if (typeof gsap === 'undefined') {
     // Fallback: just show elements
     document
@@ -366,27 +370,54 @@ function animateCounters() {
 }
 
 /* ──────────────────────────────────────────────────────────
-   9. VANILLA TILT – Product cards 3D tilt
+   9. VANILLA TILT – Product cards 3D tilt (enhanced)
    ────────────────────────────────────────────────────────── */
 function initVanillaTilt() {
   if (typeof VanillaTilt === 'undefined') return;
 
   VanillaTilt.init(document.querySelectorAll('.product-card'), {
-    max: 12,
-    speed: 400,
-    glare: true,
-    'max-glare': 0.15,
-    perspective: 700,
-    scale: 1.04,
-    easing: 'cubic-bezier(.03,.98,.52,.99)',
+    max:          18,
+    speed:        600,
+    glare:        true,
+    'max-glare':  0.28,
+    perspective:  800,
+    scale:        1.06,
+    easing:       'cubic-bezier(.03,.98,.52,.99)',
+    gyroscope:    true,
   });
 }
 
 /* ──────────────────────────────────────────────────────────
    9b. PRODUCT CARD 3D TILT EFFECT (fallback when Vanilla Tilt unavailable)
+       Also drives the specular highlight on all cards.
    ────────────────────────────────────────────────────────── */
 function initProductCardTilt() {
-  if (typeof VanillaTilt !== 'undefined') return; // Vanilla Tilt handles it
+  /* Specular highlight: cache the rect on enter, update vars on move.
+     Works independently of VanillaTilt — adds a realistic specular layer. */
+  document.querySelectorAll('.product-card').forEach(card => {
+    let rect = null;
+    let pendingRaf = false;
+
+    card.addEventListener('mouseenter', () => {
+      rect = card.getBoundingClientRect(); // cache once on enter
+    }, { passive: true });
+
+    card.addEventListener('mousemove', e => {
+      if (!rect || pendingRaf) return;
+      pendingRaf = true;
+      requestAnimationFrame(() => {
+        const x = ((e.clientX - rect.left) / rect.width  * 100).toFixed(1);
+        const y = ((e.clientY - rect.top)  / rect.height * 100).toFixed(1);
+        card.style.setProperty('--card-x', `${x}%`);
+        card.style.setProperty('--card-y', `${y}%`);
+        pendingRaf = false;
+      });
+    }, { passive: true });
+
+    card.addEventListener('mouseleave', () => { rect = null; }, { passive: true });
+  });
+
+  if (typeof VanillaTilt !== 'undefined') return; // Vanilla Tilt handles the tilt
 
   const grids = document.querySelectorAll('#products .grid');
   grids.forEach(grid => {
@@ -407,16 +438,16 @@ function onTiltMove(e, card) {
   const cy       = rect.top  + rect.height / 2;
   const dx       = (e.clientX - cx) / (rect.width  / 2);
   const dy       = (e.clientY - cy) / (rect.height / 2);
-  const rotateX  = -dy * 12;
-  const rotateY  =  dx * 12;
-  const shadowX  =  dx * 16;
-  const shadowY  =  dy * 16;
+  const rotateX  = -dy * 18;
+  const rotateY  =  dx * 18;
+  const shadowX  =  dx * 20;
+  const shadowY  =  dy * 20;
 
   card.style.transition = 'none';
   card.style.transform  =
-    `perspective(700px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px) scale(1.04)`;
+    `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-12px) scale(1.06)`;
   card.style.boxShadow  =
-    `${shadowX}px ${shadowY + 20}px 50px rgba(34,197,94,0.2), 0 0 30px rgba(34,197,94,0.08)`;
+    `${shadowX}px ${shadowY + 24}px 60px rgba(34,197,94,0.22), 0 0 40px rgba(34,197,94,0.10)`;
 }
 
 function onTiltLeave(card) {
@@ -549,21 +580,35 @@ function initSmoothScroll() {
 }
 
 /* ──────────────────────────────────────────────────────────
-   12. PAGE TRANSITION EFFECT
+   12. PAGE TRANSITION – 5-strip curtain wipe
    ────────────────────────────────────────────────────────── */
 function initPageTransition() {
-  if (typeof gsap === 'undefined') return;
+  // Build curtain; animate it away after the loader hides (via runEntryAnimations)
+  const curtain = document.createElement('div');
+  curtain.id = 'page-curtain';
+  for (let i = 0; i < 5; i++) {
+    const strip = document.createElement('div');
+    strip.className = 'curtain-strip';
+    curtain.appendChild(strip);
+  }
+  document.body.appendChild(curtain);
+}
 
-  const overlay = document.createElement('div');
-  overlay.id = 'page-transition';
-  document.body.appendChild(overlay);
+function animatePageCurtain() {
+  const curtain = document.getElementById('page-curtain');
+  if (!curtain) return;
 
-  gsap.from(overlay, {
-    scaleY: 1,
-    transformOrigin: 'top',
-    duration: 0.8,
-    ease: 'power3.inOut',
-    delay: 0.1,
+  if (typeof gsap === 'undefined') {
+    curtain.remove();
+    return;
+  }
+
+  gsap.to('.curtain-strip', {
+    yPercent: -105,
+    duration:  1.1,
+    ease:      'power4.inOut',
+    stagger:   { each: 0.07, from: 'center' },
+    onComplete: () => curtain.remove(),
   });
 }
 
@@ -600,4 +645,44 @@ window.addEventListener('load', () => {
     delay: 2.2,
   });
 });
+
+/* ──────────────────────────────────────────────────────────
+   15. MOUSE TRACKING SPOTLIGHT EFFECT
+   ────────────────────────────────────────────────────────── */
+function initMouseSpotlight() {
+  const el = document.getElementById('spotlight');
+  if (!el) return;
+
+  /* Lerp-smoothed tracking so the spotlight glides rather than snaps */
+  let targetX = -500, targetY = -500;
+  let currentX = -500, currentY = -500;
+  let rafId;
+
+  const lerp = (a, b, t) => a + (b - a) * t;
+
+  document.addEventListener('mousemove', e => {
+    targetX = e.clientX;
+    targetY = e.clientY;
+  }, { passive: true });
+
+  document.addEventListener('mouseleave', () => {
+    /* Move spotlight off-screen smoothly when cursor leaves */
+    targetX = -500;
+    targetY = -500;
+  });
+
+  function tick() {
+    currentX = lerp(currentX, targetX, 0.08);
+    currentY = lerp(currentY, targetY, 0.08);
+    /* Update the spotlight element directly to limit style recalculation scope */
+    el.style.background =
+      `radial-gradient(500px circle at ${currentX.toFixed(1)}px ${currentY.toFixed(1)}px, rgba(34,197,94,0.055), transparent 42%)`;
+    rafId = requestAnimationFrame(tick);
+  }
+
+  tick();
+
+  /* Cancel the loop on page unload to prevent memory leaks */
+  window.addEventListener('pagehide', () => cancelAnimationFrame(rafId), { once: true });
+}
 
